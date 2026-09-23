@@ -14,7 +14,7 @@ Plain HTML, CSS and JavaScript. No framework, no build step, no server. Hosted o
 ```
 /
 ├── public/                  ← THE WEBSITE. Only this folder is published.
-│   ├── index.html           homepage (clock-dial hero + game shelf)
+│   ├── index.html           homepage (clock dial + today's pick + top 5)
 │   ├── about.html, contact.html, privacy.html, 404.html
 │   ├── robots.txt, sitemap.xml, ads.txt, favicon.svg, site.webmanifest
 │   ├── _headers             Cloudflare caching + security headers
@@ -36,6 +36,7 @@ Plain HTML, CSS and JavaScript. No framework, no build step, no server. Hosted o
 │   │   ├── images/          icons + social share image
 │   │   └── fonts/           Bricolage Grotesque + DM Sans (self-hosted)
 │   └── games/
+│       ├── index.html       All games page
 │       └── snake/
 │           ├── index.html   game page: game + about + how to play + tips + play next
 │           ├── game.js      only Snake's own rules and drawing
@@ -56,7 +57,8 @@ Plain HTML, CSS and JavaScript. No framework, no build step, no server. Hosted o
 
 - **`public/` is the only published folder.** Your notes, tools and templates never end up on the internet.
 - **One shared game shell.** Every game gets the same score bar, start screen, pause, game-over screen, sounds and saved best score. A game's own `game.js` only contains its rules, so games stay consistent and are quick to build.
-- **One list of games** (`site.config.mjs`). The homepage shelf, the "Play next" sections, the category filters and `sitemap.xml` are all generated from it.
+- **One list of games** (`site.config.mjs`). The homepage shelf, the All games page (`/games/`), the "Play next" sections, the category filters and `sitemap.xml` are all generated from it.
+- **Homepage = Today's pick + Top 5.** *Today's pick* rotates through every game automatically, one per day (worked out in the visitor's browser, so it changes even when you don't update the site). The *Top 5* are the games listed in `TOP_GAMES` in `site.config.mjs`. Turning the clock or choosing a category on the homepage searches **all** games.
 - **Header and footer are written once** (`partials/`). `node tools/sync.mjs` copies them into every page as real HTML. That's best for Google, with no flicker, and Cloudflare still needs no build step.
 - **Clean URLs.** `/games/snake/` works because each game is a folder, and Cloudflare serves `about.html` at `/about`.
 

@@ -8,7 +8,8 @@
 // What it does, for every .html file inside public/:
 //   1. Copies partials/head.html, header.html, footer.html into the matching
 //      <!-- @head --> … <!-- /@head --> (etc.) markers.
-//   2. Rebuilds the homepage game shelf  (<!-- @game-grid --> markers).
+//   2. Rebuilds the homepage game shelf  (<!-- @game-grid --> markers)
+//      and the All games page            (<!-- @game-grid-all --> markers).
 //   3. Rebuilds each game's "Play next"  (<!-- @play-next --> markers).
 //   4. Fills in the number of games      (<!-- @game-count --> markers)
 //      and the category filter buttons   (<!-- @category-chips --> markers).
@@ -20,7 +21,7 @@
 import { readFile, writeFile, readdir, stat } from "node:fs/promises";
 import { join, relative, sep, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { SITE, CATEGORIES, GAMES } from "../site.config.mjs";
+import { SITE, CATEGORIES, GAMES, TOP_GAMES } from "../site.config.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const PUBLIC = join(ROOT, "public");
@@ -55,11 +56,12 @@ const CLOCK_ICON =
   '<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
 
 /** HTML for one game tile. */
-function tile(game, { feature = false, heading = "h3" } = {}) {
+function tile(game, { feature = false, extra = false, heading = "h3" } = {}) {
   const cat = CATEGORIES[game.category] ?? { label: game.category };
   const badge = feature ? "Today’s pick" : isNew(game) ? "New" : "";
+  const rank = TOP_GAMES.indexOf(game.slug);
   return `
-<li class="tile${feature ? " tile--feature" : ""}" data-category="${game.category}" data-minutes="${game.minutes}">
+<li class="tile${feature ? " tile--feature" : ""}" data-slug="${game.slug}" data-order="${GAMES.indexOf(game)}" data-category="${game.category}" data-minutes="${game.minutes}"${rank >= 0 ? ` data-rank="${rank}"` : ""}${isNew(game) ? ` data-badge="New"` : ""}${extra ? " data-extra" : ""}>
   <a class="tile__link" href="/games/${game.slug}/">
     <div class="tile__art"><img src="/games/${game.slug}/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
     <div class="tile__body">
@@ -109,8 +111,23 @@ for (const g of GAMES) {
   catch { console.warn(`⚠  ${g.slug}: public/games/${g.slug}/index.html does not exist`); }
 }
 
-const featured = GAMES.find((g) => g.featured);
-const gridHtml = GAMES.map((g) => tile(g, { feature: g === featured })).join("\n");
+// Today's pick: one game per day, cycling through GAMES in order.
+// The homepage (home.js) uses the SAME formula, so the pick updates daily
+// in the browser even though this file only runs when you sync.
+const dayNumber = (d = new Date()) => Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5);
+const pick = GAMES[dayNumber() % GAMES.length];
+const top = TOP_GAMES.map((slug) => GAMES.find((g) => g.slug === slug)).filter((g) => g && g !== pick).slice(0, 5);
+const rest = GAMES.filter((g) => g !== pick && !top.includes(g));
+for (const slug of TOP_GAMES) if (!GAMES.some((g) => g.slug === slug)) console.warn(`⚠  TOP_GAMES has "${slug}", which isn't in GAMES`);
+
+// Homepage: pick (big) → top 5 → everything else (hidden until you filter)
+const gridHtml = [
+  tile(pick, { feature: true }),
+  ...top.map((g) => tile(g)),
+  ...rest.map((g) => tile(g, { extra: true })),
+].join("\n");
+// All games page: every game, in list order
+const gridAllHtml = GAMES.map((g) => tile(g)).join("\n");
 const countText = `${GAMES.length} ${GAMES.length === 1 ? "game" : "games"}`;
 
 // Category filter buttons: "All" + only the categories that have games
@@ -130,6 +147,7 @@ for (const file of htmlFiles) {
   html = fillBlock(html, "header", header);
   html = fillBlock(html, "footer", footer);
   html = fillBlock(html, "game-grid", gridHtml);
+  html = fillBlock(html, "game-grid-all", gridAllHtml);
   html = fillBlock(html, "game-count", countText);
   html = fillBlock(html, "category-chips", chipsHtml);
 

@@ -173,6 +173,26 @@
 .shelf__head h2 { margin: 0; }
 .shelf__status { color: var(--text-muted); font-weight: 700; font-size: var(--step--1); margin-bottom: var(--space-5); min-height: 1.5em; }
 .shelf .empty-note { margin-top: var(--space-2); }
+/* Homepage shows today's pick + top 5; the rest appear only when filtering */
+[data-grid]:not(.is-filtering) .tile[data-extra] { display: none; }
+.shelf__more { display: flex; justify-content: center; margin: var(--space-7) 0 0; }
+
+/* Homepage "pick + top 5" layout: 3 columns, today's pick is a big 2×2 tile.
+   (1 big + 5 small fills a 3×3 grid exactly.) */
+@media (min-width: 900px) {
+  .tile-grid--home:not(.is-filtering) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tile-grid--home:not(.is-filtering) .tile--feature { grid-column: span 2; grid-row: span 2; }
+  .tile-grid--home:not(.is-filtering) .tile--feature .tile__link { flex-direction: column; }
+  .tile-grid--home:not(.is-filtering) .tile--feature .tile__art {
+    flex: 1;
+    min-height: 0;
+    border-right: 0;
+    border-bottom: var(--outline) solid var(--line);
+  }
+  .tile-grid--home:not(.is-filtering) .tile--feature .tile__body { flex: none; padding: var(--space-5) var(--space-6); }
+  .tile-grid--home:not(.is-filtering) .tile--feature .tile__title { font-size: var(--step-3); }
+  .tile-grid--home:not(.is-filtering) .tile--feature .tile__blurb { font-size: var(--step-1); }
+}
 .chip[data-category="arcade"]  { --chip-color: var(--cat-arcade); }
 .chip[data-category="puzzle"]  { --chip-color: var(--cat-puzzle); }
 .chip[data-category="quick"]   { --chip-color: var(--cat-quick); }

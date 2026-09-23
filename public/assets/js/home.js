@@ -1,8 +1,13 @@
 // ============================================================================
-// home.js — the homepage clock dial, category filters and "Surprise me"
+// home.js — game shelf behaviour for the homepage and the All games page
 // ----------------------------------------------------------------------------
-// The game tiles are already in the HTML (written by tools/sync.mjs), so the
-// page works without JavaScript. This file just shows/hides tiles.
+// Homepage: picks "Today's pick" (changes every day), shows it plus the top 5,
+// and powers the clock dial, category chips and "Surprise me".
+// Turning the clock or choosing a category searches EVERY game.
+// All games page: just the category chips.
+//
+// The tiles are already in the HTML (written by tools/sync.mjs), so the page
+// still works without JavaScript. This file only rearranges and filters.
 // ============================================================================
 
 import * as sound from "./core/sound.js";
@@ -11,7 +16,9 @@ const dial = document.querySelector("[data-dial]");
 const opts = [...document.querySelectorAll(".dial__opt")];
 const caption = document.querySelector("[data-dial-caption]");
 const chips = [...document.querySelectorAll(".chip")];
+const grid = document.querySelector("[data-grid]");
 const tiles = [...document.querySelectorAll("[data-grid] .tile")];
+const isHome = Boolean(dial); // the All games page has no dial
 const status = document.querySelector("[data-shelf-status]");
 const empty = document.querySelector("[data-empty]");
 
@@ -36,20 +43,62 @@ if (ticks) {
   }
 }
 
+// ---- Today's pick + top 5 (homepage only) ------------------------------------
+// Same formula as tools/sync.mjs: one game per day, cycling through the list.
+const dayNumber = (d = new Date()) => Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5);
+
+function setBadge(tile, text) {
+  let badge = tile.querySelector(".tile__badge");
+  if (!text) return badge?.remove();
+  if (!badge) {
+    badge = document.createElement("span");
+    badge.className = "tile__badge";
+    tile.querySelector(".tile__body").prepend(badge);
+  }
+  badge.textContent = text;
+}
+
+function arrangeToday() {
+  const inOrder = [...tiles].sort((a, b) => a.dataset.order - b.dataset.order);
+  const pick = inOrder[dayNumber() % inOrder.length];
+  const top = tiles
+    .filter((t) => t !== pick && t.dataset.rank !== undefined)
+    .sort((a, b) => a.dataset.rank - b.dataset.rank)
+    .slice(0, 5);
+  const rest = inOrder.filter((t) => t !== pick && !top.includes(t));
+
+  for (const t of tiles) {
+    t.classList.toggle("tile--feature", t === pick);
+    t.toggleAttribute("data-extra", rest.includes(t));
+    setBadge(t, t === pick ? "Today’s pick" : t.dataset.badge);
+  }
+  grid.append(pick, ...top, ...rest); // put them in display order
+}
+
 // ---- Apply the current filters to the tiles --------------------------------
 function applyFilters() {
+  // Not filtering on the homepage = show today's pick + top 5 only
+  const browsing = filter.minutes === "all" && filter.category === "all";
+  const compact = isHome && browsing;
+  grid.classList.toggle("is-filtering", !compact);
+
   let shown = 0;
   for (const tile of tiles) {
     const okTime = filter.minutes === "all" || tile.dataset.minutes === filter.minutes;
     const okCat = filter.category === "all" || tile.dataset.category === filter.category;
-    tile.hidden = !(okTime && okCat);
+    tile.hidden = compact ? tile.hasAttribute("data-extra") : !(okTime && okCat);
     if (!tile.hidden) shown++;
   }
   empty.hidden = shown > 0;
 
   const word = shown === 1 ? "game" : "games";
   const timeText = filter.minutes === "all" ? "" : filter.minutes === "5" ? " that take 5+ minutes" : ` that take about ${filter.minutes} ${filter.minutes === "1" ? "minute" : "minutes"}`;
-  status.textContent = filter.minutes === "all" && filter.category === "all" ? `Showing all ${shown} ${word}` : `Showing ${shown} ${word}${timeText}`;
+  const catText = filter.category === "all" ? "" : ` in ${document.querySelector(`.chip[data-category="${filter.category}"]`)?.textContent ?? filter.category}`;
+  status.textContent = compact
+    ? `Today’s pick and our top ${shown - 1}, out of ${tiles.length} games`
+    : browsing
+      ? `Showing all ${shown} ${word}`
+      : `Showing ${shown} ${word}${catText}${timeText}`;
   return shown;
 }
 
@@ -79,7 +128,7 @@ function choose(btn, { fromUser = true } = {}) {
     const mins = btn.dataset.minutes;
     caption.innerHTML =
       mins === "all"
-        ? `Every game on the shelf: <strong>${shown}</strong>`
+        ? `Today’s pick and our <strong>top games</strong>`
         : shown
           ? `<strong>${shown} ${shown === 1 ? "game fits" : "games fit"}</strong> a ${mins === "5" ? "5+" : mins}-minute break`
           : `Nothing that short yet. Try another time!`;
@@ -115,12 +164,15 @@ chips.forEach((chip) =>
 // "show every game" link inside the empty message
 document.querySelector("[data-reset]")?.addEventListener("click", () => {
   chips[0]?.click();
-  choose(opts.find((o) => o.dataset.minutes === "all"));
+  if (isHome) choose(opts.find((o) => o.dataset.minutes === "all"));
 });
 
 // ---- Surprise me: jump to a random game that matches the current filters -------
 document.querySelector("[data-surprise]")?.addEventListener("click", () => {
-  const pool = tiles.filter((t) => !t.hidden);
+  // any game that matches the current filters (not just the ones on screen)
+  const pool = tiles.filter((t) =>
+    (filter.minutes === "all" || t.dataset.minutes === filter.minutes) &&
+    (filter.category === "all" || t.dataset.category === filter.category));
   const pick = (pool.length ? pool : tiles)[Math.floor(Math.random() * (pool.length || tiles.length))];
   const link = pick?.querySelector("a");
   if (link) {
@@ -129,4 +181,5 @@ document.querySelector("[data-surprise]")?.addEventListener("click", () => {
   }
 });
 
+if (isHome) arrangeToday();
 applyFilters();

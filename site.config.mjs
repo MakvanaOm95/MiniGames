@@ -25,14 +25,19 @@ export const CATEGORIES = {
   classic: { label: "Classic", color: "var(--cat-classic)" },
 };
 
-// Every game on the site, in the order they appear on the homepage.
+// The homepage "Top games" row: your 5 best games, in order.
+// List a few extra: if one of them is Today's pick, the next one fills in.
+// (Tip: once you have analytics, put your most-played games here.)
+export const TOP_GAMES = ["2048", "snake", "sudoku", "wind-up-flyer", "minesweeper", "four-in-a-row", "pair-up"];
+
+// Every game on the site. This order is used on the All games page, and
+// "Today's pick" on the homepage cycles through it, one game per day.
 //
 //   slug      folder name inside public/games/ (also the URL: /games/<slug>/)
 //   title     the game's name
 //   blurb     one short, punchy line shown on the tile
 //   category  one of the keys in CATEGORIES above
 //   minutes   how long one round usually takes: 1, 3 or 5 (5 means "5 or more")
-//   featured  true = shown as the big tile at the top of the homepage
 //   added     date the game went live (YYYY-MM-DD), used for "New" badges
 export const GAMES = [
   {
@@ -41,7 +46,6 @@ export const GAMES = [
     blurb: "Eat, grow, and don't bite your own tail.",
     category: "arcade",
     minutes: 3,
-    featured: true,
     added: "2026-09-23",
   },
   {

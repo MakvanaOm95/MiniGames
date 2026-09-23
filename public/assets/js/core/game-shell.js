@@ -79,7 +79,7 @@ export function createShell({
 
   // Link to the first "Play next" game on the page (falls back to the homepage)
   const nextLink = document.querySelector(".play-next .tile__link");
-  const nextHref = nextLink?.getAttribute("href") ?? "/#games";
+  const nextHref = nextLink?.getAttribute("href") ?? "/games/";
   const nextName = nextLink?.querySelector(".tile__title")?.textContent ?? "More games";
 
   function showScreen(html) {

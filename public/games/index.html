@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- @head -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6EFE3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141D2C" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<script>/* Apply the saved light/dark choice before the page paints (avoids a flash) */try{var t=localStorage.getItem("tinytock:theme");if(t)document.documentElement.dataset.theme=JSON.parse(t)}catch(e){}</script>
+<script type="module" src="/assets/js/site.js"></script>
+<!-- ANALYTICS + ADSENSE: paste their <script> tags below this line (see SETUP_GUIDE.md) -->
+<!-- /@head -->
+<title>All Games: Free Puzzle, Arcade &amp; Word Games | Tiny Tock</title>
+<meta name="description" content="Browse every free game on Tiny Tock: puzzle, arcade, word, quick and classic games you can play instantly in your browser on phone or computer.">
+<link rel="canonical" href="https://tinytock.com/games/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tiny Tock">
+<meta property="og:title" content="All games | Tiny Tock">
+<meta property="og:description" content="Every free Tiny Tock game in one place. Pick one and press play.">
+<meta property="og:url" content="https://tinytock.com/games/">
+<meta property="og:image" content="https://tinytock.com/assets/images/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/css/home.css">
+<script type="module" src="/assets/js/home.js"></script>
+</head>
+<body>
+<!-- @header -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="/" aria-label="Tiny Tock — home">
+      <svg class="brand__mark" viewBox="0 0 48 48" width="42" height="42" aria-hidden="true">
+        <g stroke="#1B2A41" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 40l-3 5M33 40l3 5" fill="none"/>
+          <path d="M5.5 15.5a8.5 8.5 0 0 1 12.5-10.5z" fill="#F2B33D"/>
+          <path d="M42.5 15.5a8.5 8.5 0 0 0-12.5-10.5z" fill="#F2B33D"/>
+          <path d="M24 10.5V6" fill="none"/>
+          <circle cx="24" cy="27" r="16" fill="#E8553D"/>
+          <circle cx="24" cy="27" r="11" fill="#FBF7F0" stroke="none"/>
+          <path class="brand__hands" d="M18.5 22.5L24 27l5.5-4.5" fill="none"/>
+        </g>
+        <circle cx="24" cy="4.8" r="2" fill="#1B2A41"/>
+        <circle cx="24" cy="27" r="1.9" fill="#1B2A41"/>
+      </svg>
+      <span class="brand__name">Tiny&nbsp;Tock</span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/games/">Games</a>
+      <a href="/about">About</a>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+<!-- /@header -->
+
+<main id="main">
+  <header class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">The whole toy box</span>
+      <h1>All games</h1>
+      <p><!-- @game-count -->
+10 games
+<!-- /@game-count --> to play right now, free, on any device. Filter by type, or scroll and pick one that looks fun.</p>
+    </div>
+  </header>
+
+  <section class="section shelf" aria-labelledby="all-title">
+    <div class="wrap">
+      <div class="shelf__head">
+        <h2 id="all-title" class="visually-hidden">Game list</h2>
+        <ul class="chips" aria-label="Filter by category">
+<!-- @category-chips -->
+<li><button class="chip" type="button" aria-pressed="true" data-category="all">All</button></li>
+<li><button class="chip" type="button" aria-pressed="false" data-category="arcade">Arcade</button></li>
+<li><button class="chip" type="button" aria-pressed="false" data-category="puzzle">Puzzle</button></li>
+<li><button class="chip" type="button" aria-pressed="false" data-category="quick">Quick</button></li>
+<li><button class="chip" type="button" aria-pressed="false" data-category="word">Word</button></li>
+<li><button class="chip" type="button" aria-pressed="false" data-category="classic">Classic</button></li>
+<!-- /@category-chips -->
+        </ul>
+      </div>
+      <p class="shelf__status" aria-live="polite" data-shelf-status></p>
+
+      <ul class="tile-grid" data-grid>
+<!-- @game-grid-all -->
+<li class="tile" data-slug="snake" data-order="0" data-category="arcade" data-minutes="3" data-rank="1" data-badge="New">
+  <a class="tile__link" href="/games/snake/">
+    <div class="tile__art"><img src="/games/snake/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Snake</h3>
+      <p class="tile__blurb">Eat, grow, and don&#39;t bite your own tail.</p>
+      <div class="tile__meta">
+        <span class="tag">Arcade</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>3 min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<li class="tile" data-slug="2048" data-order="1" data-category="puzzle" data-minutes="5" data-rank="0" data-badge="New">
+  <a class="tile__link" href="/games/2048/">
+    <div class="tile__art"><img src="/games/2048/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">2048</h3>
+      <p class="tile__blurb">Slide, merge, and chase the 2048 tile.</p>
+      <div class="tile__meta">
+        <span class="tag">Puzzle</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>5+ min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<li class="tile" data-slug="wind-up-flyer" data-order="2" data-category="arcade" data-minutes="1" data-rank="3" data-badge="New">
+  <a class="tile__link" href="/games/wind-up-flyer/">
+    <div class="tile__art"><img src="/games/wind-up-flyer/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Wind-Up Flyer</h3>
+      <p class="tile__blurb">Tap to flap through the toy-block towers.</p>
+      <div class="tile__meta">
+        <span class="tag">Arcade</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>1 min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<li class="tile" data-slug="pair-up" data-order="3" data-category="quick" data-minutes="1" data-rank="6" data-badge="New">
+  <a class="tile__link" href="/games/pair-up/">
+    <div class="tile__art"><img src="/games/pair-up/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Pair Up</h3>
+      <p class="tile__blurb">Flip cards and find the pairs. Fast!</p>
+      <div class="tile__meta">
+        <span class="tag">Quick</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>1 min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<li class="tile" data-slug="sudoku" data-order="4" data-category="puzzle" data-minutes="5" data-rank="2" data-badge="New">
+  <a class="tile__link" href="/games/sudoku/">
+    <div class="tile__art"><img src="/games/sudoku/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Sudoku</h3>
+      <p class="tile__blurb">Fill the grid. Every row, column and box gets 1–9.</p>
+      <div class="tile__meta">
+        <span class="tag">Puzzle</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>5+ min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<li class="tile" data-slug="brick-breaker" data-order="5" data-category="arcade" data-minutes="3" data-badge="New">
+  <a class="tile__link" href="/games/brick-breaker/">
+    <div class="tile__art"><img src="/games/brick-breaker/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Brick Breaker</h3>
+      <p class="tile__blurb">Bounce the ball and smash every brick.</p>
+      <div class="tile__meta">
+        <span class="tag">Arcade</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>3 min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<li class="tile" data-slug="bop-a-mole" data-order="6" data-category="quick" data-minutes="1" data-badge="New">
+  <a class="tile__link" href="/games/bop-a-mole/">
+    <div class="tile__art"><img src="/games/bop-a-mole/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Bop-a-Mole</h3>
+      <p class="tile__blurb">Moles pop up. You bop them. 40 seconds.</p>
+      <div class="tile__meta">
+        <span class="tag">Quick</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>1 min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<li class="tile" data-slug="word-scramble" data-order="7" data-category="word" data-minutes="1" data-badge="New">
+  <a class="tile__link" href="/games/word-scramble/">
+    <div class="tile__art"><img src="/games/word-scramble/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Word Scramble</h3>
+      <p class="tile__blurb">Unscramble as many words as you can in a minute.</p>
+      <div class="tile__meta">
+        <span class="tag">Word</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>1 min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<li class="tile" data-slug="minesweeper" data-order="8" data-category="puzzle" data-minutes="5" data-rank="4" data-badge="New">
+  <a class="tile__link" href="/games/minesweeper/">
+    <div class="tile__art"><img src="/games/minesweeper/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Minesweeper</h3>
+      <p class="tile__blurb">Clear the field without touching a mine.</p>
+      <div class="tile__meta">
+        <span class="tag">Puzzle</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>5+ min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<li class="tile" data-slug="four-in-a-row" data-order="9" data-category="classic" data-minutes="3" data-rank="5" data-badge="New">
+  <a class="tile__link" href="/games/four-in-a-row/">
+    <div class="tile__art"><img src="/games/four-in-a-row/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Four in a Row</h3>
+      <p class="tile__blurb">Drop discs and line up four before the computer does.</p>
+      <div class="tile__meta">
+        <span class="tag">Classic</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>3 min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<!-- /@game-grid-all -->
+      </ul>
+
+      <div class="empty-note" data-empty hidden>
+        <strong>No games in that category yet.</strong>
+        New games arrive every week. <button class="linklike" type="button" data-reset>Show every game</button>.
+      </div>
+    </div>
+  </section>
+
+  <!-- AD SLOT: all games page banner -->
+  <div class="wrap"><aside class="ad-slot ad-slot--banner" data-ad-slot="games-bottom" aria-label="Advertisement"></aside></div>
+</main>
+
+<!-- @footer -->
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="site-footer__brand">
+      <p class="site-footer__name">Tiny Tock</p>
+      <p>Free little games for the gaps in your day. No downloads, no sign-ups. Just press play.</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/games/">All games</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy policy</a>
+    </nav>
+  </div>
+  <div class="wrap site-footer__legal">
+    <p>© <span data-year>2026</span> Tiny Tock</p>
+  </div>
+</footer>
+<!-- /@footer -->
+</body>
+</html>
