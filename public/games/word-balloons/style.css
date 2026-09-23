@@ -1,0 +1,122 @@
+/* ==========================================================================
+   Word Balloons — only what's unique to this game.
+   ========================================================================== */
+
+.game[data-game="word-balloons"] {
+  --game-color: var(--cat-word);
+  max-width: 640px;
+}
+.game[data-game="word-balloons"] .game__stage {
+  background: linear-gradient(#CFE6F5, var(--bg-raised) 55%);
+}
+[data-theme="dark"] .game[data-game="word-balloons"] .game__stage { background: linear-gradient(#22304A, var(--bg-raised) 55%); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .game[data-game="word-balloons"] .game__stage { background: linear-gradient(#22304A, var(--bg-raised) 55%); }
+}
+
+.wb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(10px, 2.5vw, 16px);
+  padding: var(--space-4) var(--space-3) var(--space-4);
+}
+
+/* Balloons tied to a little basket */
+.wb-scene { position: relative; display: grid; justify-items: center; }
+.wb-sky {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: clamp(86px, 22vw, 118px);
+  transition: transform 1.2s cubic-bezier(0.5, 0, 0.9, 0.5);
+}
+.wb-sky.is-falling { transform: translateY(40px); }
+.balloon {
+  --lift: calc((var(--i) - 2.5) * (var(--i) - 2.5) * -3px);
+  position: relative;
+  width: clamp(32px, 8.5vw, 46px);
+  margin: 0 -3px;
+  transform: translateY(var(--lift)) rotate(calc((var(--i) - 2.5) * 5deg));
+  transform-origin: 50% 180%;
+  animation: bob 3s ease-in-out calc(var(--i) * -0.4s) infinite;
+}
+.balloon svg { width: 100%; }
+/* strings */
+.balloon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 76%;
+  width: 1.5px;
+  height: clamp(26px, 7vw, 38px);
+  background: var(--text-soft);
+  transform-origin: top;
+  transform: rotate(calc((var(--i) - 2.5) * -9deg));
+}
+@keyframes bob { 50% { translate: 0 -5px; } }
+.balloon.is-popped { animation: popped 0.35s var(--ease-out) forwards; }
+@keyframes popped { 40% { transform: scale(1.3); opacity: 1; } 100% { transform: scale(0.2); opacity: 0; } }
+
+.wb-basket {
+  width: clamp(54px, 14vw, 70px);
+  margin-top: clamp(20px, 5vw, 30px);
+  transition: transform 1.2s cubic-bezier(0.5, 0, 0.9, 0.5);
+}
+.wb-sky.is-falling + .wb-basket { transform: translateY(40px) rotate(8deg); }
+
+.wb-hint {
+  padding: 0.2em 0.9em;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--bg-raised);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step--1);
+}
+.wb-hint::before { content: "Hint: "; color: var(--text-muted); font-weight: 600; }
+
+.wb-word { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(4px, 1.2vw, 8px); }
+.wb-letter {
+  display: grid;
+  place-items: end center;
+  width: clamp(24px, 7vw, 40px);
+  height: clamp(34px, 9vw, 48px);
+  padding-bottom: 2px;
+  border-bottom: 4px solid var(--line);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.3rem, 5.5vw, 2rem);
+  line-height: 1;
+}
+.wb-letter.is-found { animation: letter-in 0.3s var(--ease-spring); }
+.wb-letter.is-missed { color: var(--tomato-dk); }
+.wb-word.is-solved .wb-letter { color: var(--teal-dk); animation: letter-in 0.4s var(--ease-spring); }
+[data-theme="dark"] .wb-word.is-solved .wb-letter { color: #7FD6C9; }
+@keyframes letter-in { from { transform: translateY(-10px) scale(1.4); } }
+
+.wb-msg { min-height: 1.4em; margin: 0; font-family: var(--font-display); font-weight: 800; color: var(--plum); }
+[data-theme="dark"] .wb-msg { color: #C9A2DA; }
+
+/* On-screen keyboard */
+.wb-keys { display: grid; gap: 6px; width: 100%; max-width: 520px; }
+.wb-keys__row { display: flex; justify-content: center; gap: clamp(3px, 1vw, 6px); }
+.wb-key {
+  flex: 1;
+  max-width: 44px;
+  min-height: 46px;
+  padding: 0;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg-raised);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(0.95rem, 3.8vw, 1.1rem);
+  box-shadow: 0 3px 0 var(--shadow-ink);
+  touch-action: manipulation;
+}
+.wb-key:active:not(:disabled) { transform: translateY(3px); box-shadow: none; }
+.wb-key:disabled { cursor: default; box-shadow: none; transform: translateY(3px); }
+.wb-key.is-right { background: #CFEDE7; color: var(--ink-900); border-color: var(--teal-dk); }
+.wb-key.is-wrong { background: transparent; color: var(--text-muted); opacity: 0.4; text-decoration: line-through; }

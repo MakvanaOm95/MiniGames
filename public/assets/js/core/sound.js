@@ -4,6 +4,7 @@
 //   import * as sound from "/assets/js/core/sound.js";
 //   sound.play("pop");                 // play an effect
 //   sound.play("pop", { pitch: 1.5 }); // higher version (great for combos)
+//   sound.note(440, { dur: 0.3 });     // a musical note (Hz)
 //   sound.toggleMuted();               // mute / unmute (remembered)
 //
 // Sounds are generated with the Web Audio API, so they cost zero bytes and
@@ -76,6 +77,13 @@ export function play(name, { pitch = 1 } = {}) {
   if (muted || !SOUNDS[name]) return;
   if (!audio()) return;
   SOUNDS[name](pitch);
+}
+
+/** Play a single musical note, e.g. note(440, { dur: 0.3 }). Used by music games. */
+export function note(freq, { dur = 0.3, type = "triangle", vol = 0.55 } = {}) {
+  if (muted || !audio()) return;
+  tone({ type, freq, dur, vol });
+  tone({ type: "sine", freq: freq * 2, dur: dur * 0.6, vol: vol * 0.18 }); // a little sparkle on top
 }
 
 export const isMuted = () => muted;

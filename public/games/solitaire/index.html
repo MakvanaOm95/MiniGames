@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- @head -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6EFE3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141D2C" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<script>/* Apply the saved light/dark choice before the page paints (avoids a flash) */try{var t=localStorage.getItem("tinytock:theme");if(t)document.documentElement.dataset.theme=JSON.parse(t)}catch(e){}</script>
+<script type="module" src="/assets/js/site.js"></script>
+<!-- ANALYTICS + ADSENSE: paste their <script> tags below this line (see SETUP_GUIDE.md) -->
+<!-- /@head -->
+<title>Solitaire: Play Classic Klondike Solitaire Free Online | Tiny Tock</title>
+<meta name="description" content="Play classic Klondike Solitaire free. Drag or tap cards, unlimited undo, auto-finish, and your best time saved. Works great on phone and desktop.">
+<link rel="canonical" href="https://tinytock.com/games/solitaire/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tiny Tock">
+<meta property="og:title" content="Solitaire: free online game | Tiny Tock">
+<meta property="og:description" content="The classic card game. Build every suit from Ace to King.">
+<meta property="og:url" content="https://tinytock.com/games/solitaire/">
+<meta property="og:image" content="https://tinytock.com/assets/images/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/css/game-shell.css">
+<link rel="stylesheet" href="/games/solitaire/style.css">
+<script type="module" src="/games/solitaire/game.js"></script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "VideoGame", "name": "Solitaire", "url": "https://tinytock.com/games/solitaire/", "description": "Classic Klondike Solitaire (draw one) with drag-and-drop, tap-to-move, unlimited undo and auto-finish.", "genre": ["Classic"], "gamePlatform": ["Web browser"], "applicationCategory": "Game", "operatingSystem": "Any", "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Tiny Tock", "url": "https://tinytock.com/"}}
+</script>
+</head>
+<body>
+<!-- @header -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="/" aria-label="Tiny Tock — home">
+      <svg class="brand__mark" viewBox="0 0 48 48" width="42" height="42" aria-hidden="true">
+        <g stroke="#1B2A41" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 40l-3 5M33 40l3 5" fill="none"/>
+          <path d="M5.5 15.5a8.5 8.5 0 0 1 12.5-10.5z" fill="#F2B33D"/>
+          <path d="M42.5 15.5a8.5 8.5 0 0 0-12.5-10.5z" fill="#F2B33D"/>
+          <path d="M24 10.5V6" fill="none"/>
+          <circle cx="24" cy="27" r="16" fill="#E8553D"/>
+          <circle cx="24" cy="27" r="11" fill="#FBF7F0" stroke="none"/>
+          <path class="brand__hands" d="M18.5 22.5L24 27l5.5-4.5" fill="none"/>
+        </g>
+        <circle cx="24" cy="4.8" r="2" fill="#1B2A41"/>
+        <circle cx="24" cy="27" r="1.9" fill="#1B2A41"/>
+      </svg>
+      <span class="brand__name">Tiny&nbsp;Tock</span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/games/">Games</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+<!-- /@header -->
+
+<main id="main" class="game-page">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/#games">Games</a> / Solitaire</nav>
+
+    <div class="game-title">
+      <h1>Solitaire</h1>
+      <div class="meta">
+        <span class="tag" style="--tag-color: var(--cat-classic)">Classic</span>
+        <span class="time">About 5+ min</span>
+      </div>
+    </div>
+
+    <div class="game-layout">
+      <!-- ===== The game ===== -->
+      <div>
+        <section class="game" data-game="solitaire" aria-label="Solitaire game">
+          <div class="game__stage">
+            <div class="sc-board" data-board></div>
+          </div>
+          <div class="sc-bar">
+            <button class="btn btn--ghost" type="button" data-undo><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 9h10a6 6 0 0 1 0 12h-3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span>Undo</span></button>
+            <button class="btn btn--ghost" type="button" data-deal><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="11" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M9 3h9a2 2 0 0 1 2 2v12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>New deal</span></button>
+          </div>
+        </section>
+        <p class="game-note">
+          <span class="keys-only">Drag cards with your mouse, or click a card to move it automatically. <kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes. <kbd>P</kbd> pauses.</span>
+          <span class="touch-only">Drag cards, or tap a card and it jumps to the best spot.</span>
+        </p>
+      </div>
+
+      <!-- AD SLOT: game page sidebar (desktop only, never covers the game) -->
+      <aside class="ad-slot ad-slot--sidebar" data-ad-slot="game-sidebar" aria-label="Advertisement"></aside>
+    </div>
+
+    <!-- ===== About / How to play / Tips ===== -->
+    <div class="game-info">
+      <div class="prose">
+        <section>
+          <h2>About Solitaire</h2>
+          <p>Solitaire, also known as Klondike, is the world’s favorite one-player card game. Your goal is to move all 52 cards onto the four <strong>foundations</strong> at the top right, one pile per suit, in order from Ace up to King.</p>
+          <p>The seven columns below are where the action happens. You can stack cards there in <strong>descending order</strong> with <strong>alternating colors</strong>, such as a red 7 on a black 8. Only a King can move into an empty column. When you’re stuck, tap the stock pile at the top left to turn over a new card. Our version has unlimited undo, lets you tap a card to move it automatically, and finishes the game for you once every card is face up.</p>
+        </section>
+        <section>
+          <h2>How to play</h2>
+          <ol class="steps">
+            <li>Press <strong>Play</strong> to deal. Seven columns are laid out, with the top card of each face up.</li>
+            <li>Move cards between columns, building down in alternating colors (red on black, black on red).</li>
+            <li>Send Aces to the foundations, then build each suit upward: 2, 3, 4 … all the way to King.</li>
+            <li>Tap the stock to turn a card when you need more options. Win by moving all 52 cards to the foundations.</li>
+          </ol>
+          <table class="controls-table">
+            <caption class="visually-hidden">Controls</caption>
+            <tr><th scope="row">Move a card</th><td>Drag it, or tap/click it to auto-move</td></tr>
+            <tr><th scope="row">Move a stack</th><td>Drag the lowest card you want to move; the cards on top come with it</td></tr>
+            <tr><th scope="row">Turn a card</th><td>Tap the stock (top left). When it’s empty, tap again to reuse the waste pile</td></tr>
+            <tr><th scope="row">Undo</th><td>Undo button or <kbd>Ctrl</kbd>+<kbd>Z</kbd></td></tr>
+            <tr><th scope="row">Pause</th><td><kbd>P</kbd> or <kbd>Esc</kbd></td></tr>
+          </table>
+        </section>
+      </div>
+
+      <aside class="tips">
+        <h2>Tips to score higher</h2>
+        <ul>
+          <li><strong>Uncover face-down cards first.</strong> Moves that reveal a hidden card in the columns are almost always the best ones.</li>
+          <li><strong>Don’t rush cards to the foundations.</strong> Low cards like 2s and 3s are useful for holding other cards in the columns. Send them up when they’re not needed.</li>
+          <li><strong>Save empty columns for Kings.</strong> An empty column can only take a King, so clear one when you have a King ready to move.</li>
+          <li><strong>Work on the biggest columns.</strong> The columns with the most face-down cards hide the most cards. Try to free them early.</li>
+          <li><strong>Use Undo to explore.</strong> If you’re not sure, try a move and undo it. There’s no penalty.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <!-- AD SLOT: below game content -->
+    <aside class="ad-slot ad-slot--banner" data-ad-slot="game-bottom" aria-label="Advertisement" style="margin-top: var(--space-7)"></aside>
+
+    <!-- ===== Play next ===== -->
+    <section class="play-next" aria-labelledby="next-title">
+      <div class="play-next__head">
+        <h2 id="next-title">Play next</h2>
+        <a href="/#games">See all games →</a>
+      </div>
+      <ul class="tile-grid">
+<!-- @play-next -->
+<li class="tile" data-slug="dots-and-boxes" data-order="14" data-category="classic" data-minutes="3" data-badge="New">
+  <a class="tile__link" href="/games/dots-and-boxes/">
+    <div class="tile__art"><img src="/games/dots-and-boxes/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Dots &amp; Boxes</h3>
+      <p class="tile__blurb">Draw lines, close boxes, outsmart the computer.</p>
+      <div class="tile__meta">
+        <span class="tag">Classic</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>3 min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<li class="tile" data-slug="snake" data-order="0" data-category="arcade" data-minutes="3" data-rank="1" data-badge="New">
+  <a class="tile__link" href="/games/snake/">
+    <div class="tile__art"><img src="/games/snake/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Snake</h3>
+      <p class="tile__blurb">Eat, grow, and don&#39;t bite your own tail.</p>
+      <div class="tile__meta">
+        <span class="tag">Arcade</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>3 min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<li class="tile" data-slug="2048" data-order="1" data-category="puzzle" data-minutes="5" data-rank="0" data-badge="New">
+  <a class="tile__link" href="/games/2048/">
+    <div class="tile__art"><img src="/games/2048/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">2048</h3>
+      <p class="tile__blurb">Slide, merge, and chase the 2048 tile.</p>
+      <div class="tile__meta">
+        <span class="tag">Puzzle</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>5+ min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<!-- /@play-next -->
+      </ul>
+    </section>
+  </div>
+</main>
+
+<!-- @footer -->
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="site-footer__brand">
+      <p class="site-footer__name">Tiny Tock</p>
+      <p>Free little games for the gaps in your day. No downloads, no sign-ups. Just press play.</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/games/">All games</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy policy</a>
+    </nav>
+  </div>
+  <div class="wrap site-footer__legal">
+    <p>© <span data-year>2026</span> Tiny Tock</p>
+  </div>
+</footer>
+<!-- /@footer -->
+</body>
+</html>

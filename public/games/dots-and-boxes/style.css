@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Dots & Boxes — only what's unique to this game.
+   ========================================================================== */
+
+.game[data-game="dots-and-boxes"] {
+  --game-color: var(--cat-classic);
+  max-width: max(300px, min(560px, calc(100svh - 220px)));
+}
+.game[data-game="dots-and-boxes"] .game__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-4) var(--space-5);
+  background:
+    linear-gradient(transparent 23px, color-mix(in srgb, var(--sky) 22%, transparent) 24px) 0 0 / 100% 24px,
+    var(--bg-raised);
+}
+.db-status { margin: 0; min-height: 1.5em; font-family: var(--font-display); font-weight: 700; text-align: center; }
+
+.db-wrap { width: 100%; padding: 5%; }
+.db-board {
+  --cell: 25%;          /* 100% / 4 boxes */
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.db-dot {
+  position: absolute;
+  left: calc(var(--c) * var(--cell));
+  top: calc(var(--r) * var(--cell));
+  width: 16px; height: 16px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: var(--ink-900);
+  border: 3px solid var(--bg-raised);
+  box-sizing: content-box;
+  z-index: 3;
+  pointer-events: none;
+}
+[data-theme="dark"] .db-dot { background: var(--cream-50); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .db-dot { background: var(--cream-50); } }
+
+/* Lines: wide invisible hit areas with a thin dashed hint inside */
+.db-line {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  z-index: 2;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.db-line--h { left: calc(var(--c) * var(--cell)); top: calc(var(--r) * var(--cell)); width: var(--cell); height: 34px; translate: 0 -50%; }
+.db-line--v { left: calc(var(--c) * var(--cell)); top: calc(var(--r) * var(--cell)); width: 34px; height: var(--cell); translate: -50% 0; }
+.db-line::before {
+  content: "";
+  position: absolute;
+  border-radius: 4px;
+  background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--line) 22%, transparent) 0 6px, transparent 6px 12px);
+  transition: background var(--dur-fast), transform var(--dur-med) var(--ease-spring);
+}
+.db-line--h::before { left: 10px; right: 10px; top: 50%; height: 6px; translate: 0 -50%; }
+.db-line--v::before { top: 10px; bottom: 10px; left: 50%; width: 6px; translate: -50% 0; background: repeating-linear-gradient(0deg, color-mix(in srgb, var(--line) 22%, transparent) 0 6px, transparent 6px 12px); }
+.db-line:hover:not(:disabled)::before,
+.db-line:focus-visible::before { background: color-mix(in srgb, var(--tomato) 55%, transparent); }
+.db-board.is-cpu-turn .db-line:not(:disabled) { cursor: wait; }
+.db-line:focus-visible { outline: none; }
+.db-line.is-you::before, .db-line.is-cpu::before { animation: line-in 0.25s var(--ease-spring); }
+.db-line.is-you::before { background: var(--tomato); }
+.db-line.is-cpu::before { background: var(--mustard); }
+.db-line:disabled { cursor: default; }
+@keyframes line-in { from { transform: scale(0.2); } }
+
+/* Claimed boxes */
+.db-box {
+  position: absolute;
+  left: calc(var(--c) * var(--cell));
+  top: calc(var(--r) * var(--cell));
+  width: var(--cell);
+  height: var(--cell);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(0.8rem, 3.5vw, 1.2rem);
+  color: var(--ink-900);
+}
+.db-box.is-you, .db-box.is-cpu { animation: box-in 0.35s var(--ease-spring); }
+.db-box.is-you { background: color-mix(in srgb, var(--tomato) 40%, transparent); }
+.db-box.is-cpu { background: color-mix(in srgb, var(--mustard) 55%, transparent); }
+[data-theme="dark"] .db-box { color: var(--cream-50); }
+@keyframes box-in { from { transform: scale(0.3); opacity: 0; } }
+
+.db-legend { display: flex; gap: var(--space-4); font-size: var(--step--1); font-weight: 700; color: var(--text-soft); }
+.db-legend span { display: inline-flex; align-items: center; gap: 0.4em; }
+.db-legend i { width: 18px; height: 6px; border-radius: 3px; }

@@ -19,21 +19,21 @@
 <script type="module" src="/assets/js/site.js"></script>
 <!-- ANALYTICS + ADSENSE: paste their <script> tags below this line (see SETUP_GUIDE.md) -->
 <!-- /@head -->
-<title>Word Scramble: Unscramble the Letters, Free Online | Tiny Tock</title>
-<meta name="description" content="Play Word Scramble free. Unscramble the letters to find the hidden word, as many as you can in 60 seconds. A quick, friendly word game for all ages.">
-<link rel="canonical" href="https://tinytock.com/games/word-scramble/">
+<title>Word Balloons: Guess the Word Letter by Letter | Tiny Tock</title>
+<meta name="description" content="Play Word Balloons free: guess the hidden word one letter at a time before all six balloons pop. Friendly hints, fun words, and an on-screen keyboard.">
+<link rel="canonical" href="https://tinytock.com/games/word-balloons/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Tiny Tock">
-<meta property="og:title" content="Word Scramble: free online game | Tiny Tock">
-<meta property="og:description" content="Unscramble as many words as you can in a minute.">
-<meta property="og:url" content="https://tinytock.com/games/word-scramble/">
+<meta property="og:title" content="Word Balloons: free online game | Tiny Tock">
+<meta property="og:description" content="Guess the word before all your balloons pop.">
+<meta property="og:url" content="https://tinytock.com/games/word-balloons/">
 <meta property="og:image" content="https://tinytock.com/assets/images/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/assets/css/game-shell.css">
-<link rel="stylesheet" href="/games/word-scramble/style.css">
-<script type="module" src="/games/word-scramble/game.js"></script>
+<link rel="stylesheet" href="/games/word-balloons/style.css">
+<script type="module" src="/games/word-balloons/game.js"></script>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "VideoGame", "name": "Word Scramble", "url": "https://tinytock.com/games/word-scramble/", "description": "A 60-second word game: unscramble jumbled letters to find everyday words.", "genre": ["Word"], "gamePlatform": ["Web browser"], "applicationCategory": "Game", "operatingSystem": "Any", "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Tiny Tock", "url": "https://tinytock.com/"}}
+{"@context": "https://schema.org", "@type": "VideoGame", "name": "Word Balloons", "url": "https://tinytock.com/games/word-balloons/", "description": "A friendly letter-guessing word game: find the hidden word before six balloons pop.", "genre": ["Word"], "gamePlatform": ["Web browser"], "applicationCategory": "Game", "operatingSystem": "Any", "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Tiny Tock", "url": "https://tinytock.com/"}}
 </script>
 </head>
 <body>
@@ -72,36 +72,37 @@
 
 <main id="main" class="game-page">
   <div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/games/">Games</a> / Word Scramble</nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/#games">Games</a> / Word Balloons</nav>
 
     <div class="game-title">
-      <h1>Word Scramble</h1>
+      <h1>Word Balloons</h1>
       <div class="meta">
         <span class="tag" style="--tag-color: var(--cat-word)">Word</span>
-        <span class="time">About 1 min</span>
+        <span class="time">About 3 min</span>
       </div>
     </div>
 
     <div class="game-layout">
       <!-- ===== The game ===== -->
       <div>
-        <section class="game" data-game="word-scramble" aria-label="Word Scramble game">
+        <section class="game" data-game="word-balloons" aria-label="Word Balloons game">
           <div class="game__stage">
-            <div class="scramble">
-              <p class="scramble__msg" data-msg aria-live="polite"></p>
-              <div class="slots" data-slots role="group"></div>
-              <div class="letters" data-tiles role="group" aria-label="Scrambled letters"></div>
-              <div class="scramble__tools">
-                <button class="btn btn--ghost" type="button" data-shuffle><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3.5c2 0 3 1 4.5 3.5S14.5 17 16.5 17H20M4 17h3.5c1.4 0 2.3-.5 3.2-1.6M14 7.6C14.8 7.2 15.6 7 16.5 7H20M17 4l3 3-3 3M17 14l3 3-3 3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Shuffle</span></button>
-                <button class="btn btn--ghost" type="button" data-skip><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5v13l9-6.5zM17 5v14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Skip</span></button>
+            <div class="wb">
+              <div class="wb-scene">
+                <div class="wb-sky" data-sky aria-hidden="true"></div>
+                <svg class="wb-basket" viewBox="0 0 70 46" aria-hidden="true"><path d="M8 14h54l-6 28H14z" fill="#C98E5A" stroke="#1B2A41" stroke-width="3" stroke-linejoin="round"/><path d="M12 24h46M15 33h40M24 14l2 28M35 14v28M46 14l-2 28" stroke="#1B2A41" stroke-width="1.8" opacity=".45"/><rect x="5" y="9" width="60" height="7" rx="3.5" fill="#E8553D" stroke="#1B2A41" stroke-width="3"/><circle cx="35" cy="5" r="4" fill="#F2B33D" stroke="#1B2A41" stroke-width="2"/></svg>
               </div>
+              <p class="wb-hint" data-hint></p>
+              <div class="wb-word" data-word role="img"></div>
+              <p class="wb-msg" data-msg aria-live="polite"></p>
+              <div class="wb-keys" data-keys aria-label="Letters"></div>
             </div>
           </div>
           
         </section>
         <p class="game-note">
-          <span class="keys-only">Type the letters, <kbd>Backspace</kbd> to undo, <kbd>Space</kbd> to shuffle, <kbd>Enter</kbd> to skip. <kbd>Esc</kbd> pauses.</span>
-          <span class="touch-only">Tap letters to spell the word. Tap a placed letter to take it back.</span>
+          <span class="keys-only">Type letters on your keyboard, or click them. Press <kbd>Esc</kbd> to pause.</span>
+          <span class="touch-only">Tap the letters on the on-screen keyboard.</span>
         </p>
       </div>
 
@@ -113,24 +114,23 @@
     <div class="game-info">
       <div class="prose">
         <section>
-          <h2>About Word Scramble</h2>
-          <p>Word Scramble is a quick word puzzle for curious minds. You’re given a jumble of letters, and you have to rearrange them into a real word, such as turning <em>KCOLC</em> into <strong>CLOCK</strong>. Every word is an everyday one: foods, animals, things around the house and more.</p>
-          <p>You have 60 seconds to solve as many as you can. Each word scores one point per letter, and the words get longer as you go, so a strong start really pays off. Stuck? Shuffle the letters for a fresh look, or skip to a new word.</p>
+          <h2>About Word Balloons</h2>
+          <p>Word Balloons is a gentle letter-guessing game. A secret word is shown as a row of blanks, with a hint such as <em>Animal</em>, <em>Food</em> or <em>Space</em>. Guess one letter at a time. If the letter is in the word, it fills every blank where it appears.</p>
+          <p>Six balloons hold up a little basket, and every wrong guess pops one. Solve the word before they’re all gone! Each word you solve scores 1 point plus 1 for every balloon still flying, then your balloons refill for the next word. How many words can you solve in a row?</p>
         </section>
         <section>
           <h2>How to play</h2>
           <ol class="steps">
-            <li>Press <strong>Play</strong>. The first scrambled word appears and the timer starts.</li>
-            <li>Tap letters (or type them) to spell the word in the boxes.</li>
-            <li>When all boxes are full, the word is checked. Right answers score a point per letter.</li>
-            <li>Use <strong>Shuffle</strong> to rearrange the letters or <strong>Skip</strong> to move on. The round ends after 60 seconds.</li>
+            <li>Press <strong>Play</strong>. Read the hint and count the blanks.</li>
+            <li>Choose a letter from the keyboard (or type it).</li>
+            <li>Right letters fill in the word. Wrong letters pop a balloon.</li>
+            <li>Solve the word to score and get fresh balloons. The game ends when all six balloons pop.</li>
           </ol>
           <table class="controls-table">
             <caption class="visually-hidden">Controls</caption>
-            <tr><th scope="row">Pick a letter</th><td>Tap or type it</td></tr>
-            <tr><th scope="row">Undo</th><td>Tap a placed letter, or <kbd>Backspace</kbd></td></tr>
-            <tr><th scope="row">Shuffle / Skip</th><td>Buttons, or <kbd>Space</kbd> / <kbd>Enter</kbd></td></tr>
+            <tr><th scope="row">Guess a letter</th><td>Tap or click a key, or type it</td></tr>
             <tr><th scope="row">Pause</th><td><kbd>Esc</kbd> or the pause button</td></tr>
+            <tr><th scope="row">Restart</th><td><kbd>Space</kbd> or <kbd>Enter</kbd> on the game-over screen</td></tr>
           </table>
         </section>
       </div>
@@ -138,11 +138,11 @@
       <aside class="tips">
         <h2>Tips to score higher</h2>
         <ul>
-          <li><strong>Look for common endings.</strong> Try -ING, -ER, -LE or -Y at the end. They’re in lots of words.</li>
-          <li><strong>Find the vowels.</strong> Placing the A, E, I, O and U often reveals the word’s shape.</li>
-          <li><strong>Try pairs that go together.</strong> Letters like CH, SH, TH, CK and QU usually sit side by side.</li>
-          <li><strong>Shuffle when stuck.</strong> Seeing the letters in a new order can make the word jump out.</li>
-          <li><strong>Don’t be afraid to skip.</strong> A new word costs nothing but a moment. Spending 20 seconds on one word costs a lot more.</li>
+          <li><strong>Start with vowels.</strong> E, A, O and I appear in most words and quickly reveal the word’s shape.</li>
+          <li><strong>Then try common consonants.</strong> R, S, T, N and L are the most useful next guesses.</li>
+          <li><strong>Use the hint.</strong> If the hint is <em>Animal</em> and the word is _ _ _ _ _ _ _ H, think of animals that end in H.</li>
+          <li><strong>Look at the pattern.</strong> Double letters, like the two Ps in HIPPO, often give a word away.</li>
+          <li><strong>Keep your balloons.</strong> Every balloon left when you solve a word is a bonus point, so guess carefully.</li>
         </ul>
       </aside>
     </div>
@@ -154,45 +154,45 @@
     <section class="play-next" aria-labelledby="next-title">
       <div class="play-next__head">
         <h2 id="next-title">Play next</h2>
-        <a href="/games/">See all games →</a>
+        <a href="/#games">See all games →</a>
       </div>
       <ul class="tile-grid">
 <!-- @play-next -->
-<li class="tile" data-slug="word-balloons" data-order="12" data-category="word" data-minutes="3" data-badge="New">
-  <a class="tile__link" href="/games/word-balloons/">
-    <div class="tile__art"><img src="/games/word-balloons/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+<li class="tile" data-slug="word-scramble" data-order="7" data-category="word" data-minutes="1" data-badge="New">
+  <a class="tile__link" href="/games/word-scramble/">
+    <div class="tile__art"><img src="/games/word-scramble/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
     <div class="tile__body">
       <span class="tile__badge">New</span>
-      <h3 class="tile__title">Word Balloons</h3>
-      <p class="tile__blurb">Guess the word before all your balloons pop.</p>
+      <h3 class="tile__title">Word Scramble</h3>
+      <p class="tile__blurb">Unscramble as many words as you can in a minute.</p>
       <div class="tile__meta">
         <span class="tag">Word</span>
-        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>3 min</span></span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>1 min</span></span>
       </div>
     </div>
   </a>
 </li>
-<li class="tile" data-slug="minesweeper" data-order="8" data-category="puzzle" data-minutes="5" data-rank="4" data-badge="New">
-  <a class="tile__link" href="/games/minesweeper/">
-    <div class="tile__art"><img src="/games/minesweeper/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+<li class="tile" data-slug="solitaire" data-order="13" data-category="classic" data-minutes="5" data-badge="New">
+  <a class="tile__link" href="/games/solitaire/">
+    <div class="tile__art"><img src="/games/solitaire/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
     <div class="tile__body">
       <span class="tile__badge">New</span>
-      <h3 class="tile__title">Minesweeper</h3>
-      <p class="tile__blurb">Clear the field without touching a mine.</p>
+      <h3 class="tile__title">Solitaire</h3>
+      <p class="tile__blurb">The classic card game. Build every suit from Ace to King.</p>
       <div class="tile__meta">
-        <span class="tag">Puzzle</span>
+        <span class="tag">Classic</span>
         <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>5+ min</span></span>
       </div>
     </div>
   </a>
 </li>
-<li class="tile" data-slug="four-in-a-row" data-order="9" data-category="classic" data-minutes="3" data-rank="5" data-badge="New">
-  <a class="tile__link" href="/games/four-in-a-row/">
-    <div class="tile__art"><img src="/games/four-in-a-row/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+<li class="tile" data-slug="dots-and-boxes" data-order="14" data-category="classic" data-minutes="3" data-badge="New">
+  <a class="tile__link" href="/games/dots-and-boxes/">
+    <div class="tile__art"><img src="/games/dots-and-boxes/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
     <div class="tile__body">
       <span class="tile__badge">New</span>
-      <h3 class="tile__title">Four in a Row</h3>
-      <p class="tile__blurb">Drop discs and line up four before the computer does.</p>
+      <h3 class="tile__title">Dots &amp; Boxes</h3>
+      <p class="tile__blurb">Draw lines, close boxes, outsmart the computer.</p>
       <div class="tile__meta">
         <span class="tag">Classic</span>
         <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>3 min</span></span>

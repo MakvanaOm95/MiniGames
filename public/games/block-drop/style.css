@@ -1,0 +1,52 @@
+/* ==========================================================================
+   Block Drop — only what's unique to this game.
+   ========================================================================== */
+
+/* Tall 1:2 well that always fits on screen (with room for touch buttons on phones) */
+.game[data-game="block-drop"] {
+  --game-color: var(--cat-puzzle);
+  max-width: max(250px, min(380px, calc((100svh - 200px) / 2)));
+}
+@media (pointer: coarse) {
+  .game[data-game="block-drop"] { max-width: max(230px, min(380px, calc((100svh - 290px) / 2))); }
+}
+.game[data-game="block-drop"] .game__stage { aspect-ratio: 1 / 2; }
+
+/* Well colors (read by game.js) */
+#well { --bd-bg: #FBF7F0; --bd-grid: rgb(27 42 65 / 0.07); --bd-ghost: rgb(27 42 65 / 0.45); }
+[data-theme="dark"] #well { --bd-bg: #1D2940; --bd-grid: rgb(244 236 221 / 0.06); --bd-ghost: rgb(244 236 221 / 0.5); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #well { --bd-bg: #1D2940; --bd-grid: rgb(244 236 221 / 0.06); --bd-ghost: rgb(244 236 221 / 0.5); }
+}
+
+/* "Next" piece preview inside the score bar */
+.next-preview { display: block; width: 44px; height: 22px; margin-top: 2px; }
+
+/* Touch buttons */
+.bd-pad { padding: var(--space-3); }
+.bd-pad__row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.bd-pad button {
+  display: grid;
+  place-items: center;
+  min-height: 56px;
+  padding: 0;
+  border: var(--outline) solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--bg-raised);
+  color: var(--text);
+  box-shadow: 0 4px 0 var(--shadow-ink);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+}
+.bd-pad button svg { width: 24px; height: 24px; }
+.bd-pad button.is-pressed { transform: translateY(4px); box-shadow: none; background: var(--mustard); color: var(--ink-900); }
+.bd-pad [data-act="drop"] { background: var(--tomato-dk); color: #fff; }
+
+/* The well is narrow, so the score bar (Score, Best, Level, Next) is compact */
+.game[data-game="block-drop"] .game__hud { gap: 6px; padding-left: var(--space-2); padding-right: var(--space-2); }
+.game[data-game="block-drop"] .hud-stat { min-width: 0; padding: 0.15rem 0.45rem 0.2rem; }
+.game[data-game="block-drop"] .hud-stat__value { font-size: 1.1rem; }
+.game[data-game="block-drop"] .hud-stat__label { font-size: 0.6rem; }
+.game[data-game="block-drop"] .hud-actions { gap: 4px; }
+.game[data-game="block-drop"] .hud-btn { width: 36px; height: 36px; }
+.game[data-game="block-drop"] .next-preview { width: 40px; height: 20px; }

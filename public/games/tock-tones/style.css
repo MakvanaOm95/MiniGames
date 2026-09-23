@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Tock Tones — only what's unique to this game.
+   ========================================================================== */
+
+.game[data-game="tock-tones"] {
+  --game-color: var(--cat-quick);
+  max-width: max(300px, min(540px, calc(100svh - 190px)));
+}
+.game[data-game="tock-tones"] .game__stage {
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 45%, var(--bg-raised), var(--bg-sunken));
+}
+
+/* The toy: a round body split into four pads (a 2×2 grid turned 45°) */
+.tones-ring {
+  position: relative;
+  width: 84%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--ink-900);
+  border: 4px solid var(--ink-900);
+  box-shadow: 0 10px 0 #0B111B;
+  transition: transform var(--dur-med) var(--ease-spring);
+}
+.tones-ring.is-happy { transform: scale(1.03) rotate(-2deg); }
+.tones-pads {
+  position: absolute;
+  inset: 4%;
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr;
+  gap: 5%;
+  transform: rotate(45deg);
+}
+.pad {
+  --pad: #E8553D;
+  --pad-lit: #FF9F8A;
+  padding: 0;
+  border: 0;
+  background: var(--pad);
+  box-shadow: inset 0 -10px 0 rgb(0 0 0 / 0.18), inset 0 6px 0 rgb(255 255 255 / 0.2);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 80ms, transform 80ms, filter 80ms;
+}
+/* grid order: top-left = top, top-right = right, bottom-right = bottom, bottom-left = left */
+.pad[data-pad="0"] { grid-area: 1 / 1; border-radius: 100% 12% 12% 12%; --pad: #E8553D; --pad-lit: #FFB09E; }
+.pad[data-pad="1"] { grid-area: 1 / 2; border-radius: 12% 100% 12% 12%; --pad: #F2B33D; --pad-lit: #FFE3A3; }
+.pad[data-pad="2"] { grid-area: 2 / 2; border-radius: 12% 12% 100% 12%; --pad: #2F8F83; --pad-lit: #8FE3D6; }
+.pad[data-pad="3"] { grid-area: 2 / 1; border-radius: 12% 12% 12% 100%; --pad: #6FA9D8; --pad-lit: #C6E3FA; }
+.pad:hover { filter: brightness(1.06); }
+.pad.is-lit {
+  background: var(--pad-lit);
+  transform: scale(0.97);
+  box-shadow: inset 0 -4px 0 rgb(0 0 0 / 0.1), 0 0 30px 6px var(--pad-lit);
+}
+.pad.is-wrong { background: #1B2A41; animation: pad-shake 0.3s; }
+.pad.is-hint { animation: hint 0.5s 2 alternate; }
+.pad.is-denied { filter: brightness(0.9); }
+.pad:focus-visible { outline: 4px solid #FBF7F0; outline-offset: -8px; }
+@keyframes pad-shake { 25% { transform: translate(-4px, 4px); } 75% { transform: translate(4px, -4px); } }
+@keyframes hint { to { background: var(--pad-lit); } }
+.tones-ring.is-showing .pad { cursor: default; }
+
+/* Center cap: a little clock face with the round number */
+.tones-center {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 38%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--cream-50);
+  border: 4px solid var(--ink-900);
+  color: var(--ink-900);
+  text-align: center;
+  pointer-events: none;
+}
+.tones-center small { font-size: clamp(0.6rem, 2.2vw, 0.78rem); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-500); }
+.tones-center strong { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 9vw, 3.2rem); line-height: 1; }
+.tones-center span { font-family: var(--font-display); font-weight: 700; font-size: clamp(0.7rem, 2.6vw, 0.95rem); max-width: 90%; line-height: 1.15; }

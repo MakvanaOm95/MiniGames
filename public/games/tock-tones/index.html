@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- @head -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6EFE3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141D2C" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<script>/* Apply the saved light/dark choice before the page paints (avoids a flash) */try{var t=localStorage.getItem("tinytock:theme");if(t)document.documentElement.dataset.theme=JSON.parse(t)}catch(e){}</script>
+<script type="module" src="/assets/js/site.js"></script>
+<!-- ANALYTICS + ADSENSE: paste their <script> tags below this line (see SETUP_GUIDE.md) -->
+<!-- /@head -->
+<title>Tock Tones: Memory Pattern Game with Lights and Sounds | Tiny Tock</title>
+<meta name="description" content="Play Tock Tones free: watch the lights, listen to the notes, and repeat the growing pattern. A quick memory game for all ages, on phone or desktop.">
+<link rel="canonical" href="https://tinytock.com/games/tock-tones/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tiny Tock">
+<meta property="og:title" content="Tock Tones: free online game | Tiny Tock">
+<meta property="og:description" content="Watch the lights, hear the notes, repeat the pattern.">
+<meta property="og:url" content="https://tinytock.com/games/tock-tones/">
+<meta property="og:image" content="https://tinytock.com/assets/images/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/css/game-shell.css">
+<link rel="stylesheet" href="/games/tock-tones/style.css">
+<script type="module" src="/games/tock-tones/game.js"></script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "VideoGame", "name": "Tock Tones", "url": "https://tinytock.com/games/tock-tones/", "description": "A light-and-sound memory game: repeat a pattern of colored pads that grows one step every round.", "genre": ["Quick"], "gamePlatform": ["Web browser"], "applicationCategory": "Game", "operatingSystem": "Any", "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Tiny Tock", "url": "https://tinytock.com/"}}
+</script>
+</head>
+<body>
+<!-- @header -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="/" aria-label="Tiny Tock — home">
+      <svg class="brand__mark" viewBox="0 0 48 48" width="42" height="42" aria-hidden="true">
+        <g stroke="#1B2A41" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 40l-3 5M33 40l3 5" fill="none"/>
+          <path d="M5.5 15.5a8.5 8.5 0 0 1 12.5-10.5z" fill="#F2B33D"/>
+          <path d="M42.5 15.5a8.5 8.5 0 0 0-12.5-10.5z" fill="#F2B33D"/>
+          <path d="M24 10.5V6" fill="none"/>
+          <circle cx="24" cy="27" r="16" fill="#E8553D"/>
+          <circle cx="24" cy="27" r="11" fill="#FBF7F0" stroke="none"/>
+          <path class="brand__hands" d="M18.5 22.5L24 27l5.5-4.5" fill="none"/>
+        </g>
+        <circle cx="24" cy="4.8" r="2" fill="#1B2A41"/>
+        <circle cx="24" cy="27" r="1.9" fill="#1B2A41"/>
+      </svg>
+      <span class="brand__name">Tiny&nbsp;Tock</span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/games/">Games</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+<!-- /@header -->
+
+<main id="main" class="game-page">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/#games">Games</a> / Tock Tones</nav>
+
+    <div class="game-title">
+      <h1>Tock Tones</h1>
+      <div class="meta">
+        <span class="tag" style="--tag-color: var(--cat-quick)">Quick</span>
+        <span class="time">About 1 min</span>
+      </div>
+    </div>
+
+    <div class="game-layout">
+      <!-- ===== The game ===== -->
+      <div>
+        <section class="game" data-game="tock-tones" aria-label="Tock Tones game">
+          <div class="game__stage">
+            <div class="tones-ring" data-ring>
+              <div class="tones-pads">
+                <button class="pad" type="button" data-pad="0" aria-label="Top pad (red)"></button>
+                <button class="pad" type="button" data-pad="1" aria-label="Right pad (yellow)"></button>
+                <button class="pad" type="button" data-pad="2" aria-label="Bottom pad (green)"></button>
+                <button class="pad" type="button" data-pad="3" aria-label="Left pad (blue)"></button>
+              </div>
+              <div class="tones-center" aria-live="polite"><small>Round</small><strong data-round>–</strong><span data-msg></span></div>
+            </div>
+          </div>
+          
+        </section>
+        <p class="game-note">
+          <span class="keys-only">Press the pads with <kbd>↑</kbd> <kbd>→</kbd> <kbd>↓</kbd> <kbd>←</kbd> (or <kbd>W</kbd><kbd>D</kbd><kbd>S</kbd><kbd>A</kbd>), or click them.</span>
+          <span class="touch-only">Tap the colored pads.</span>
+        </p>
+      </div>
+
+      <!-- AD SLOT: game page sidebar (desktop only, never covers the game) -->
+      <aside class="ad-slot ad-slot--sidebar" data-ad-slot="game-sidebar" aria-label="Advertisement"></aside>
+    </div>
+
+    <!-- ===== About / How to play / Tips ===== -->
+    <div class="game-info">
+      <div class="prose">
+        <section>
+          <h2>About Tock Tones</h2>
+          <p>Tock Tones is a memory game for your eyes and ears. The toy has four colored pads, and each one plays its own musical note. Each round it plays a pattern by lighting up the pads one after another. Your job is to repeat the pattern in exactly the same order.</p>
+          <p>Every round adds one more step to the end of the pattern, and the toy plays a little faster as you go. One wrong pad ends the game. Because every pad has its own note, you can remember the pattern by its <strong>tune</strong> as well as its colors.</p>
+        </section>
+        <section>
+          <h2>How to play</h2>
+          <ol class="steps">
+            <li>Press <strong>Play</strong> and watch the pad that lights up.</li>
+            <li>When the center says <strong>Your turn</strong>, press the same pad.</li>
+            <li>Next round, the toy plays the same pattern plus one new step. Repeat the whole thing.</li>
+            <li>Keep going as long as you can. One mistake ends the game.</li>
+          </ol>
+          <table class="controls-table">
+            <caption class="visually-hidden">Controls</caption>
+            <tr><th scope="row">Press a pad</th><td>Tap or click it, or <kbd>↑</kbd> top, <kbd>→</kbd> right, <kbd>↓</kbd> bottom, <kbd>←</kbd> left</td></tr>
+            <tr><th scope="row">Pause</th><td><kbd>P</kbd> or <kbd>Esc</kbd>, or the pause button</td></tr>
+            <tr><th scope="row">Restart</th><td><kbd>Space</kbd> or <kbd>Enter</kbd> on the game-over screen</td></tr>
+          </table>
+        </section>
+      </div>
+
+      <aside class="tips">
+        <h2>Tips to score higher</h2>
+        <ul>
+          <li><strong>Listen, don’t just look.</strong> The four notes make a little tune. Humming it back is often easier than remembering colors.</li>
+          <li><strong>Name the moves.</strong> Saying “up, right, right, left” in your head turns the pattern into words.</li>
+          <li><strong>Break it into chunks.</strong> Remember long patterns in groups of three or four, like a phone number.</li>
+          <li><strong>Only the end is new.</strong> Each round repeats the last pattern and adds one step, so focus on the new one.</li>
+          <li><strong>Don’t rush.</strong> There’s no time limit on your turn. Take a breath before you start.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <!-- AD SLOT: below game content -->
+    <aside class="ad-slot ad-slot--banner" data-ad-slot="game-bottom" aria-label="Advertisement" style="margin-top: var(--space-7)"></aside>
+
+    <!-- ===== Play next ===== -->
+    <section class="play-next" aria-labelledby="next-title">
+      <div class="play-next__head">
+        <h2 id="next-title">Play next</h2>
+        <a href="/#games">See all games →</a>
+      </div>
+      <ul class="tile-grid">
+<!-- @play-next -->
+<li class="tile" data-slug="pair-up" data-order="3" data-category="quick" data-minutes="1" data-rank="6" data-badge="New">
+  <a class="tile__link" href="/games/pair-up/">
+    <div class="tile__art"><img src="/games/pair-up/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Pair Up</h3>
+      <p class="tile__blurb">Flip cards and find the pairs. Fast!</p>
+      <div class="tile__meta">
+        <span class="tag">Quick</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>1 min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<li class="tile" data-slug="word-balloons" data-order="12" data-category="word" data-minutes="3" data-badge="New">
+  <a class="tile__link" href="/games/word-balloons/">
+    <div class="tile__art"><img src="/games/word-balloons/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Word Balloons</h3>
+      <p class="tile__blurb">Guess the word before all your balloons pop.</p>
+      <div class="tile__meta">
+        <span class="tag">Word</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>3 min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<li class="tile" data-slug="solitaire" data-order="13" data-category="classic" data-minutes="5" data-badge="New">
+  <a class="tile__link" href="/games/solitaire/">
+    <div class="tile__art"><img src="/games/solitaire/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Solitaire</h3>
+      <p class="tile__blurb">The classic card game. Build every suit from Ace to King.</p>
+      <div class="tile__meta">
+        <span class="tag">Classic</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>5+ min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<!-- /@play-next -->
+      </ul>
+    </section>
+  </div>
+</main>
+
+<!-- @footer -->
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="site-footer__brand">
+      <p class="site-footer__name">Tiny Tock</p>
+      <p>Free little games for the gaps in your day. No downloads, no sign-ups. Just press play.</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/games/">All games</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy policy</a>
+    </nav>
+  </div>
+  <div class="wrap site-footer__legal">
+    <p>© <span data-year>2026</span> Tiny Tock</p>
+  </div>
+</footer>
+<!-- /@footer -->
+</body>
+</html>
