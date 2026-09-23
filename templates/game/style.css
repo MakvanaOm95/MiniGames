@@ -1,0 +1,27 @@
+/* ==========================================================================
+   {{TITLE}} — only what's unique to this game.
+   Shared game styles are in /assets/css/game-shell.css.
+   ========================================================================== */
+
+.game[data-game="{{SLUG}}"] {
+  --game-color: var(--cat-{{CATEGORY}});   /* color of the score bar */
+  max-width: 640px;
+}
+
+/* The play area. Give it a shape so it doesn't collapse. */
+.game[data-game="{{SLUG}}"] .game__stage { aspect-ratio: 4 / 3; }
+
+/* ---- Demo styles: delete when you replace the demo ---- */
+.demo-board { position: absolute; inset: 0; display: grid; place-items: center; background: var(--bg-sunken); }
+.demo-target {
+  width: 160px; height: 160px;
+  border: var(--outline) solid var(--ink-900);
+  border-radius: 50%;
+  background: var(--mustard);
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  box-shadow: 0 6px 0 var(--ink-900);
+}
+.demo-target:active { transform: translateY(6px); box-shadow: 0 0 0 var(--ink-900); }

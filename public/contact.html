@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- @head -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6EFE3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141D2C" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<script>/* Apply the saved light/dark choice before the page paints (avoids a flash) */try{var t=localStorage.getItem("tinytock:theme");if(t)document.documentElement.dataset.theme=JSON.parse(t)}catch(e){}</script>
+<script type="module" src="/assets/js/site.js"></script>
+<!-- ANALYTICS + ADSENSE: paste their <script> tags below this line (see SETUP_GUIDE.md) -->
+<!-- /@head -->
+<title>Contact Tiny Tock</title>
+<meta name="description" content="Get in touch with Tiny Tock. Report a bug, suggest a game, or ask a question. We read every message.">
+<link rel="canonical" href="https://tinytock.com/contact">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tiny Tock">
+<meta property="og:title" content="Contact Tiny Tock">
+<meta property="og:description" content="Report a bug, suggest a game, or say hello.">
+<meta property="og:url" content="https://tinytock.com/contact">
+<meta property="og:image" content="https://tinytock.com/assets/images/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  .contact-card {
+    display: grid;
+    gap: var(--space-3);
+    max-width: 560px;
+    padding: var(--space-6);
+    margin-bottom: var(--space-7);
+    background: var(--bg-raised);
+    border: var(--outline) solid var(--line);
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow-block);
+  }
+  .contact-card h2 { font-size: var(--step-2); margin: 0; }
+  .contact-card p { margin: 0; color: var(--text-soft); }
+  .contact-email {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--step-2);
+    letter-spacing: -0.02em;
+    word-break: break-all;
+    color: var(--text);
+    user-select: all;
+  }
+  .contact-card .btn { justify-self: start; }
+</style>
+</head>
+<body>
+<!-- @header -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="/" aria-label="Tiny Tock — home">
+      <svg class="brand__mark" viewBox="0 0 48 48" width="42" height="42" aria-hidden="true">
+        <g stroke="#1B2A41" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 40l-3 5M33 40l3 5" fill="none"/>
+          <path d="M5.5 15.5a8.5 8.5 0 0 1 12.5-10.5z" fill="#F2B33D"/>
+          <path d="M42.5 15.5a8.5 8.5 0 0 0-12.5-10.5z" fill="#F2B33D"/>
+          <path d="M24 10.5V6" fill="none"/>
+          <circle cx="24" cy="27" r="16" fill="#E8553D"/>
+          <circle cx="24" cy="27" r="11" fill="#FBF7F0" stroke="none"/>
+          <path class="brand__hands" d="M18.5 22.5L24 27l5.5-4.5" fill="none"/>
+        </g>
+        <circle cx="24" cy="4.8" r="2" fill="#1B2A41"/>
+        <circle cx="24" cy="27" r="1.9" fill="#1B2A41"/>
+      </svg>
+      <span class="brand__name">Tiny&nbsp;Tock</span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/#games">Games</a>
+      <a href="/about">About</a>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+<!-- /@header -->
+
+<main id="main">
+  <header class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Contact</span>
+      <h1>Say hello.</h1>
+      <p>Bug reports, game ideas, questions, or your proudest high score. We’d love to hear from you.</p>
+    </div>
+  </header>
+
+  <div class="wrap section">
+    <div class="contact-card">
+      <h2>Email us</h2>
+      <p class="contact-email">hello@tinytock.com</p>
+      <p>We usually reply within 2–3 working days.</p>
+      <a class="btn" href="mailto:hello@tinytock.com">Open my email app</a>
+    </div>
+
+    <div class="prose">
+      <h2>Helpful things to include</h2>
+      <ul>
+        <li><strong>Reporting a bug?</strong> Tell us which game, what happened, and what device and browser you were using (for example “iPhone, Safari”).</li>
+        <li><strong>Suggesting a game?</strong> Describe the idea in a sentence or two. Many of our games start from player ideas.</li>
+        <li><strong>Privacy questions?</strong> See our <a href="/privacy">privacy policy</a>, or email us and we’ll help.</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<!-- @footer -->
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="site-footer__brand">
+      <p class="site-footer__name">Tiny Tock</p>
+      <p>Free little games for the gaps in your day. No downloads, no sign-ups. Just press play.</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/#games">All games</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy">Privacy policy</a>
+    </nav>
+  </div>
+  <div class="wrap site-footer__legal">
+    <p>© <span data-year>2026</span> Tiny Tock. Every game here is an original made by us.</p>
+  </div>
+</footer>
+<!-- /@footer -->
+</body>
+</html>

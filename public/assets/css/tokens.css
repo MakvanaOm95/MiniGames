@@ -1,0 +1,149 @@
+/* ==========================================================================
+   Tiny Tock — Design tokens
+   --------------------------------------------------------------------------
+   Every color, font, size and timing used on the site lives here.
+   Change a value here and the whole site (and every game) follows.
+   Theme: "Wind-Up Toy" — warm paper, navy ink, toy-bright accents.
+   ========================================================================== */
+
+/* ---- Fonts (self-hosted in /assets/fonts, both SIL Open Font License) --- */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/bricolage-grotesque-latin.woff2") format("woff2");
+  font-weight: 400 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/dm-sans-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  /* ---- Brand palette (raw colors — use the "role" tokens below in CSS) -- */
+  --cream-50:  #FBF7F0;
+  --cream-100: #F6EFE3;
+  --cream-200: #ECE1CD;
+  --cream-300: #DCCCB0;
+  --ink-900:   #1B2A41;   /* deep navy — our "black" */
+  --ink-700:   #34445E;
+  --ink-500:   #525F75;
+  --tomato:    #E8553D;
+  --tomato-dk: #C8432A;   /* passes contrast with white text */
+  --mustard:   #F2B33D;
+  --teal:      #2F8F83;
+  --teal-dk:   #226E65;
+  --plum:      #7A4E8C;
+  --sky:       #6FA9D8;
+
+  /* ---- Roles (light theme) ---------------------------------------------- */
+  --bg:          var(--cream-100);  /* page background */
+  --bg-raised:   var(--cream-50);   /* cards, panels */
+  --bg-sunken:   var(--cream-200);  /* wells, inputs */
+  --text:        var(--ink-900);
+  --text-soft:   var(--ink-700);
+  --text-muted:  var(--ink-500);
+  --line:        var(--ink-900);    /* the chunky toy outline */
+  --line-soft:   var(--cream-300);
+  --accent:      var(--tomato-dk);  /* buttons: white text stays readable */
+  --accent-ink:  #FFFFFF;           /* text on top of accent */
+  --link:        #A8361F;
+  --focus:       var(--teal);
+
+  /* Category colors — each game category gets its own toy color */
+  --cat-puzzle:  var(--teal);
+  --cat-arcade:  var(--tomato);
+  --cat-quick:   var(--mustard);
+  --cat-word:    var(--plum);
+  --cat-classic: var(--sky);
+
+  /* ---- Typography -------------------------------------------------------- */
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body:    "DM Sans", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+
+  /* Fluid type scale: grows smoothly from phone to desktop */
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0:  clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  --step-1:  clamp(1.2rem, 1.1rem + 0.45vw, 1.45rem);
+  --step-2:  clamp(1.45rem, 1.25rem + 0.9vw, 2rem);
+  --step-3:  clamp(1.8rem, 1.4rem + 1.8vw, 2.9rem);
+  --step-4:  clamp(2.3rem, 1.6rem + 3.2vw, 4.4rem);
+
+  /* ---- Space, shape, depth ---------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+
+  --radius-s: 8px;
+  --radius-m: 14px;
+  --radius-l: 22px;
+  --radius-pill: 999px;
+
+  --outline: 2.5px;                        /* toy outline thickness */
+  --lift: 4px;                             /* offset "toy block" depth */
+  --shadow-ink: var(--line);               /* color of the hard toy shadows */
+  --shadow-block: var(--lift) var(--lift) 0 var(--shadow-ink);
+  --shadow-soft: 0 10px 30px -12px rgb(27 42 65 / 0.25);
+
+  --page-max: 1180px;
+
+  /* ---- Motion ------------------------------------------------------------ */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);  /* small overshoot, like a wind-up toy */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 140ms;
+  --dur-med: 260ms;
+  --dur-slow: 520ms;
+
+  color-scheme: light;
+}
+
+/* ---- Dark theme ("night light") -----------------------------------------
+   Applied when the visitor's device is in dark mode, unless they picked
+   light with the toggle. The toggle sets data-theme on <html>.          */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:         #141D2C;
+    --bg-raised:  #1D2940;
+    --bg-sunken:  #0F1622;
+    --text:       #F4ECDD;
+    --text-soft:  #D9CFBD;
+    --text-muted: #A69E90;
+    --line:       #F4ECDD;
+    --line-soft:  #2E3B55;
+    --link:       #FF8A73;
+    --focus:      #5FD1C2;
+    --shadow-ink: #070B12;
+    --shadow-block: var(--lift) var(--lift) 0 #070B12;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:         #141D2C;
+  --bg-raised:  #1D2940;
+  --bg-sunken:  #0F1622;
+  --text:       #F4ECDD;
+  --text-soft:  #D9CFBD;
+  --text-muted: #A69E90;
+  --line:       #F4ECDD;
+  --line-soft:  #2E3B55;
+  --link:       #FF8A73;
+  --focus:      #5FD1C2;
+  --shadow-ink: #070B12;
+  --shadow-block: var(--lift) var(--lift) 0 #070B12;
+  color-scheme: dark;
+}
+
+/* Respect "reduce motion": keep things still and instant. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-med: 0ms;
+    --dur-slow: 0ms;
+  }
+}

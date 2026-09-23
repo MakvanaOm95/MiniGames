@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" width="320" height="240">
+  <!-- TODO: draw this game's thumbnail. Keep the 320×240 size, the navy
+       outlines (#1B2A41) and the Tiny Tock palette:
+       tomato #E8553D, mustard #F2B33D, teal #2F8F83, sky #6FA9D8, plum #7A4E8C, cream #FBF7F0 -->
+  <rect width="320" height="240" fill="#F2B33D"/>
+  <rect x="60" y="40" width="200" height="160" rx="18" fill="#FBF7F0" stroke="#1B2A41" stroke-width="4"/>
+  <text x="160" y="132" text-anchor="middle" font-family="sans-serif" font-weight="800" font-size="28" fill="#1B2A41">{{TITLE}}</text>
+</svg>

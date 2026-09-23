@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- @head -->
+<!-- /@head -->
+<!-- TODO: write a unique title (50–60 characters) and description (140–160 characters) -->
+<title>{{TITLE}}: Play Free Online | Tiny Tock</title>
+<meta name="description" content="Play {{TITLE}} free in your browser. TODO: one or two sentences about what makes this game fun. Works on phone and desktop, no download.">
+<link rel="canonical" href="https://tinytock.com/games/{{SLUG}}/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tiny Tock">
+<meta property="og:title" content="{{TITLE}}: free online game | Tiny Tock">
+<meta property="og:description" content="TODO: one short line about the game.">
+<meta property="og:url" content="https://tinytock.com/games/{{SLUG}}/">
+<meta property="og:image" content="https://tinytock.com/assets/images/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/css/game-shell.css">
+<link rel="stylesheet" href="/games/{{SLUG}}/style.css">
+<script type="module" src="/games/{{SLUG}}/game.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"VideoGame","name":"{{TITLE}}","url":"https://tinytock.com/games/{{SLUG}}/","description":"TODO: one sentence about the game.","genre":["{{CATEGORY_LABEL}}"],"gamePlatform":["Web browser"],"applicationCategory":"Game","operatingSystem":"Any","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"Tiny Tock","url":"https://tinytock.com/"}}
+</script>
+</head>
+<body>
+<!-- @header -->
+<!-- /@header -->
+
+<main id="main" class="game-page">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/#games">Games</a> / {{TITLE}}</nav>
+
+    <div class="game-title">
+      <h1>{{TITLE}}</h1>
+      <div class="meta">
+        <span class="tag" style="--tag-color: var(--cat-{{CATEGORY}})">{{CATEGORY_LABEL}}</span>
+        <span class="time">About {{MINUTES_LABEL}}</span>
+      </div>
+    </div>
+
+    <div class="game-layout">
+      <!-- ===== The game ===== -->
+      <div>
+        <section class="game" data-game="{{SLUG}}" aria-label="{{TITLE}} game">
+          <div class="game__stage">
+            <!-- Your game draws in here: a <canvas> or normal HTML -->
+            <div class="demo-board"><button class="demo-target" type="button" data-target>Tap!</button></div>
+          </div>
+          <!-- Optional touch controls. Delete this block if the game is tap/click only.
+          <div class="game__pad">
+            <div class="dpad">
+              <button type="button" data-input="up" aria-label="Up">▲</button>
+              <button type="button" data-input="left" aria-label="Left">◀</button>
+              <button type="button" data-input="right" aria-label="Right">▶</button>
+              <button type="button" data-input="down" aria-label="Down">▼</button>
+            </div>
+          </div>
+          -->
+        </section>
+        <p class="game-note">
+          <span class="keys-only">TODO: keyboard controls, e.g. use <kbd>←</kbd> <kbd>→</kbd>. Press <kbd>P</kbd> to pause.</span>
+          <span class="touch-only">TODO: touch controls, e.g. tap the board.</span>
+        </p>
+      </div>
+
+      <!-- AD SLOT: game page sidebar (desktop only, never covers the game) -->
+      <aside class="ad-slot ad-slot--sidebar" data-ad-slot="game-sidebar" aria-label="Advertisement"></aside>
+    </div>
+
+    <!-- ===== About / How to play / Tips (required: AdSense wants real content) ===== -->
+    <div class="game-info">
+      <div class="prose">
+        <section>
+          <h2>About {{TITLE}}</h2>
+          <p>TODO: 2 short paragraphs. What is the game? What makes our version special?</p>
+        </section>
+        <section>
+          <h2>How to play</h2>
+          <ol class="steps">
+            <li>TODO: step 1</li>
+            <li>TODO: step 2</li>
+            <li>TODO: step 3</li>
+          </ol>
+          <table class="controls-table">
+            <caption class="visually-hidden">Controls</caption>
+            <tr><th scope="row">TODO action</th><td>TODO keys / touch</td></tr>
+            <tr><th scope="row">Pause</th><td><kbd>P</kbd> or <kbd>Esc</kbd>, or the pause button</td></tr>
+          </table>
+        </section>
+      </div>
+
+      <aside class="tips">
+        <h2>Tips to score higher</h2>
+        <ul>
+          <li><strong>TODO tip.</strong> Explanation.</li>
+          <li><strong>TODO tip.</strong> Explanation.</li>
+          <li><strong>TODO tip.</strong> Explanation.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <!-- AD SLOT: below game content -->
+    <aside class="ad-slot ad-slot--banner" data-ad-slot="game-bottom" aria-label="Advertisement" style="margin-top: var(--space-7)"></aside>
+
+    <!-- ===== Play next (filled in by tools/sync.mjs) ===== -->
+    <section class="play-next" aria-labelledby="next-title">
+      <div class="play-next__head">
+        <h2 id="next-title">Play next</h2>
+        <a href="/#games">See all games →</a>
+      </div>
+      <ul class="tile-grid">
+<!-- @play-next -->
+<!-- /@play-next -->
+      </ul>
+    </section>
+  </div>
+</main>
+
+<!-- @footer -->
+<!-- /@footer -->
+</body>
+</html>

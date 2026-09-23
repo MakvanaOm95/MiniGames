@@ -1,0 +1,383 @@
+/* ==========================================================================
+   Tiny Tock — Shared components
+   Header, footer, buttons, game tiles, tags, ad slots, and small bits used
+   on every page. Page-specific styles live in home.css / game-shell.css.
+   ========================================================================== */
+
+/* ---- Header ------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: var(--outline) solid var(--line);
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 68px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text);
+  text-decoration: none;
+}
+.brand__mark { flex: none; transition: transform var(--dur-med) var(--ease-spring); }
+.brand:hover .brand__mark { transform: rotate(-10deg) scale(1.06); }
+.brand__name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.45rem;
+  letter-spacing: -0.03em;
+}
+
+.site-nav { display: flex; align-items: center; gap: clamp(var(--space-2), 2vw, var(--space-5)); }
+.site-nav a {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-s);
+  position: relative;
+}
+/* A little wavy underline marks the current page */
+.site-nav a[aria-current="page"]::after,
+.site-nav a:hover::after {
+  content: "";
+  position: absolute;
+  left: var(--space-2); right: var(--space-2); bottom: -2px;
+  height: 6px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6'%3E%3Cpath d='M0 3q3-3 6 0t6 0' fill='none' stroke='%23E8553D' stroke-width='2'/%3E%3C/svg%3E") repeat-x;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 42px; height: 42px;
+  border: var(--outline) solid var(--line);
+  border-radius: 50%;
+  background: var(--bg-raised);
+  color: var(--text);
+  transition: transform var(--dur-fast) var(--ease-out), background var(--dur-fast);
+}
+.icon-btn:hover { background: var(--mustard); color: var(--ink-900); }
+.icon-btn:active { transform: scale(0.92); }
+
+/* Show sun in dark mode (click → light) and moon in light mode */
+.theme-toggle .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
+}
+
+/* ---- Buttons -------------------------------------------------------------
+   Chunky "toy block" buttons: they sit up on a hard shadow and press down.  */
+.btn {
+  --btn-bg: var(--accent);
+  --btn-fg: var(--accent-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 50px;
+  padding: 0 var(--space-5);
+  border: var(--outline) solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  box-shadow: var(--shadow-block);
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.btn:hover { transform: translate(-1px, -1px); box-shadow: calc(var(--lift) + 1px) calc(var(--lift) + 1px) 0 var(--shadow-ink); }
+.btn:active { transform: translate(var(--lift), var(--lift)); box-shadow: 0 0 0 var(--line); }
+.btn--ghost { --btn-bg: var(--bg-raised); --btn-fg: var(--text); }
+.btn--mustard { --btn-bg: var(--mustard); --btn-fg: var(--ink-900); }
+.btn--teal { --btn-bg: var(--teal-dk); --btn-fg: #fff; }
+.btn svg { flex: none; }
+
+/* ---- Chips (filter toggles) --------------------------------------------- */
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); padding: 0; margin: 0; list-style: none; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  min-height: 40px;
+  padding: 0 var(--space-4);
+  border: 2px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font-weight: 700;
+  font-size: var(--step--1);
+  transition: background var(--dur-fast), color var(--dur-fast), transform var(--dur-fast) var(--ease-spring);
+}
+.chip::before {
+  content: "";
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  background: var(--chip-color, var(--bg-raised));
+}
+.chip:hover { transform: translateY(-2px); }
+.chip[aria-pressed="true"] { background: var(--text); color: var(--bg); }
+
+/* ---- Tags & time badges ------------------------------------------------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.tag::before {
+  content: "";
+  width: 9px; height: 9px;
+  border-radius: 3px;
+  background: var(--tag-color, var(--tomato));
+  outline: 1.5px solid var(--line);
+}
+.time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.1em 0.6em;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.time svg { width: 13px; height: 13px; }
+
+/* ---- Game tiles ("toy boxes") --------------------------------------------
+   Each tile is a little box with the game art on a category-colored lid.  */
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  gap: clamp(var(--space-5), 3vw, var(--space-6));
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.tile { --tile-color: var(--tomato); }
+.tile[data-category="puzzle"]  { --tile-color: var(--cat-puzzle); }
+.tile[data-category="arcade"]  { --tile-color: var(--cat-arcade); }
+.tile[data-category="quick"]   { --tile-color: var(--cat-quick); }
+.tile[data-category="word"]    { --tile-color: var(--cat-word); }
+.tile[data-category="classic"] { --tile-color: var(--cat-classic); }
+.tile[hidden] { display: none; }
+
+.tile__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: var(--text);
+  text-decoration: none;
+  background: var(--bg-raised);
+  border: var(--outline) solid var(--line);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-block);
+  overflow: hidden;
+  transition: transform var(--dur-med) var(--ease-spring), box-shadow var(--dur-med) var(--ease-spring);
+}
+/* Every few tiles lean a tiny bit, like toys on a shelf */
+.tile:nth-child(4n+2) .tile__link { transform: rotate(0.7deg); }
+.tile:nth-child(4n+3) .tile__link { transform: rotate(-0.6deg); }
+.tile__link:hover,
+.tile__link:focus-visible {
+  transform: translate(-3px, -4px) rotate(-1deg);
+  box-shadow: calc(var(--lift) + 4px) calc(var(--lift) + 4px) 0 var(--shadow-ink);
+}
+.tile__link:active { transform: translate(var(--lift), var(--lift)); box-shadow: 0 0 0 var(--line); }
+
+.tile__art {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--tile-color);
+  border-bottom: var(--outline) solid var(--line);
+  overflow: hidden;
+}
+.tile__art img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--dur-slow) var(--ease-out); }
+.tile__link:hover .tile__art img { transform: scale(1.05); }
+
+/* Round "play" sticker that pops in on hover */
+.tile__art::after {
+  content: "";
+  position: absolute;
+  right: 12px; bottom: 12px;
+  width: 46px; height: 46px;
+  border: var(--outline) solid var(--ink-900);
+  border-radius: 50%;
+  background: var(--cream-50) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6.5v11l9-5.5z' fill='%231B2A41'/%3E%3C/svg%3E") center / 24px no-repeat;
+  transform: scale(0) rotate(-90deg);
+  transition: transform var(--dur-med) var(--ease-spring);
+}
+.tile__link:hover .tile__art::after,
+.tile__link:focus-visible .tile__art::after { transform: scale(1) rotate(0); }
+
+.tile__body { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-4) var(--space-4) var(--space-4); flex: 1; }
+.tile__title { font-size: 1.3rem; margin: 0; }
+.tile__blurb { margin: 0; color: var(--text-soft); font-size: 0.95rem; line-height: 1.45; }
+.tile__meta { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); margin-top: auto; padding-top: var(--space-2); }
+.tile .tag { --tag-color: var(--tile-color); }
+
+/* A featured tile is twice as wide on bigger screens */
+@media (min-width: 720px) {
+  .tile--feature { grid-column: span 2; }
+  .tile--feature .tile__link { flex-direction: row; }
+  .tile--feature .tile__art { flex: 1.3; aspect-ratio: auto; min-height: 250px; border-bottom: 0; border-right: var(--outline) solid var(--line); }
+  .tile--feature .tile__body { flex: 1; padding: var(--space-5); justify-content: center; }
+  .tile--feature .tile__title { font-size: var(--step-2); }
+}
+.tile__badge {
+  align-self: flex-start;
+  padding: 0.15em 0.65em;
+  background: var(--mustard);
+  color: var(--ink-900);
+  border: 1.5px solid var(--ink-900);
+  border-radius: var(--radius-s);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transform: rotate(-3deg);
+}
+
+/* Shown when a filter matches no games */
+.empty-note {
+  padding: var(--space-6);
+  border: 2px dashed var(--line-soft);
+  border-radius: var(--radius-m);
+  text-align: center;
+  color: var(--text-muted);
+}
+.empty-note strong { color: var(--text); font-family: var(--font-display); font-size: var(--step-1); display: block; margin-bottom: var(--space-1); }
+
+/* A button that looks like a text link */
+.linklike { padding: 0; border: 0; background: none; color: var(--link); font-weight: 700; text-decoration: underline; text-underline-offset: 0.18em; }
+
+/* ---- Keyboard keys ------------------------------------------------------ */
+kbd {
+  display: inline-block;
+  min-width: 1.9em;
+  padding: 0.05em 0.45em;
+  border: 1.5px solid var(--line);
+  border-bottom-width: 3.5px;
+  border-radius: 6px;
+  background: var(--bg-raised);
+  font-family: var(--font-body);
+  font-size: 0.85em;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ---- Inner page header (About, Contact, Privacy…) ----------------------- */
+.page-head {
+  padding-block: var(--space-8) var(--space-6);
+  border-bottom: var(--outline) solid var(--line);
+  background:
+    radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--line) 18%, transparent) 1px, transparent 0) 0 0 / 22px 22px;
+}
+.page-head h1 { max-width: 18ch; }
+.page-head p { font-size: var(--step-1); color: var(--text-soft); max-width: 52ch; margin: 0; }
+
+/* ---- Ad slots ------------------------------------------------------------
+   Reserved spaces for Google AdSense. They stay invisible until ads are
+   switched on in /assets/js/site.js (ADS_LIVE = true). Add ?ads=preview to
+   any URL to see where they sit.                                          */
+.ad-slot { display: none; }
+.ads-live .ad-slot,
+.ads-preview .ad-slot {
+  display: block;
+  margin-inline: auto;
+  text-align: center;
+}
+.ad-slot::before {
+  content: "Advertisement";
+  display: block;
+  margin-bottom: var(--space-1);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.ads-preview .ad-slot {
+  min-height: var(--ad-h, 100px);
+  max-width: var(--ad-w, 728px);
+  border: 2px dashed var(--tomato);
+  border-radius: var(--radius-s);
+  background: repeating-linear-gradient(45deg, transparent 0 10px, color-mix(in srgb, var(--tomato) 8%, transparent) 10px 20px);
+}
+.ads-preview .ad-slot::after {
+  content: "Ad slot: " attr(data-ad-slot);
+  display: block;
+  padding: var(--space-4);
+  font-weight: 700;
+  color: var(--tomato-dk);
+}
+.ad-slot--banner  { --ad-w: 728px; --ad-h: 100px; }
+.ad-slot--sidebar { --ad-w: 300px; --ad-h: 600px; }
+.ad-slot--square  { --ad-w: 336px; --ad-h: 280px; }
+
+/* ---- Footer ------------------------------------------------------------- */
+.site-footer {
+  position: relative;
+  margin-top: var(--space-8);
+  padding-top: var(--space-7);
+  background: var(--ink-900);
+  color: var(--cream-100);
+}
+/* Scalloped top edge, like the rim of a toy box */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: -13px;
+  height: 14px;
+  background: radial-gradient(circle at 12px 14px, var(--ink-900) 12px, transparent 12.5px) 0 0 / 24px 14px repeat-x;
+}
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+.site-footer__brand { max-width: 36ch; }
+.site-footer__name { font-family: var(--font-display); font-weight: 800; font-size: var(--step-2); letter-spacing: -0.03em; margin-bottom: var(--space-2); color: var(--mustard); }
+.site-footer__brand p:last-child { color: #CFC6B6; }
+.site-footer__links { display: flex; flex-direction: column; gap: var(--space-2); }
+.site-footer__links a { color: var(--cream-100); font-weight: 700; text-decoration: none; }
+.site-footer__links a:hover { color: var(--mustard); text-decoration: underline; }
+.site-footer__legal { padding-block: var(--space-4) var(--space-5); border-top: 1px solid #34445E; font-size: var(--step--1); color: #B9B1A3; }
+.site-footer__legal p { margin: 0; }
+.site-footer :focus-visible { outline-color: var(--mustard); }
+[data-theme="dark"] .site-footer { background: #0B111B; }
+[data-theme="dark"] .site-footer::before { background-image: radial-gradient(circle at 12px 14px, #0B111B 12px, transparent 12.5px); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .site-footer { background: #0B111B; }
+  :root:not([data-theme="light"]) .site-footer::before { background-image: radial-gradient(circle at 12px 14px, #0B111B 12px, transparent 12.5px); }
+}
+
+@media (max-width: 480px) {
+  .brand__name { font-size: 1.25rem; }
+  .site-nav a { padding-inline: var(--space-1); }
+}

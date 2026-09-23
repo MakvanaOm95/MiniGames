@@ -1,0 +1,280 @@
+/* ==========================================================================
+   Tiny Tock — Game page + game shell styles
+   Shared by every game: page layout, the game "toy box", score bar,
+   start / pause / game-over screens, touch buttons, and the info sections.
+   A game's own style.css only adds what's unique to that game.
+   ========================================================================== */
+
+/* ---- Page layout ---------------------------------------------------------- */
+.game-page { padding-block: var(--space-5) var(--space-7); }
+
+.crumbs { font-size: var(--step--1); color: var(--text-muted); margin-bottom: var(--space-3); }
+.crumbs a { color: inherit; }
+
+.game-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.game-title h1 { font-size: var(--step-3); margin: 0; }
+.game-title .meta { display: flex; gap: var(--space-3); align-items: center; }
+
+/* The game column + an ad column that only appears once ads are live */
+.game-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); align-items: start; }
+@media (min-width: 1100px) {
+  .ads-live .game-layout, .ads-preview .game-layout { grid-template-columns: minmax(0, 1fr) 300px; }
+  .game-layout .ad-slot--sidebar { position: sticky; top: 90px; }
+}
+@media (max-width: 1099px) { .game-layout .ad-slot--sidebar { display: none; } }
+
+/* ---- The game "toy box" ----------------------------------------------------- */
+.game {
+  --game-color: var(--tomato);
+  max-width: 720px;
+  margin-inline: auto;
+  width: 100%;
+  background: var(--bg-raised);
+  border: var(--outline) solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow: 6px 6px 0 var(--line);
+  overflow: hidden;
+}
+[data-theme="dark"] .game { box-shadow: 6px 6px 0 #070B12; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .game { box-shadow: 6px 6px 0 #070B12; } }
+
+/* Score bar across the top, in the game's color */
+.game__hud {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+  background: var(--game-color);
+  border-bottom: var(--outline) solid var(--line);
+  color: var(--ink-900);
+}
+.hud-stat {
+  display: flex;
+  flex-direction: column;
+  min-width: 76px;
+  padding: 0.2rem 0.8rem 0.25rem;
+  background: var(--cream-50);
+  border: 2px solid var(--ink-900);
+  border-radius: var(--radius-s);
+  line-height: 1.15;
+}
+.hud-stat__label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-500); }
+.hud-stat__value { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+.hud-stat__value.is-bumped { animation: score-bump 0.32s var(--ease-spring); }
+@keyframes score-bump { 40% { transform: scale(1.3); color: var(--tomato-dk); } }
+.hud-stat--best { background: transparent; border-style: dashed; }
+.hud-stat--best .hud-stat__label { color: var(--ink-700); }
+
+.hud-actions { margin-left: auto; display: flex; gap: var(--space-2); }
+.hud-btn {
+  display: grid;
+  place-items: center;
+  width: 42px; height: 42px;
+  border: 2px solid var(--ink-900);
+  border-radius: 50%;
+  background: var(--cream-50);
+  color: var(--ink-900);
+  transition: transform var(--dur-fast) var(--ease-spring);
+}
+.hud-btn svg { width: 20px; height: 20px; }
+.hud-btn:hover:not(:disabled) { transform: scale(1.08); }
+.hud-btn:active:not(:disabled) { transform: scale(0.92); }
+.hud-btn:disabled { opacity: 0.45; cursor: default; }
+.game__hud :focus-visible { outline-color: var(--ink-900); }
+
+/* The play area. Games put a <canvas> or HTML board inside. */
+.game__stage {
+  position: relative;
+  outline: none;
+  touch-action: none;           /* swipes control the game, not the page */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.game__stage canvas { width: 100%; height: 100%; }
+
+/* ---- Overlay screens (start / pause / game over) --------------------------- */
+.game-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity var(--dur-med) var(--ease-out);
+  overflow: hidden;
+}
+.game-overlay.is-visible { opacity: 1; }
+.game-overlay[hidden] { display: none; }
+
+.game-overlay__card {
+  position: relative;
+  width: min(100%, 360px);
+  padding: var(--space-6) var(--space-5);
+  text-align: center;
+  background: var(--cream-50);
+  color: var(--ink-900);
+  border: var(--outline) solid var(--ink-900);
+  border-radius: var(--radius-l);
+  box-shadow: 5px 5px 0 var(--ink-900);
+  transform: translateY(14px) scale(0.96);
+  transition: transform var(--dur-slow) var(--ease-spring);
+}
+.game-overlay.is-visible .game-overlay__card { transform: none; }
+.game-overlay__eyebrow { font-family: var(--font-display); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-500); margin-bottom: var(--space-1); }
+.game-overlay__title { font-size: var(--step-3); margin-bottom: var(--space-2); }
+.game-overlay__hint { color: var(--ink-700); margin-bottom: var(--space-5); font-size: 0.98rem; }
+.game-overlay__score {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3.2rem, 12vw, 4.6rem);
+  line-height: 1;
+  margin: var(--space-2) 0;
+  color: var(--tomato-dk);
+  font-variant-numeric: tabular-nums;
+}
+.game-overlay__best { font-weight: 700; color: var(--ink-700); margin-bottom: var(--space-5); }
+.game-overlay__best.is-new {
+  display: inline-block;
+  padding: 0.2em 0.8em;
+  background: var(--mustard);
+  border: 2px solid var(--ink-900);
+  border-radius: var(--radius-pill);
+  color: var(--ink-900);
+  animation: wobble 0.7s var(--ease-spring);
+}
+@keyframes wobble { 0% { transform: scale(0.4) rotate(-8deg); } 60% { transform: scale(1.1) rotate(3deg); } 100% { transform: none; } }
+
+.game-overlay__actions { display: flex; flex-direction: column; gap: var(--space-3); align-items: stretch; }
+.game-overlay .btn { --line: var(--ink-900); box-shadow: 4px 4px 0 var(--ink-900); }
+.game-overlay .btn:hover { box-shadow: 5px 5px 0 var(--ink-900); }
+.game-overlay .btn:active { box-shadow: 0 0 0 var(--ink-900); }
+.game-overlay .btn--ghost { --btn-bg: var(--cream-50); --btn-fg: var(--ink-900); }
+.game-overlay :focus-visible { outline-color: var(--teal-dk); }
+.btn--play { min-height: 56px; font-size: 1.25rem; }
+.btn--play svg, .game-overlay .btn svg { width: 22px; height: 22px; }
+
+/* Confetti for a new best */
+.confetti { position: absolute; left: 50%; top: 55%; pointer-events: none; }
+.confetti i {
+  position: absolute;
+  width: 9px; height: 14px;
+  border-radius: 2px;
+  animation: confetti var(--d) cubic-bezier(0.2, 0.7, 0.4, 1) forwards;
+}
+@keyframes confetti {
+  0% { transform: translate(0, 0) rotate(0); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translate(var(--x), calc(var(--y) + 380px)) rotate(var(--r)); opacity: 0; }
+}
+
+/* ---- On-screen touch buttons (shown on touch devices) ----------------------- */
+.game__pad {
+  display: none;
+  padding: var(--space-4);
+  border-top: var(--outline) solid var(--line);
+  background: var(--bg-sunken);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+@media (pointer: coarse) { .game__pad { display: block; } }
+.dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 64px);
+  grid-template-rows: repeat(3, 64px);
+  gap: 6px;
+  justify-content: center;
+}
+.dpad button {
+  display: grid;
+  place-items: center;
+  border: var(--outline) solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--bg-raised);
+  color: var(--text);
+  box-shadow: 0 4px 0 var(--line);
+  transition: transform 60ms, box-shadow 60ms;
+  -webkit-tap-highlight-color: transparent;
+}
+.dpad button svg { width: 26px; height: 26px; }
+.dpad button.is-pressed { transform: translateY(4px); box-shadow: 0 0 0 var(--line); background: var(--mustard); color: var(--ink-900); }
+.dpad [data-input="up"] { grid-area: 1 / 2; }
+.dpad [data-input="left"] { grid-area: 2 / 1; }
+.dpad [data-input="right"] { grid-area: 2 / 3; }
+.dpad [data-input="down"] { grid-area: 3 / 2; }
+
+.game-note { text-align: center; font-size: var(--step--1); color: var(--text-muted); margin-top: var(--space-4); }
+@media (pointer: coarse) { .game-note .keys-only { display: none; } }
+@media (pointer: fine) { .game-note .touch-only { display: none; } }
+
+/* ---- Info sections under the game -------------------------------------------- */
+.game-info {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6) var(--space-7);
+  margin-top: var(--space-8);
+}
+@media (min-width: 860px) { .game-info { grid-template-columns: 1.15fr 1fr; } }
+.game-info h2 { font-size: var(--step-2); }
+.game-info section + section { margin-top: 0; }
+
+/* "How to play" steps with big numbers */
+.steps { list-style: none; padding: 0; margin: 0; counter-reset: step; }
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding: 0 0 var(--space-4) 3.1rem;
+  min-height: 2.4rem;
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0; top: -0.1rem;
+  display: grid;
+  place-items: center;
+  width: 2.2rem; height: 2.2rem;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  background: var(--mustard);
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+/* Tips sit on a "sticky note" */
+.tips {
+  position: relative;
+  padding: var(--space-5) var(--space-5) var(--space-3);
+  background: #FFF3C4;
+  color: var(--ink-900);
+  border: 2px solid var(--ink-900);
+  border-radius: 4px var(--radius-m) var(--radius-m) var(--radius-m);
+  transform: rotate(0.6deg);
+  box-shadow: 4px 5px 0 rgb(27 42 65 / 0.18);
+}
+.tips h2 { font-size: var(--step-1); }
+.tips ul { padding-left: 1.2em; margin: 0 0 var(--space-3); }
+.tips li { margin-bottom: var(--space-2); }
+.tips li::marker { content: "✦  "; color: var(--tomato-dk); }
+.tips a { color: var(--tomato-dk); }
+
+.controls-table { width: 100%; border-collapse: collapse; margin-bottom: var(--space-4); font-size: 0.95rem; }
+.controls-table th, .controls-table td { text-align: left; padding: var(--space-2) var(--space-2) var(--space-2) 0; border-bottom: 1.5px dashed var(--line-soft); vertical-align: top; }
+.controls-table th { font-weight: 700; white-space: nowrap; }
+
+/* ---- Play next ------------------------------------------------------------------ */
+.play-next { margin-top: var(--space-8); }
+.play-next:not(:has(.tile)) { display: none; }  /* hide if there are no other games yet */
+.play-next__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-5); }
+.play-next__head h2 { margin: 0; font-size: var(--step-3); }

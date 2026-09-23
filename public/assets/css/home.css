@@ -1,0 +1,234 @@
+/* ==========================================================================
+   Tiny Tock — Homepage only
+   The clock-dial hero, the ticket strip, the game shelf and the FAQ.
+   ========================================================================== */
+
+/* ---- Hero ----------------------------------------------------------------- */
+.hero {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(var(--space-6), 6vw, var(--space-8)) var(--space-7);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--line) 16%, transparent) 1px, transparent 0) 0 0 / 22px 22px;
+}
+.hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .hero__inner { grid-template-columns: 1.05fr 1fr; gap: var(--space-7); }
+}
+
+.hero h1 { font-size: clamp(2.6rem, 1.5rem + 4.6vw, 5.2rem); max-width: 11ch; margin-bottom: var(--space-5); }
+/* Hand-drawn squiggle under the key word */
+.hero h1 em {
+  font-style: normal;
+  position: relative;
+  white-space: nowrap;
+  color: var(--tomato-dk);
+}
+[data-theme="dark"] .hero h1 em { color: var(--tomato); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero h1 em { color: var(--tomato); } }
+.hero h1 em::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -0.12em;
+  height: 0.22em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 16' preserveAspectRatio='none'%3E%3Cpath d='M3 11C40 3 70 3 100 8s70 6 97-4' fill='none' stroke='%23F2B33D' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  z-index: -1;
+}
+.hero__lede { font-size: var(--step-1); line-height: 1.5; color: var(--text-soft); max-width: 40ch; margin-bottom: var(--space-6); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-6); }
+.hero__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-weight: 700;
+  font-size: var(--step--1);
+  color: var(--text-soft);
+}
+.hero__facts li { display: flex; align-items: center; gap: 0.5em; }
+.hero__facts li::before {
+  content: "";
+  width: 12px; height: 12px;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  background: var(--dot, var(--mustard));
+}
+.hero__facts li:nth-child(2) { --dot: var(--teal); }
+.hero__facts li:nth-child(3) { --dot: var(--tomato); }
+
+/* ---- The dial (a big Tiny Tock alarm clock) --------------------------------- */
+.dial-wrap { display: grid; justify-items: center; gap: var(--space-3); }
+.dial {
+  --angle: 360deg;
+  position: relative;
+  width: min(calc(100% - 48px), 440px);  /* room for the side buttons on phones */
+  aspect-ratio: 400 / 460;
+}
+.dial__svg { width: 100%; height: 100%; overflow: visible; }
+.dial__body { transform-box: view-box; transform-origin: 200px 430px; }
+.dial.is-wiggling .dial__body { animation: alarm-wiggle 0.5s var(--ease-out); }
+@keyframes alarm-wiggle {
+  15% { transform: rotate(-3deg); } 35% { transform: rotate(2.5deg); }
+  55% { transform: rotate(-1.5deg); } 75% { transform: rotate(0.8deg); }
+}
+.dial__rim { fill: var(--tomato); stroke: var(--ink-900); stroke-width: 6; }
+.dial__face { fill: var(--cream-50); stroke: var(--ink-900); stroke-width: 4; }
+.dial__ticks line { stroke: var(--ink-900); stroke-linecap: round; }
+.dial__track { fill: none; stroke: var(--cream-200); stroke-width: 30; }
+.dial__wind {
+  fill: none;
+  stroke: var(--mustard);
+  stroke-width: 30;
+  stroke-dasharray: var(--wind, 100) 100;
+  transition: stroke-dasharray var(--dur-slow) var(--ease-spring);
+}
+.dial__hand {
+  transform-box: view-box;
+  transform-origin: 200px 250px;
+  transform: rotate(var(--angle));
+  transition: transform var(--dur-slow) var(--ease-spring);
+}
+.dial__eyes { transform-box: fill-box; transform-origin: center; animation: blink 5s infinite; }
+@keyframes blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+
+/* The four time buttons sit on the rim of the clock */
+.dial__opts { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
+.dial__opt {
+  position: absolute;
+  translate: -50% -50%;
+  min-width: 78px;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  border: var(--outline) solid var(--ink-900);
+  border-radius: var(--radius-pill);
+  background: var(--cream-50);
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.02rem;
+  box-shadow: 3px 3px 0 var(--ink-900);
+  transition: transform var(--dur-med) var(--ease-spring), background var(--dur-fast), box-shadow var(--dur-fast);
+}
+.dial__opt:hover { transform: scale(1.08) rotate(-3deg); }
+.dial__opt[aria-checked="true"] { background: var(--ink-900); color: var(--cream-50); box-shadow: 0 0 0 var(--ink-900); transform: scale(1.06); }
+.dial__opt:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+
+.dial__caption {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-1);
+  text-align: center;
+  min-height: 1.6em;
+}
+.dial__caption strong { color: var(--tomato-dk); }
+[data-theme="dark"] .dial__caption strong { color: var(--tomato); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .dial__caption strong { color: var(--tomato); } }
+
+/* ---- Ticket strip (scrolling marquee) ---------------------------------------- */
+.strip {
+  overflow: hidden;
+  background: var(--mustard);
+  color: var(--ink-900);
+  border-block: var(--outline) solid var(--ink-900);
+  transform: rotate(-1deg);
+  margin-block: var(--space-4) var(--space-6);
+  margin-inline: -1%;
+}
+.strip__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+.strip__track span {
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--step-1);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.strip__track span:nth-child(even) { color: var(--tomato-dk); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .strip__track { animation: none; } }
+
+/* ---- Game shelf -------------------------------------------------------------- */
+.shelf { padding-top: var(--space-6); scroll-margin-top: 80px; }
+.shelf__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+.shelf__head h2 { margin: 0; }
+.shelf__status { color: var(--text-muted); font-weight: 700; font-size: var(--step--1); margin-bottom: var(--space-5); min-height: 1.5em; }
+.shelf .empty-note { margin-top: var(--space-2); }
+.chip[data-category="arcade"]  { --chip-color: var(--cat-arcade); }
+.chip[data-category="puzzle"]  { --chip-color: var(--cat-puzzle); }
+.chip[data-category="quick"]   { --chip-color: var(--cat-quick); }
+.chip[data-category="word"]    { --chip-color: var(--cat-word); }
+.chip[data-category="classic"] { --chip-color: var(--cat-classic); }
+
+/* ---- "Why Tiny Tock" --------------------------------------------------------- */
+.why {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+}
+@media (min-width: 900px) { .why { grid-template-columns: 0.9fr 1.1fr; gap: var(--space-8); } }
+.why h2 { max-width: 14ch; }
+.why__list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-5); }
+.why__list li { display: grid; grid-template-columns: 3.2rem 1fr; gap: var(--space-4); align-items: start; }
+.why__num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.6rem;
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--line);
+}
+.why__list h3 { margin-bottom: var(--space-1); }
+.why__list p { margin: 0; color: var(--text-soft); }
+
+/* ---- FAQ ------------------------------------------------------------------------ */
+.faq { max-width: 780px; }
+.faq details {
+  border-bottom: 2px solid var(--line);
+  padding-block: var(--space-4);
+}
+.faq details:first-of-type { border-top: 2px solid var(--line); }
+.faq summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-1);
+  list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px; height: 34px;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  font-size: 1.3rem;
+  transition: transform var(--dur-med) var(--ease-spring), background var(--dur-fast);
+}
+.faq details[open] summary::after { transform: rotate(45deg); background: var(--mustard); color: var(--ink-900); }
+.faq details p { margin: var(--space-3) 0 0; color: var(--text-soft); max-width: 62ch; }

@@ -1,0 +1,5 @@
+# Tiny Tock — all pages may be crawled
+User-agent: *
+Allow: /
+
+Sitemap: https://tinytock.com/sitemap.xml

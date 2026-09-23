@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Snake — only what's unique to this game.
+   Shared game styles are in /assets/css/game-shell.css.
+   ========================================================================== */
+
+/* Keep the whole square board on screen, even on short laptop screens */
+.game[data-game="snake"] {
+  --game-color: var(--cat-arcade);
+  max-width: max(300px, min(600px, calc(100svh - 190px)));
+}
+
+.game[data-game="snake"] .game__stage { aspect-ratio: 1 / 1; }
+
+/* Board colors (read by game.js) */
+#board {
+  --snake-board: #FBF7F0;
+  --snake-check: #F3EADB;
+  --snake-body:  #2F8F83;
+  --snake-belly: rgb(255 255 255 / 0.22);
+  --snake-line:  #1B2A41;
+  --snake-apple: #E8553D;
+  --snake-leaf:  #6BBF59;
+  --snake-gold:  #F2B33D;
+}
+[data-theme="dark"] #board {
+  --snake-board: #1D2940;
+  --snake-check: #19233A;
+  --snake-body:  #3FB0A2;
+  --snake-line:  #0B111B;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #board {
+    --snake-board: #1D2940;
+    --snake-check: #19233A;
+    --snake-body:  #3FB0A2;
+    --snake-line:  #0B111B;
+  }
+}
