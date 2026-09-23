@@ -377,7 +377,17 @@ kbd {
   :root:not([data-theme="light"]) .site-footer::before { background-image: radial-gradient(circle at 12px 14px, #0B111B 12px, transparent 12.5px); }
 }
 
+/* Small phones: tighten the header so Games / About / Contact all fit */
 @media (max-width: 480px) {
-  .brand__name { font-size: 1.25rem; }
-  .site-nav a { padding-inline: var(--space-1); }
+  .site-header__inner { gap: var(--space-2); min-height: 60px; }
+  .brand__mark { width: 36px; height: 36px; }
+  .brand__name { font-size: 1.15rem; }
+  .site-nav { gap: 2px; }
+  .site-nav a { padding-inline: 4px; font-size: 0.92rem; }
+  .site-nav a[aria-current="page"]::after, .site-nav a:hover::after { left: 4px; right: 4px; }
+  .icon-btn { width: 38px; height: 38px; margin-left: 2px; }
+}
+/* Very small phones: logo mark only (the link still says "Tiny Tock" to screen readers) */
+@media (max-width: 379px) {
+  .brand__name { display: none; }
 }
