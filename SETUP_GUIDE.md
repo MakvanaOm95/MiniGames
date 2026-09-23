@@ -2,7 +2,7 @@
 
 A beginner-friendly checklist. Do it in order, tick the boxes (`- [x]`) as you go, and do about one section a day.
 
-**Progress so far:** domain bought ✅ · GitHub repo created ✅ · site built and pushed ✅ · next: **Part 4 (Cloudflare Pages)**
+**Progress so far:** domain bought ✅ · GitHub ✅ · Cloudflare Pages live ✅ · tinytock.com live with HTTPS ✅ · email forwarding ✅ · next: **www redirect, Part 7 (Search Console), Part 8 (Analytics)**
 
 ---
 
@@ -30,11 +30,13 @@ A beginner-friendly checklist. Do it in order, tick the boxes (`- [x]`) as you g
 
 ## Part 4: Cloudflare Pages (puts the site online)
 
-1. - [ ] Go to **dash.cloudflare.com** → left menu **Workers & Pages** → **Create application**.
-2. - [ ] Choose the **Pages** option (look for a **Pages** tab, or a link like *"Looking to deploy Pages? Get started"*). Then **Import an existing Git repository**.
+1. - [x] Go to **dash.cloudflare.com** → left menu **Workers & Pages** → **Create application**.
+2. - [x] Choose the **Pages** option (look for a **Pages** tab, or a link like *"Looking to deploy Pages? Get started"*). Then **Import an existing Git repository**.
    - Don't pick "Workers". We want **Pages**.
-3. - [ ] Click **Connect GitHub**, sign in, and allow access to the **MiniGames** repo (choosing "Only select repositories" is fine).
-4. - [ ] Select the repo → **Begin setup**, and fill in:
+3. - [x] Click **Connect GitHub**, sign in, and allow access to the **MiniGames** repo (choosing "Only select repositories" is fine).
+4. - [x] Select the repo → **Begin setup**, and fill in:
+
+   > If you see "Deploy command" / "Preview command" fields, you're in the **Workers** flow by mistake. Go back and pick **Pages**.
 
    | Setting | Value |
    |---|---|
@@ -44,23 +46,23 @@ A beginner-friendly checklist. Do it in order, tick the boxes (`- [x]`) as you g
    | Build command | *(leave empty)* |
    | Build output directory | **`public`** |
 
-5. - [ ] **Save and Deploy**, then wait ~1 minute.
-6. - [ ] Open **https://tinytock.pages.dev** (or whatever address Cloudflare shows) and test:
-   - [ ] Homepage loads; the clock dial filters games
-   - [ ] Snake plays on your computer (arrow keys) and phone (swipe + buttons)
-   - [ ] About, Contact and Privacy pages open; a made-up URL shows the 404 page
-   - [ ] Dark mode button works
+5. - [x] **Save and Deploy**, then wait ~1 minute.
+6. - [x] Open **https://tinytock.pages.dev** (or whatever address Cloudflare shows) and test:
+   - [x] Homepage loads; the clock dial filters games
+   - [ ] Snake plays on your computer (arrow keys) and phone (swipe + buttons). Try a real swipe on your phone.
+   - [x] About, Contact and Privacy pages open; a made-up URL shows the 404 page
+   - [x] Dark mode button works
 
 From now on, **every `git push` to `main` publishes automatically.**
 
 ## Part 5: Connect tinytock.com
 
-1. - [ ] Workers & Pages → **tinytock** → **Custom domains** → **Set up a custom domain** → type `tinytock.com` → Continue → **Activate domain**.
-   - Your domain is already on Cloudflare, so the DNS record is created for you.
-2. - [ ] Do the same for **`www.tinytock.com`**.
+1. - [x] Workers & Pages → **tinytock** → **Custom domains** → **Set up a custom domain** → type `tinytock.com` → Continue → **Activate domain**.
+   - Your domain is already on Cloudflare, so the DNS record is usually created for you. If it asks you to add a CNAME yourself, check DNS → Records first: a proxied record for `@` / `www` may already exist. The status goes Initializing → Verifying → Active by itself (up to ~1 hour).
+2. - [x] Do the same for **`www.tinytock.com`**.
 3. - [ ] Make `www` redirect to the main address: Cloudflare → click **tinytock.com** (the domain) → **Rules** → **Redirect Rules** → **Create rule** → use the template **"Redirect from WWW to root"** → Deploy.
-4. - [ ] Wait until both domains say **Active** (usually 5–30 minutes, occasionally up to 24 hours).
-5. - [ ] Test **https://tinytock.com**: the padlock 🔒 appears in the address bar, so HTTPS works.
+4. - [x] Wait until both domains say **Active** (usually 5–30 minutes, occasionally up to 24 hours).
+5. - [x] Test **https://tinytock.com**: the padlock 🔒 appears in the address bar, so HTTPS works.
 6. - [ ] Test that **http://tinytock.com** and **https://www.tinytock.com** both end up at `https://tinytock.com`.
 7. - [ ] Domain → **SSL/TLS** → **Edge Certificates** → **Always Use HTTPS: ON**.
 
@@ -68,8 +70,8 @@ From now on, **every `git push` to `main` publishes automatically.**
 
 The Contact and Privacy pages use **hello@tinytock.com**, so make it work:
 
-- [ ] Cloudflare → tinytock.com → **Email** → **Email Routing** → **Get started**
-- [ ] Create address `hello` → forward to your personal Gmail → confirm the email Cloudflare sends
+- [x] Cloudflare → tinytock.com → **Email** → **Email Routing** → **Get started**
+- [x] Create address `hello` → forward to your personal Gmail → confirm the email Cloudflare sends
 - [ ] Let Cloudflare add the DNS records it suggests
 - [ ] Send a test email to hello@tinytock.com from another account and check it arrives
 
