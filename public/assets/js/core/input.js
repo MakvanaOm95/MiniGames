@@ -20,7 +20,7 @@ const KEYMAP = {
 /**
  * Listen for game keys.
  *   onKeys((name, event) => { … }, { active: (name) => game.isRunning })
- * `active(name)` decides whether this key is used right now. Keys that aren't
+ * `active(name, event)` decides whether this key is used right now. Keys that aren't
  * used are left alone, so arrows/space still scroll the page normally.
  * Returns a function that removes the listener.
  */
@@ -30,7 +30,7 @@ export function onKeys(handler, { active = () => true } = {}) {
     const t = e.target;
     if (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
     const name = KEYMAP[e.code];
-    if (!name || !active(name)) return;
+    if (!name || !active(name, e)) return;
     // Let Space/Enter work normally on focused buttons and links
     if (name === "action" && /^(BUTTON|A)$/.test(t.tagName)) return;
     e.preventDefault();
@@ -45,8 +45,9 @@ export function onKeys(handler, { active = () => true } = {}) {
  *   onSwipe(canvas, (dir) => { … }, { onTap: () => { … } })
  * Swipes fire as soon as the finger has moved far enough, and you can keep
  * sliding to change direction again without lifting — feels snappy.
+ * Pass { repeat: false } for one move per swipe.
  */
-export function onSwipe(el, handler, { threshold = 22, onTap = null } = {}) {
+export function onSwipe(el, handler, { threshold = 22, onTap = null, repeat = true } = {}) {
   let start = null;
   let swiped = false;
 
@@ -60,13 +61,15 @@ export function onSwipe(el, handler, { threshold = 22, onTap = null } = {}) {
     const dy = e.clientY - start.y;
     if (Math.max(Math.abs(dx), Math.abs(dy)) < threshold) return;
     handler(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? "right" : "left") : (dy > 0 ? "down" : "up"));
-    start = { x: e.clientX, y: e.clientY }; // measure the next swipe from here
     swiped = true;
+    // repeat: keep sliding to swipe again (Snake). Otherwise one move per swipe (2048).
+    start = repeat ? { x: e.clientX, y: e.clientY } : null;
   });
   const end = () => {
     if (start && !swiped && onTap) onTap();
     start = null;
   };
+  // (with repeat: false, `start` is null after a swipe, so the lift isn't a tap)
   el.addEventListener("pointerup", end);
   el.addEventListener("pointercancel", () => { start = null; });
 }

@@ -1,0 +1,86 @@
+/* ==========================================================================
+   Sudoku — only what's unique to this game.
+   ========================================================================== */
+
+.game[data-game="sudoku"] {
+  --game-color: var(--cat-puzzle);
+  max-width: max(300px, min(540px, calc(100svh - 270px)));
+}
+.game[data-game="sudoku"] .game__stage { aspect-ratio: 1 / 1; background: var(--bg-sunken); }
+
+.sudoku-board {
+  position: absolute;
+  inset: clamp(8px, 2.5vw, 14px);
+  display: grid;
+  grid-template: repeat(9, 1fr) / repeat(9, 1fr);
+  background: var(--bg-raised);
+  border: 3px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cell {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-right: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+  background: transparent;
+  color: var(--teal-dk);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1rem, 4.6vw, 1.7rem);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition: background var(--dur-fast);
+}
+.cell:nth-child(9n) { border-right: 0; }
+.cell:nth-child(n + 73) { border-bottom: 0; }
+.cell.edge-r { border-right: 2.5px solid var(--line); }
+.cell.edge-b { border-bottom: 2.5px solid var(--line); }
+.cell.is-given { color: var(--text); font-weight: 800; }
+.cell.is-peer { background: color-mix(in srgb, var(--sky) 14%, transparent); }
+.cell.is-same { background: color-mix(in srgb, var(--mustard) 38%, transparent); }
+.cell.is-selected { background: var(--mustard); color: var(--ink-900); }
+.cell.is-wrong { color: var(--tomato-dk); background: color-mix(in srgb, var(--tomato) 16%, transparent); }
+.cell.is-selected.is-wrong { background: #F6B7A8; }
+.cell:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; border-radius: 0; }
+.cell.pop { animation: cell-pop 0.25s var(--ease-spring); }
+@keyframes cell-pop { 50% { transform: scale(1.25); } }
+[data-theme="dark"] .cell.is-given { color: var(--cream-50); }
+[data-theme="dark"] .cell { color: #7FD6C9; }
+
+/* Wave of color across the board when solved */
+.sudoku-board.is-solved .cell { animation: solved-wave 0.6s var(--ease-out) calc((var(--r, 0) + var(--c, 0)) * 30ms); }
+@keyframes solved-wave { 50% { background: var(--mustard); color: var(--ink-900); } }
+
+/* Number pad (always visible, under the board) */
+.sudoku-pad {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 6px;
+  padding: var(--space-3);
+  border-top: var(--outline) solid var(--line);
+  background: var(--bg-sunken);
+}
+.sudoku-pad button {
+  min-height: 46px;
+  padding: 0;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg-raised);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  box-shadow: 0 3px 0 var(--shadow-ink);
+  transition: transform 60ms, box-shadow 60ms, opacity var(--dur-fast);
+}
+.sudoku-pad button:active { transform: translateY(3px); box-shadow: 0 0 0 var(--shadow-ink); }
+.sudoku-pad button.is-done { opacity: 0.35; }
+.sudoku-pad [data-erase] { display: grid; place-items: center; }
+.sudoku-pad [data-erase] svg { width: 22px; height: 22px; }
+@media (max-width: 420px) {
+  .sudoku-pad { grid-template-columns: repeat(5, 1fr); }
+}

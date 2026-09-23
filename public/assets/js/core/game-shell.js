@@ -16,7 +16,9 @@
 //     onPause()  { … },  onResume() { … },   // optional
 //   });
 //   shell.addScore(1);                         // while playing
+//   shell.stat("time", "Time", "0:40");        // extra box in the score bar
 //   shell.over({ message: "Bonk! You hit the wall." });  // when the round ends
+//   shell.over({ message: "Boom!", record: false });     // lost: don't save a best
 // ============================================================================
 
 import * as sound from "./sound.js";
@@ -40,8 +42,9 @@ export function createShell({
   hint = "",
   root = document.querySelector("[data-game]"),
   scoreLabel = "Score",
-  lowerIsBetter = false,
-  format = (n) => String(n),
+  lowerIsBetter = false,     // true for games scored by time (faster = better)
+  format = (n) => String(n), // how scores are shown, e.g. seconds → "1:05"
+  letterKeys = false,        // true if the game uses letter keys (then P won't pause; Esc still does)
   onStart = () => {},
   onPause = () => {},
   onResume = () => {},
@@ -55,7 +58,7 @@ export function createShell({
   const hud = document.createElement("div");
   hud.className = "game__hud";
   hud.innerHTML = `
-    <div class="hud-stat"><span class="hud-stat__label">${scoreLabel}</span><output class="hud-stat__value" data-score>0</output></div>
+    <div class="hud-stat"><span class="hud-stat__label">${scoreLabel}</span><output class="hud-stat__value" data-score>${format(0)}</output></div>
     <div class="hud-stat hud-stat--best"><span class="hud-stat__label">Best</span><span class="hud-stat__value" data-best>${best === null ? "–" : format(best)}</span></div>
     <div class="hud-actions">
       <button class="hud-btn" type="button" data-act="pause" aria-label="Pause" disabled>${ICONS.pause}</button>
@@ -134,11 +137,12 @@ export function createShell({
     onResume();
   }
 
-  function over({ message = "Game over", win = false } = {}) {
+  function over({ message = "Game over", win = false, record = true } = {}) {
     if (state !== "playing") return;
     state = "over";
     $pause.disabled = true;
-    const isBest = storage.submitScore(id, score, { lowerIsBetter });
+    // record: false = the round was lost (e.g. hit a mine), so don't save a best time
+    const isBest = record ? storage.submitScore(id, score, { lowerIsBetter }) : false;
     if (isBest) {
       best = score;
       $best.textContent = format(best);
@@ -188,8 +192,8 @@ export function createShell({
       else start();
     },
     {
-      active: (name) =>
-        name === "pause" ? state === "playing" || state === "paused"
+      active: (name, e) =>
+        name === "pause" ? (state === "playing" || state === "paused") && !(letterKeys && e.code === "KeyP")
         : name === "action" ? onScreen && (state === "ready" || state === "over")
         : false,
     }
@@ -206,12 +210,26 @@ export function createShell({
     get score() { return score; },
     get best() { return best; },
     isPlaying: () => state === "playing",
-    setScore(n) {
+    setScore(n, { animate = true } = {}) {
       score = n;
       $score.textContent = format(score);
-      bump($score);
+      if (animate) bump($score);
     },
     addScore(n = 1) { this.setScore(score + n); },
+    /** Show or update an extra box in the score bar (time left, lives, level…). */
+    stat(key, label, value) {
+      let box = hud.querySelector(`[data-stat="${key}"]`);
+      if (!box) {
+        box = document.createElement("div");
+        box.className = "hud-stat hud-stat--extra";
+        box.dataset.stat = key;
+        box.innerHTML = `<span class="hud-stat__label">${label}</span><span class="hud-stat__value"></span>`;
+        hud.querySelector(".hud-actions").before(box);
+      }
+      const v = box.querySelector(".hud-stat__value");
+      if (v.textContent !== String(value)) v.textContent = value;
+      return box;
+    },
     start,
     pause,
     resume,
@@ -264,4 +282,10 @@ export function setupCanvas(canvas, onResize = () => {}) {
   new ResizeObserver(fit).observe(canvas);
   fit();
   return ctx;
+}
+
+/** Seconds → "m:ss" (e.g. 75 → "1:15"). Handy for timers and time-based scores. */
+export function formatTime(seconds) {
+  const s = Math.max(0, Math.floor(seconds));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 }

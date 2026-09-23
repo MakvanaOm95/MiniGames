@@ -1,0 +1,18 @@
+/* ==========================================================================
+   Brick Breaker — only what's unique to this game.
+   ========================================================================== */
+
+/* 4:5 board that always fits on screen */
+.game[data-game="brick-breaker"] {
+  --game-color: var(--cat-arcade);
+  max-width: max(290px, min(520px, calc((100svh - 190px) / 1.25)));
+}
+.game[data-game="brick-breaker"] .game__stage { aspect-ratio: 4 / 5; cursor: none; }
+.game[data-game="brick-breaker"] .game-overlay { cursor: auto; }
+
+/* Court colors (read by game.js) */
+#court { --bb-bg: #FBF7F0; --bb-grid: rgb(27 42 65 / 0.12); --bb-line: #1B2A41; --bb-text: #1B2A41; }
+[data-theme="dark"] #court { --bb-bg: #1D2940; --bb-grid: rgb(244 236 221 / 0.1); --bb-line: #0B111B; --bb-text: #F4ECDD; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #court { --bb-bg: #1D2940; --bb-grid: rgb(244 236 221 / 0.1); --bb-line: #0B111B; --bb-text: #F4ECDD; }
+}

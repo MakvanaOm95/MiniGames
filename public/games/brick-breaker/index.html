@@ -19,21 +19,21 @@
 <script type="module" src="/assets/js/site.js"></script>
 <!-- ANALYTICS + ADSENSE: paste their <script> tags below this line (see SETUP_GUIDE.md) -->
 <!-- /@head -->
-<title>Snake: Play the Classic Snake Game Free Online | Tiny Tock</title>
-<meta name="description" content="Play Snake free in your browser. Eat apples, grab golden clocks for bonus points, and grow as long as you can. Works on phone and desktop, no download.">
-<link rel="canonical" href="https://tinytock.com/games/snake/">
+<title>Brick Breaker: Classic Ball and Paddle Game, Free Online | Tiny Tock</title>
+<meta name="description" content="Play Brick Breaker free in your browser. Bounce the ball with your paddle, smash every colorful brick, and clear level after level. Mouse, touch and keyboard.">
+<link rel="canonical" href="https://tinytock.com/games/brick-breaker/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Tiny Tock">
-<meta property="og:title" content="Snake: free online game | Tiny Tock">
-<meta property="og:description" content="Eat, grow, and don't bite your own tail. Play free in your browser.">
-<meta property="og:url" content="https://tinytock.com/games/snake/">
+<meta property="og:title" content="Brick Breaker: free online game | Tiny Tock">
+<meta property="og:description" content="Bounce the ball and smash every brick. Free in your browser.">
+<meta property="og:url" content="https://tinytock.com/games/brick-breaker/">
 <meta property="og:image" content="https://tinytock.com/assets/images/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/assets/css/game-shell.css">
-<link rel="stylesheet" href="/games/snake/style.css">
-<script type="module" src="/games/snake/game.js"></script>
+<link rel="stylesheet" href="/games/brick-breaker/style.css">
+<script type="module" src="/games/brick-breaker/game.js"></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"VideoGame","name":"Snake","url":"https://tinytock.com/games/snake/","description":"A free browser version of the classic Snake game with smooth movement and golden bonus clocks.","genre":["Arcade"],"gamePlatform":["Web browser"],"applicationCategory":"Game","operatingSystem":"Any","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"Tiny Tock","url":"https://tinytock.com/"}}
+{"@context": "https://schema.org", "@type": "VideoGame", "name": "Brick Breaker", "url": "https://tinytock.com/games/brick-breaker/", "description": "A classic ball-and-paddle brick breaking arcade game with multiple levels.", "genre": ["Arcade"], "gamePlatform": ["Web browser"], "applicationCategory": "Game", "operatingSystem": "Any", "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Tiny Tock", "url": "https://tinytock.com/"}}
 </script>
 </head>
 <body>
@@ -71,10 +71,10 @@
 
 <main id="main" class="game-page">
   <div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/#games">Games</a> / Snake</nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/#games">Games</a> / Brick Breaker</nav>
 
     <div class="game-title">
-      <h1>Snake</h1>
+      <h1>Brick Breaker</h1>
       <div class="meta">
         <span class="tag" style="--tag-color: var(--cat-arcade)">Arcade</span>
         <span class="time">About 3 min</span>
@@ -84,23 +84,15 @@
     <div class="game-layout">
       <!-- ===== The game ===== -->
       <div>
-        <section class="game" data-game="snake" aria-label="Snake game">
+        <section class="game" data-game="brick-breaker" aria-label="Brick Breaker game">
           <div class="game__stage">
-            <canvas id="board" role="img" aria-label="Snake game board"></canvas>
+            <canvas id="court" role="img" aria-label="Brick Breaker game"></canvas>
           </div>
-          <!-- Touch D-pad (only shown on touch screens) -->
-          <div class="game__pad">
-            <div class="dpad">
-              <button type="button" data-input="up" aria-label="Up"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 15l7-7 7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <button type="button" data-input="left" aria-label="Left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <button type="button" data-input="right" aria-label="Right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <button type="button" data-input="down" aria-label="Down"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            </div>
-          </div>
+          
         </section>
         <p class="game-note">
-          <span class="keys-only">Steer with <kbd>←</kbd> <kbd>↑</kbd> <kbd>→</kbd> <kbd>↓</kbd> or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>. Press <kbd>P</kbd> to pause.</span>
-          <span class="touch-only">Swipe on the board or use the buttons to steer.</span>
+          <span class="keys-only">Move with <kbd>←</kbd> <kbd>→</kbd> or your mouse. Launch with <kbd>Space</kbd>. Press <kbd>P</kbd> to pause.</span>
+          <span class="touch-only">Drag on the game to move the paddle, and tap to launch.</span>
         </p>
       </div>
 
@@ -112,23 +104,23 @@
     <div class="game-info">
       <div class="prose">
         <section>
-          <h2>About Snake</h2>
-          <p>Snake is one of the best-loved arcade games ever made. You guide a hungry snake around a board and eat apples. Every apple makes the snake a little longer and a little faster, and the board fills up quickly.</p>
-          <p>Our version keeps the simple classic rules and adds smooth movement, satisfying sounds, and a <strong>golden clock</strong> that appears after every five apples. Grab it before its timer runs out for 3 bonus points.</p>
+          <h2>About Brick Breaker</h2>
+          <p>Brick Breaker is a timeless arcade game. A wall of colorful bricks sits at the top of the screen, and you control a paddle at the bottom. Bounce the ball off your paddle to knock the bricks out one by one, without letting the ball fall past you.</p>
+          <p>Our version has five level layouts, a ball that speeds up as you progress, and chunky toy-block bricks that burst when you hit them. Bricks near the top are worth more points, and you have three lives to get as far as you can.</p>
         </section>
         <section>
           <h2>How to play</h2>
           <ol class="steps">
-            <li>Press <strong>Play</strong>. The snake starts moving to the right on its own.</li>
-            <li>Steer with the arrow keys or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>. On a phone, swipe on the board or tap the arrow buttons.</li>
-            <li>Eat the red apples. Each one is worth 1 point and makes you longer.</li>
-            <li>The round ends if you run into a wall or into your own body.</li>
+            <li>Press <strong>Play</strong>, then tap or press <kbd>Space</kbd> to launch the ball.</li>
+            <li>Move the paddle with your mouse, finger or the arrow keys to keep the ball in play.</li>
+            <li>Each brick you break scores points. Higher rows are worth more.</li>
+            <li>Clear every brick to reach the next level. You lose a life when the ball falls past the paddle.</li>
           </ol>
           <table class="controls-table">
             <caption class="visually-hidden">Controls</caption>
-            <tr><th scope="row">Move</th><td>Arrow keys, WASD, swipe, or on-screen arrows</td></tr>
+            <tr><th scope="row">Move</th><td>Mouse, drag with your finger, or <kbd>←</kbd> <kbd>→</kbd> / <kbd>A</kbd> <kbd>D</kbd></td></tr>
+            <tr><th scope="row">Launch</th><td>Tap, click, <kbd>Space</kbd> or <kbd>↑</kbd></td></tr>
             <tr><th scope="row">Pause</th><td><kbd>P</kbd> or <kbd>Esc</kbd>, or the pause button</td></tr>
-            <tr><th scope="row">Restart</th><td><kbd>Space</kbd> or <kbd>Enter</kbd> on the game-over screen</td></tr>
           </table>
         </section>
       </div>
@@ -136,11 +128,11 @@
       <aside class="tips">
         <h2>Tips to score higher</h2>
         <ul>
-          <li><strong>Hug the edges early.</strong> Travelling along the walls keeps the middle of the board open for when you’re long.</li>
-          <li><strong>Turn one step early.</strong> The snake speeds up with every apple, so plan each turn a moment before you need it.</li>
-          <li><strong>Leave yourself an exit.</strong> Before diving toward an apple, check that you won’t be trapped inside a loop of your own body.</li>
-          <li><strong>Only chase the golden clock if it’s close.</strong> 3 points is nice, but a risky dash across the board can end your run.</li>
-          <li><strong>Queue your turns.</strong> You can press two directions quickly (like up then left) to make a tight U-shape.</li>
+          <li><strong>Aim with the paddle’s edges.</strong> Hitting the ball with the edge of the paddle sends it off at a sharp angle. The middle sends it straight up.</li>
+          <li><strong>Break a hole to the top.</strong> Once the ball gets above the bricks, it bounces around up there and clears lots of bricks for free.</li>
+          <li><strong>Stay near the middle.</strong> Returning to the center after each hit means you’re never too far from the ball.</li>
+          <li><strong>Watch the ball, not the bricks.</strong> Your job is to catch it. The bricks will break on their own.</li>
+          <li><strong>Take your time launching.</strong> Move the paddle before you launch to choose where the first shot goes.</li>
         </ul>
       </aside>
     </div>
@@ -156,43 +148,43 @@
       </div>
       <ul class="tile-grid">
 <!-- @play-next -->
-<li class="tile" data-category="arcade" data-minutes="1">
-  <a class="tile__link" href="/games/wind-up-flyer/">
-    <div class="tile__art"><img src="/games/wind-up-flyer/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+<li class="tile" data-category="arcade" data-minutes="3">
+  <a class="tile__link" href="/games/snake/">
+    <div class="tile__art"><img src="/games/snake/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
     <div class="tile__body">
       <span class="tile__badge">New</span>
-      <h3 class="tile__title">Wind-Up Flyer</h3>
-      <p class="tile__blurb">Tap to flap through the toy-block towers.</p>
+      <h3 class="tile__title">Snake</h3>
+      <p class="tile__blurb">Eat, grow, and don&#39;t bite your own tail.</p>
       <div class="tile__meta">
         <span class="tag">Arcade</span>
-        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>1 min</span></span>
-      </div>
-    </div>
-  </a>
-</li>
-<li class="tile" data-category="puzzle" data-minutes="5">
-  <a class="tile__link" href="/games/2048/">
-    <div class="tile__art"><img src="/games/2048/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
-    <div class="tile__body">
-      <span class="tile__badge">New</span>
-      <h3 class="tile__title">2048</h3>
-      <p class="tile__blurb">Slide, merge, and chase the 2048 tile.</p>
-      <div class="tile__meta">
-        <span class="tag">Puzzle</span>
-        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>5+ min</span></span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>3 min</span></span>
       </div>
     </div>
   </a>
 </li>
 <li class="tile" data-category="quick" data-minutes="1">
-  <a class="tile__link" href="/games/pair-up/">
-    <div class="tile__art"><img src="/games/pair-up/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+  <a class="tile__link" href="/games/bop-a-mole/">
+    <div class="tile__art"><img src="/games/bop-a-mole/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
     <div class="tile__body">
       <span class="tile__badge">New</span>
-      <h3 class="tile__title">Pair Up</h3>
-      <p class="tile__blurb">Flip cards and find the pairs. Fast!</p>
+      <h3 class="tile__title">Bop-a-Mole</h3>
+      <p class="tile__blurb">Moles pop up. You bop them. 40 seconds.</p>
       <div class="tile__meta">
         <span class="tag">Quick</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>1 min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
+<li class="tile" data-category="word" data-minutes="1">
+  <a class="tile__link" href="/games/word-scramble/">
+    <div class="tile__art"><img src="/games/word-scramble/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Word Scramble</h3>
+      <p class="tile__blurb">Unscramble as many words as you can in a minute.</p>
+      <div class="tile__meta">
+        <span class="tag">Word</span>
         <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>1 min</span></span>
       </div>
     </div>

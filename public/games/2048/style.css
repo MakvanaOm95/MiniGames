@@ -1,0 +1,97 @@
+/* ==========================================================================
+   2048 — only what's unique to this game.
+   Shared game styles are in /assets/css/game-shell.css.
+   ========================================================================== */
+
+.game[data-game="2048"] {
+  --game-color: var(--cat-puzzle);
+  max-width: max(300px, min(560px, calc(100svh - 190px)));
+}
+.game[data-game="2048"] .game__stage { aspect-ratio: 1 / 1; background: var(--bg-sunken); }
+
+.board-2048 {
+  --gap: clamp(8px, 2.6vw, 14px);
+  position: absolute;
+  inset: var(--gap);
+}
+.board-2048 .cells {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+  gap: var(--gap);
+}
+.board-2048 .cells span {
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--line) 9%, transparent);
+  border: 2px dashed color-mix(in srgb, var(--line) 14%, transparent);
+}
+.board-2048 .tiles { position: absolute; inset: 0; }
+
+/* A tile's outer box handles position; its face handles the pop animation */
+.num {
+  position: absolute;
+  left: 0; top: 0;
+  width: calc((100% - 3 * var(--gap)) / 4);
+  height: calc((100% - 3 * var(--gap)) / 4);
+  transform: translate(calc(var(--x) * (100% + var(--gap))), calc(var(--y) * (100% + var(--gap))));
+  transition: transform 110ms var(--ease-out);
+}
+.num.is-merged { z-index: 2; }
+.num__face {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border: 2.5px solid var(--ink-900);
+  border-radius: 12px;
+  background: var(--t-bg, var(--cream-50));
+  color: var(--t-fg, var(--ink-900));
+  box-shadow: 0 4px 0 var(--ink-900);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 8.5vw, 2.8rem);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.num.is-new .num__face { animation: tile-appear 200ms var(--ease-spring) 110ms backwards; }
+.num.is-merged .num__face { animation: tile-merge 220ms var(--ease-spring) 90ms backwards; }
+@keyframes tile-appear { from { transform: scale(0); } }
+@keyframes tile-merge { 0% { transform: scale(0.6); } 55% { transform: scale(1.18); } }
+
+/* Toy colors climb through the palette as numbers grow */
+.num[data-value="2"]    { --t-bg: #FBF7F0; }
+.num[data-value="4"]    { --t-bg: #F1E4CC; }
+.num[data-value="8"]    { --t-bg: #F8D17E; }
+.num[data-value="16"]   { --t-bg: #F2B33D; }
+.num[data-value="32"]   { --t-bg: #F08A6E; }
+.num[data-value="64"]   { --t-bg: #E8553D; --t-fg: #fff; }
+.num[data-value="128"]  { --t-bg: #7CC3B8; }
+.num[data-value="256"]  { --t-bg: #2F8F83; --t-fg: #fff; }
+.num[data-value="512"]  { --t-bg: #6FA9D8; }
+.num[data-value="1024"] { --t-bg: #7A4E8C; --t-fg: #fff; }
+.num[data-value="2048"] { --t-bg: #1B2A41; --t-fg: #F2B33D; }
+.num[data-value="big"]  { --t-bg: #1B2A41; --t-fg: #fff; }
+.num[data-value="128"] .num__face, .num[data-value="256"] .num__face, .num[data-value="512"] .num__face { font-size: clamp(1.3rem, 7.5vw, 2.4rem); }
+.num[data-value="1024"] .num__face, .num[data-value="2048"] .num__face, .num[data-value="big"] .num__face { font-size: clamp(1.05rem, 6vw, 1.95rem); }
+
+/* Little shake when a move does nothing */
+.game__stage.is-nudged .board-2048 { animation: nudge 0.25s; }
+@keyframes nudge { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+
+.toast-2048 {
+  position: absolute;
+  left: 50%; top: 14px;
+  z-index: 4;
+  translate: -50% 0;
+  padding: 0.4em 1em;
+  background: var(--mustard);
+  color: var(--ink-900);
+  border: 2px solid var(--ink-900);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 3px 3px 0 var(--ink-900);
+  animation: tile-appear 0.3s var(--ease-spring);
+}

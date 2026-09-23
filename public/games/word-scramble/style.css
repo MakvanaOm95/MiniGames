@@ -1,0 +1,93 @@
+/* ==========================================================================
+   Word Scramble — only what's unique to this game.
+   ========================================================================== */
+
+.game[data-game="word-scramble"] {
+  --game-color: var(--cat-word);
+  max-width: 640px;
+}
+.game[data-game="word-scramble"] .game__hud { color: var(--ink-900); }
+.game[data-game="word-scramble"] .game__stage {
+  min-height: clamp(330px, 60vw, 400px);
+  background:
+    linear-gradient(transparent 31px, color-mix(in srgb, var(--sky) 25%, transparent) 32px) 0 12px / 100% 32px,
+    var(--bg-raised);
+}
+
+.scramble {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 3.5vw, 24px);
+  padding: var(--space-5) var(--space-3);
+}
+
+.scramble__msg {
+  min-height: 1.6em;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--step-1);
+  color: var(--plum);
+}
+[data-theme="dark"] .scramble__msg { color: #C9A2DA; }
+
+.slots, .letters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(5px, 1.5vw, 10px);
+}
+
+.slot, .letter {
+  display: grid;
+  place-items: center;
+  width: clamp(38px, 10.5vw, 58px);
+  aspect-ratio: 1;
+  padding: 0;
+  border-radius: 12px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.3rem, 5.5vw, 2rem);
+  text-transform: uppercase;
+}
+.slot {
+  border: 2.5px dashed color-mix(in srgb, var(--line) 45%, transparent);
+  background: transparent;
+  color: var(--text);
+}
+.slot:not(:disabled) {
+  border-style: solid;
+  border-color: var(--line);
+  background: var(--bg-raised);
+  cursor: pointer;
+  animation: slot-in 0.18s var(--ease-spring);
+}
+@keyframes slot-in { from { transform: scale(0.6); } }
+.slots.is-right .slot { background: #CFEDE7; border-color: var(--teal-dk); color: var(--ink-900); animation: right-bounce 0.45s var(--ease-spring) calc(var(--n, 0) * 40ms); }
+.slots.is-wrong { animation: wrong-shake 0.35s; }
+.slots.is-wrong .slot:not(:disabled) { background: #FBE3DD; border-color: var(--tomato-dk); color: var(--ink-900); }
+@keyframes right-bounce { 40% { transform: translateY(-10px); } }
+@keyframes wrong-shake { 25% { transform: translateX(-8px); } 50% { transform: translateX(6px); } 75% { transform: translateX(-4px); } }
+
+/* Letter tiles look like wooden game pieces */
+.letter {
+  border: 2.5px solid var(--ink-900);
+  background: #F7E3B5;
+  color: var(--ink-900);
+  box-shadow: 0 4px 0 var(--ink-900);
+  cursor: pointer;
+  animation: tile-drop 0.3s var(--ease-spring) backwards;
+  transition: transform 60ms, box-shadow 60ms, opacity var(--dur-fast);
+}
+.letter:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 0 var(--ink-900); }
+.letter:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 0 0 var(--ink-900); }
+.letter:disabled { opacity: 0.25; transform: translateY(4px); box-shadow: none; cursor: default; }
+@keyframes tile-drop { from { transform: translateY(-18px) rotate(-8deg); opacity: 0; } }
+
+.scramble__tools { display: flex; gap: var(--space-3); }
+.scramble__tools .btn { min-height: 44px; font-size: 1rem; padding-inline: var(--space-4); }
+.scramble__tools .btn svg { width: 18px; height: 18px; }

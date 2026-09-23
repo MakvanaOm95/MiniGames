@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Pair Up — only what's unique to this game.
+   ========================================================================== */
+
+.game[data-game="pair-up"] {
+  --game-color: var(--cat-quick);
+  max-width: max(300px, min(560px, calc(100svh - 190px)));
+}
+.game[data-game="pair-up"] .game__stage { aspect-ratio: 1 / 1; background: var(--bg-sunken); }
+
+.cards {
+  position: absolute;
+  inset: clamp(10px, 3vw, 18px);
+  display: grid;
+  grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+  gap: clamp(8px, 2.4vw, 14px);
+}
+
+.card {
+  padding: 0;
+  border: 0;
+  background: none;
+  perspective: 700px;
+  animation: deal 0.35s var(--ease-spring) calc(var(--i) * 25ms) backwards;
+}
+@keyframes deal { from { transform: translateY(-20px) scale(0.6); opacity: 0; } }
+
+.card__inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.32s var(--ease-out);
+}
+.card.is-up .card__inner { transform: rotateY(180deg); }
+
+.card__back,
+.card__front {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border: 2.5px solid var(--ink-900);
+  border-radius: 12px;
+  box-shadow: 0 4px 0 var(--ink-900);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+/* Card back: tomato with a little cream clock face */
+.card__back {
+  background:
+    radial-gradient(circle at 50% 50%, var(--cream-50) 0 22%, transparent 23%),
+    radial-gradient(circle at 50% 50%, var(--ink-900) 0 26%, transparent 27%),
+    repeating-linear-gradient(45deg, #E8553D 0 8px, #DD4C35 8px 16px);
+}
+.card:hover:not(:disabled) .card__back { filter: brightness(1.06); }
+.card__front { background: var(--cream-50); transform: rotateY(180deg); }
+.card__front svg { width: 64%; height: 64%; }
+
+.card.is-matched .card__front { background: #E4F2EE; animation: matched 0.45s var(--ease-spring); }
+.card.is-wrong .card__front { animation: wrong 0.3s; background: #FBE3DD; }
+@keyframes matched { 50% { transform: rotateY(180deg) scale(1.12); } }
+@keyframes wrong { 25% { transform: rotateY(180deg) translateX(-4px); } 75% { transform: rotateY(180deg) translateX(4px); } }
+.card:disabled { cursor: default; }
+.card:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 12px; }
+
+.bonus-tag {
+  position: absolute;
+  left: 50%; top: 50%;
+  z-index: 4;
+  margin: 0;
+  translate: -50% -50%;
+  padding: 0.5em 1.1em;
+  background: var(--mustard);
+  color: var(--ink-900);
+  border: 2.5px solid var(--ink-900);
+  border-radius: var(--radius-pill);
+  box-shadow: 4px 4px 0 var(--ink-900);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--step-1);
+  white-space: nowrap;
+  animation: deal 0.4s var(--ease-spring);
+}

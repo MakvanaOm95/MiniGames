@@ -36,6 +36,8 @@ body {
 
 main { flex: 1; }
 
+[hidden] { display: none !important; }
+
 img, svg, canvas, video { display: block; max-width: 100%; }
 img { height: auto; }
 

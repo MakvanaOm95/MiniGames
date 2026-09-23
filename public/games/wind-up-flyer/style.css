@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Wind-Up Flyer — only what's unique to this game.
+   ========================================================================== */
+
+/* Tall 2:3 board that always fits on screen */
+.game[data-game="wind-up-flyer"] {
+  --game-color: var(--cat-arcade);
+  max-width: max(280px, min(460px, calc((100svh - 190px) / 1.5)));
+}
+.game[data-game="wind-up-flyer"] .game__stage { aspect-ratio: 2 / 3; cursor: pointer; }
+
+/* Sky colors (read by game.js) */
+#sky {
+  --fly-sky: #BFDDF0;
+  --fly-sky-low: #F6EFE3;
+  --fly-cloud: #FBF7F0;
+  --fly-ground: #7CC3B8;
+  --fly-ground-dark: #2F8F83;
+  --fly-star: ;
+}
+[data-theme="dark"] #sky {
+  --fly-sky: #0F1622;
+  --fly-sky-low: #2E3B55;
+  --fly-cloud: #34445E;
+  --fly-ground: #226E65;
+  --fly-ground-dark: #174E48;
+  --fly-star: #F4ECDD;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #sky {
+    --fly-sky: #0F1622;
+    --fly-sky-low: #2E3B55;
+    --fly-cloud: #34445E;
+    --fly-ground: #226E65;
+    --fly-ground-dark: #174E48;
+    --fly-star: #F4ECDD;
+  }
+}

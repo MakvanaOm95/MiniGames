@@ -97,7 +97,7 @@ The Contact and Privacy pages use **hello@tinytock.com**, so make it work:
 
 AdSense reviews the whole site. Aim to tick **everything**:
 
-- [ ] **15–20 finished games**, each with a real description, how-to-play and tips (no TODOs left: search the project for `TODO`)
+- [ ] **15–20 finished games** (10 done ✅), each with a real description, how-to-play and tips (no TODOs left: search the project for `TODO`)
 - [ ] No empty, "coming soon" or broken pages (test every link)
 - [ ] About, Contact and Privacy pages live; the privacy policy mentions cookies and Google ads ✅ (already written)
 - [ ] Site works on HTTPS on **tinytock.com** (not only pages.dev)
