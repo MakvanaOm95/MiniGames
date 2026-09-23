@@ -73,6 +73,8 @@ function arrangeToday() {
     setBadge(t, t === pick ? "Today’s pick" : t.dataset.badge);
   }
   grid.append(pick, ...top, ...rest); // put them in display order
+  const more = grid.querySelector("[data-more]");
+  if (more) grid.append(more); // "See all games" card stays last
 }
 
 // ---- Apply the current filters to the tiles --------------------------------

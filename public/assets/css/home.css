@@ -177,22 +177,41 @@
 [data-grid]:not(.is-filtering) .tile[data-extra] { display: none; }
 .shelf__more { display: flex; justify-content: center; margin: var(--space-7) 0 0; }
 
-/* Homepage "pick + top 5" layout: 3 columns, today's pick is a big 2×2 tile.
-   (1 big + 5 small fills a 3×3 grid exactly.) */
-@media (min-width: 900px) {
-  .tile-grid--home:not(.is-filtering) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .tile-grid--home:not(.is-filtering) .tile--feature { grid-column: span 2; grid-row: span 2; }
-  .tile-grid--home:not(.is-filtering) .tile--feature .tile__link { flex-direction: column; }
-  .tile-grid--home:not(.is-filtering) .tile--feature .tile__art {
-    flex: 1;
-    min-height: 0;
-    border-right: 0;
-    border-bottom: var(--outline) solid var(--line);
-  }
-  .tile-grid--home:not(.is-filtering) .tile--feature .tile__body { flex: none; padding: var(--space-5) var(--space-6); }
-  .tile-grid--home:not(.is-filtering) .tile--feature .tile__title { font-size: var(--step-3); }
-  .tile-grid--home:not(.is-filtering) .tile--feature .tile__blurb { font-size: var(--step-1); }
+/* "See all games" card: fills the last spot next to the top 5 on the homepage */
+.more-card { display: flex; }
+.tile-grid.is-filtering .more-card { display: none; }
+.more-card a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: 220px;
+  padding: var(--space-5);
+  text-align: center;
+  color: var(--text);
+  text-decoration: none;
+  border: var(--outline) dashed var(--line);
+  border-radius: var(--radius-m);
+  background: color-mix(in srgb, var(--mustard) 18%, transparent);
+  transition: transform var(--dur-med) var(--ease-spring), background var(--dur-fast);
 }
+.more-card a:hover { transform: translate(-3px, -4px) rotate(-1deg); background: color-mix(in srgb, var(--mustard) 35%, transparent); }
+.more-card__count { font-family: var(--font-display); font-weight: 800; font-size: var(--step-3); line-height: 1; }
+.more-card__label { font-family: var(--font-display); font-weight: 800; font-size: var(--step-1); }
+.more-card__arrow {
+  display: grid;
+  place-items: center;
+  width: 48px; height: 48px;
+  border: var(--outline) solid var(--ink-900);
+  border-radius: 50%;
+  background: var(--cream-50);
+  color: var(--ink-900);
+  box-shadow: 3px 3px 0 var(--ink-900);
+  transition: transform var(--dur-med) var(--ease-spring);
+}
+.more-card a:hover .more-card__arrow { transform: translateX(4px); }
 .chip[data-category="arcade"]  { --chip-color: var(--cat-arcade); }
 .chip[data-category="puzzle"]  { --chip-color: var(--cat-puzzle); }
 .chip[data-category="quick"]   { --chip-color: var(--cat-quick); }

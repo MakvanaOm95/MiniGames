@@ -168,7 +168,7 @@
       </div>
       <p class="shelf__status" aria-live="polite" data-shelf-status></p>
 
-      <ul class="tile-grid tile-grid--home" data-grid>
+      <ul class="tile-grid" data-grid>
 <!-- @game-grid -->
 <li class="tile tile--feature" data-slug="snake" data-order="0" data-category="arcade" data-minutes="3" data-rank="1" data-badge="New">
   <a class="tile__link" href="/games/snake/">
@@ -311,16 +311,21 @@
   </a>
 </li>
 <!-- /@game-grid -->
+        <li class="more-card" data-more>
+          <a href="/games/">
+            <span class="more-card__count"><!-- @game-count -->
+10 games
+<!-- /@game-count --></span>
+            <span class="more-card__label">See them all</span>
+            <span class="more-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </li>
       </ul>
 
       <div class="empty-note" data-empty hidden>
         <strong>Nothing that size on the shelf yet.</strong>
         Try another time on the clock, or <button class="linklike" type="button" data-reset>show every game</button>.
       </div>
-
-      <p class="shelf__more"><a class="btn btn--ghost" href="/games/">See all <!-- @game-count -->
-10 games
-<!-- /@game-count --> <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
     </div>
   </section>
 
