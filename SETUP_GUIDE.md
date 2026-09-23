@@ -2,7 +2,7 @@
 
 A beginner-friendly checklist. Do it in order, tick the boxes (`- [x]`) as you go, and do about one section a day.
 
-**Progress so far:** domain bought ✅ · GitHub ✅ · Cloudflare Pages live ✅ · tinytock.com live with HTTPS ✅ · email forwarding ✅ · next: **www redirect, Part 7 (Search Console), Part 8 (Analytics)**
+**Progress so far:** domain bought ✅ · GitHub ✅ · Cloudflare Pages live ✅ · tinytock.com live with HTTPS ✅ · email forwarding ✅ · Search Console verified ✅ · next: **sitemap submit, Part 8 (Analytics), www redirect**
 
 ---
 
@@ -77,8 +77,8 @@ The Contact and Privacy pages use **hello@tinytock.com**, so make it work:
 
 ## Part 7: Google Search Console (get found on Google)
 
-- [ ] Go to **search.google.com/search-console** → Add property → **Domain** → `tinytock.com`
-- [ ] Verify: Google shows a TXT record. Because your DNS is on Cloudflare, Google usually offers **"Verify with Cloudflare"** (one click). Otherwise add the TXT record in Cloudflare → DNS → Records.
+- [x] Go to **search.google.com/search-console** → Add property → **Domain** → `tinytock.com`
+- [x] Verify: Google shows a TXT record. Because your DNS is on Cloudflare, Google usually offers **"Verify with Cloudflare"** (one click). Otherwise add the TXT record in Cloudflare → DNS → Records. ⚠️ Never delete the `google-site-verification` TXT record, or you lose access.
 - [ ] Left menu **Sitemaps** → enter `sitemap.xml` → **Submit**
 - [ ] **URL inspection** → paste `https://tinytock.com/` → **Request indexing** (repeat for new games)
 - [ ] Check back weekly: *Pages* shows what's indexed; *Performance* shows searches
