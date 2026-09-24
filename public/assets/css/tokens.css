@@ -36,6 +36,9 @@
   --teal-dk:   #226E65;
   --plum:      #7A4E8C;
   --sky:       #6FA9D8;
+  --orange:    #EE8A3A;
+  --leaf:      #7BAE5A;
+  --pink:      #E6789E;
 
   /* ---- Roles (light theme) ---------------------------------------------- */
   --bg:          var(--cream-100);  /* page background */
@@ -52,11 +55,17 @@
   --focus:       var(--teal);
 
   /* Category colors — each game category gets its own toy color */
-  --cat-puzzle:  var(--teal);
-  --cat-arcade:  var(--tomato);
+  --cat-puzzle:   var(--teal);
+  --cat-arcade:   var(--tomato);
+  --cat-classic:  var(--sky);
+  --cat-brain:    var(--plum);
+  --cat-runner:   var(--orange);
+  --cat-casual:   var(--mustard);
+  --cat-strategy: var(--leaf);
+  --cat-card:     var(--pink);
+  /* Older category names, still used inside a few game pages' own styles */
   --cat-quick:   var(--mustard);
   --cat-word:    var(--plum);
-  --cat-classic: var(--sky);
 
   /* ---- Typography -------------------------------------------------------- */
   --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;

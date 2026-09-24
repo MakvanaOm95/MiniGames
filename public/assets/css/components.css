@@ -177,11 +177,14 @@
   margin: 0;
 }
 .tile { --tile-color: var(--tomato); }
-.tile[data-category="puzzle"]  { --tile-color: var(--cat-puzzle); }
-.tile[data-category="arcade"]  { --tile-color: var(--cat-arcade); }
-.tile[data-category="quick"]   { --tile-color: var(--cat-quick); }
-.tile[data-category="word"]    { --tile-color: var(--cat-word); }
-.tile[data-category="classic"] { --tile-color: var(--cat-classic); }
+.tile[data-category="puzzle"]          { --tile-color: var(--cat-puzzle); }
+.tile[data-category="arcade"]          { --tile-color: var(--cat-arcade); }
+.tile[data-category="classic"]         { --tile-color: var(--cat-classic); }
+.tile[data-category="brain"]           { --tile-color: var(--cat-brain); }
+.tile[data-category="endless-runner"]  { --tile-color: var(--cat-runner); }
+.tile[data-category="casual"]          { --tile-color: var(--cat-casual); }
+.tile[data-category="strategy"]        { --tile-color: var(--cat-strategy); }
+.tile[data-category="card"]            { --tile-color: var(--cat-card); }
 .tile[hidden] { display: none; }
 
 .tile__link {

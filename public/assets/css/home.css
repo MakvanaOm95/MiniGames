@@ -212,11 +212,14 @@
   transition: transform var(--dur-med) var(--ease-spring);
 }
 .more-card a:hover .more-card__arrow { transform: translateX(4px); }
-.chip[data-category="arcade"]  { --chip-color: var(--cat-arcade); }
-.chip[data-category="puzzle"]  { --chip-color: var(--cat-puzzle); }
-.chip[data-category="quick"]   { --chip-color: var(--cat-quick); }
-.chip[data-category="word"]    { --chip-color: var(--cat-word); }
-.chip[data-category="classic"] { --chip-color: var(--cat-classic); }
+.chip[data-category="puzzle"]          { --chip-color: var(--cat-puzzle); }
+.chip[data-category="arcade"]          { --chip-color: var(--cat-arcade); }
+.chip[data-category="classic"]         { --chip-color: var(--cat-classic); }
+.chip[data-category="brain"]           { --chip-color: var(--cat-brain); }
+.chip[data-category="endless-runner"]  { --chip-color: var(--cat-runner); }
+.chip[data-category="casual"]          { --chip-color: var(--cat-casual); }
+.chip[data-category="strategy"]        { --chip-color: var(--cat-strategy); }
+.chip[data-category="card"]            { --chip-color: var(--cat-card); }
 
 /* ---- "Why Tiny Tock" --------------------------------------------------------- */
 .why {

@@ -11,7 +11,8 @@
 //   2. Rebuilds the homepage game shelf  (<!-- @game-grid --> markers)
 //      and the All games page            (<!-- @game-grid-all --> markers).
 //   3. Rebuilds each game's "Play next"  (<!-- @play-next --> markers).
-//   4. Fills in the number of games      (<!-- @game-count --> markers)
+//   4. Sets each game page's category tag + schema genre from the config.
+//   5. Fills in the number of games      (<!-- @game-count --> markers)
 //      and the category filter buttons   (<!-- @category-chips --> markers).
 // Then it regenerates public/sitemap.xml.
 //
@@ -155,6 +156,14 @@ for (const file of htmlFiles) {
   if (m) {
     const next = playNextFor(m[1]).map((g) => tile(g)).join("\n");
     html = fillBlock(html, "play-next", next);
+    // Keep the game page's own category tag and schema genre in step with the config
+    const game = GAMES.find((g) => g.slug === m[1]);
+    const cat = game && CATEGORIES[game.category];
+    if (cat) {
+      html = html.replace(/<span class="tag" style="--tag-color: var\(--cat-[\w-]+\)">[^<]*<\/span>/,
+        `<span class="tag" style="--tag-color: ${cat.color}">${escapeHtml(cat.label)}</span>`);
+      html = html.replace(/"genre":\["[^"]*"\]/, `"genre":["${cat.label}"]`);
+    }
   }
 
   if (html !== before) {
