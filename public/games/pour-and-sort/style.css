@@ -1,0 +1,96 @@
+/* ==========================================================================
+   Pour & Sort — only what's unique to this game.
+   Shared game styles are in /assets/css/game-shell.css.
+   ========================================================================== */
+
+.game[data-game="pour-and-sort"] {
+  --game-color: var(--cat-puzzle);   /* color of the score bar */
+  max-width: 640px;
+}
+
+.ps {
+  min-height: clamp(360px, 90vw, 440px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-5);
+  padding: var(--space-6) var(--space-3) var(--space-4);
+  background: var(--bg-sunken);
+}
+
+/* The tubes */
+.ps-board {
+  --layer: clamp(30px, 8.5vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: var(--space-4) clamp(8px, 2.6vw, 18px);
+  transition: transform 300ms var(--ease-spring);
+}
+.ps-board.is-solved { transform: scale(1.04); }
+.ps-tube {
+  position: relative;
+  width: clamp(42px, 11vw, 54px);
+  height: calc(var(--layer) * 4 + 30px);
+  padding: 0;
+  border: var(--outline) solid var(--ink-900);
+  border-top-width: 0;
+  border-radius: 0 0 26px 26px;
+  background: color-mix(in srgb, var(--cream-50) 80%, transparent);
+  box-shadow: inset 6px 0 0 rgb(255 255 255 / 0.5);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 160ms var(--ease-spring);
+}
+/* a thick rim at the top of each tube */
+.ps-tube::before {
+  content: "";
+  position: absolute;
+  inset: 0 -3px auto;
+  height: 6px;
+  background: var(--ink-900);
+  border-radius: 3px;
+  z-index: 2;
+}
+.ps-tube:hover { transform: translateY(-3px); }
+.ps-tube.is-up { transform: translateY(-18px); }
+.ps-tube.is-done { box-shadow: inset 6px 0 0 rgb(255 255 255 / 0.5), 0 0 0 4px var(--mustard); }
+.ps-tube:focus-visible { outline-offset: 5px; }
+
+.ps-layer {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: calc(var(--row) * var(--layer));
+  height: var(--layer);
+  display: grid;
+  place-items: center;
+  background: var(--paint);
+  border-top: 2px solid rgb(27 42 65 / 0.35);
+  color: rgb(255 255 255 / 0.55);
+  font-size: 0.8rem;
+  line-height: 1;
+}
+.ps-layer.is-new { animation: ps-fill 260ms var(--ease-out); }
+@keyframes ps-fill { from { transform: translateY(-40%); opacity: 0.2; } }
+
+/* tube number, for keyboard players */
+.ps-key {
+  position: absolute;
+  top: 9px; left: 0; right: 0;
+  z-index: 1;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+@media (pointer: coarse) { .ps-key { display: none; } }
+
+/* Undo / new puzzle */
+.ps-tools { display: flex; justify-content: center; gap: var(--space-3); }
+.ps-tools .btn { padding-block: 0.5em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ps-layer.is-new { animation: none; }
+  .ps-tube, .ps-board { transition: none; }
+}

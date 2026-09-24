@@ -203,5 +203,13 @@ export const GAMES = [
     minutes: 1,
     added: "2026-09-24",
   },
+  {
+    slug: "pour-and-sort",
+    title: "Pour & Sort",
+    blurb: "Pour the colors until every tube matches.",
+    category: "puzzle",
+    minutes: 3,
+    added: "2026-09-24",
+  },
   // ⬆ new games are added above this line (tools/new-game.mjs does it for you)
 ];
