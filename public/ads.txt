@@ -1,4 +1,1 @@
-# ads.txt for tinytock.com
-# After Google AdSense approves the site, replace the line below with the one
-# AdSense gives you (Account → Sites → ads.txt). It looks like:
-#   google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+google.com, pub-5332646843190183, DIRECT, f08c47fec0942fa0
