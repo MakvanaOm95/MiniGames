@@ -1,0 +1,19 @@
+/* ==========================================================================
+   Lane Hopper — only what's unique to this game.
+   Shared game styles are in /assets/css/game-shell.css.
+   ========================================================================== */
+
+/* 3:5 road that always fits on screen */
+.game[data-game="lane-hopper"] {
+  --game-color: var(--cat-endless-runner);   /* color of the score bar */
+  max-width: max(270px, min(420px, calc((100svh - 190px) * 0.6)));
+}
+.game[data-game="lane-hopper"] .game__stage { aspect-ratio: 3 / 5; cursor: pointer; }
+.game[data-game="lane-hopper"] .game-overlay { cursor: auto; }
+
+/* Road colors (read by game.js) */
+#road { --lh-bg: #8CC084; --lh-road: #FBF7F0; --lh-mark: rgb(27 42 65 / 0.18); --lh-line: #1B2A41; --lh-text: #1B2A41; }
+[data-theme="dark"] #road { --lh-bg: #2E5B4A; --lh-road: #1D2940; --lh-mark: rgb(244 236 221 / 0.16); --lh-line: #0B111B; --lh-text: #F4ECDD; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #road { --lh-bg: #2E5B4A; --lh-road: #1D2940; --lh-mark: rgb(244 236 221 / 0.16); --lh-line: #0B111B; --lh-text: #F4ECDD; }
+}
