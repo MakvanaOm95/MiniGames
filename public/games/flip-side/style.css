@@ -1,0 +1,107 @@
+/* ==========================================================================
+   Flip Side — only what's unique to this game.
+   Shared game styles are in /assets/css/game-shell.css.
+   ========================================================================== */
+
+.game[data-game="flip-side"] {
+  --game-color: var(--cat-strategy);   /* color of the score bar */
+  max-width: 560px;
+}
+
+.fs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-3);
+  background: var(--bg-sunken);
+}
+
+/* whose turn it is */
+.fs-turn {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--step-1);
+}
+.fs-turn::before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  border: 2.5px solid var(--ink-900);
+  border-radius: 50%;
+  background: #E8553D;
+}
+.fs-turn[data-turn="cpu"]::before { background: #1B2A41; border-color: #FBF7F0; box-shadow: 0 0 0 2px var(--ink-900); }
+.fs-turn[data-turn=""]::before { display: none; }
+
+/* The board: green felt with a thick toy frame */
+.fs-board {
+  width: min(100%, 440px);
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 3px;
+  padding: 8px;
+  border: var(--outline) solid var(--ink-900);
+  border-radius: var(--radius-m);
+  background: #1B2A41;
+  box-shadow: 0 6px 0 var(--ink-900);
+}
+.fs-cell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: #3D9A6B;
+  cursor: default;
+  perspective: 300px;
+  -webkit-tap-highlight-color: transparent;
+}
+.fs-cell.is-hint { cursor: pointer; }
+.fs-cell.is-hint::after {
+  content: "";
+  width: 26%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgb(251 247 240 / 0.55);
+}
+.fs-cell.is-hint:hover::after { background: #E8553D; width: 60%; opacity: 0.6; }
+.fs-cell.is-last { box-shadow: inset 0 0 0 3px var(--mustard); }
+.fs-cell:focus-visible { outline: 3px solid var(--mustard); outline-offset: 1px; z-index: 1; }
+.fs-cell.is-nope { animation: fs-nope 0.3s; }
+@keyframes fs-nope { 25% { translate: -4px 0; } 75% { translate: 4px 0; } }
+
+/* Two-sided discs that flip over */
+.fs-disc {
+  position: absolute;
+  inset: 12%;
+  transform-style: preserve-3d;
+  transform: scale(0);
+  transition: transform 420ms var(--ease-out);
+}
+.fs-cell.is-you .fs-disc { transform: rotateY(0deg); }
+.fs-cell.is-cpu .fs-disc { transform: rotateY(180deg); }
+.fs-cell.is-placed .fs-disc { animation: fs-drop 260ms var(--ease-spring); }
+@keyframes fs-drop { from { scale: 1.35; } }
+.fs-face {
+  position: absolute;
+  inset: 0;
+  border: 2.5px solid var(--ink-900);
+  border-radius: 50%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: inset 0 -4px 0 rgb(0 0 0 / 0.2);
+}
+.fs-face--you { background: radial-gradient(circle at 35% 30%, #F08A6E, #E8553D 55%); }
+.fs-face--cpu { transform: rotateY(180deg); background: radial-gradient(circle at 35% 30%, #3B4D6B, #1B2A41 60%); border-color: #FBF7F0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fs-disc { transition: none; }
+  .fs-cell.is-placed .fs-disc { animation: none; }
+}

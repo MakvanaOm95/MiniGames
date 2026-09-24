@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" width="320" height="240">
+  <defs><radialGradient id="r" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#F08A6E"/><stop offset="0.55" stop-color="#E8553D"/></radialGradient>
+  <radialGradient id="n" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#3B4D6B"/><stop offset="0.6" stop-color="#1B2A41"/></radialGradient></defs>
+  <rect width="320" height="240" fill="#7BAE5A"/>
+  <rect x="66" y="26" width="188" height="188" rx="12" fill="#1B2A41"/>
+  <g fill="#3D9A6B">
+    <rect x="74" y="34" width="41" height="41" rx="4"/><rect x="118" y="34" width="41" height="41" rx="4"/><rect x="162" y="34" width="41" height="41" rx="4"/><rect x="206" y="34" width="41" height="41" rx="4"/>
+    <rect x="74" y="78" width="41" height="41" rx="4"/><rect x="118" y="78" width="41" height="41" rx="4"/><rect x="162" y="78" width="41" height="41" rx="4"/><rect x="206" y="78" width="41" height="41" rx="4"/>
+    <rect x="74" y="122" width="41" height="41" rx="4"/><rect x="118" y="122" width="41" height="41" rx="4"/><rect x="162" y="122" width="41" height="41" rx="4"/><rect x="206" y="122" width="41" height="41" rx="4"/>
+    <rect x="74" y="166" width="41" height="41" rx="4"/><rect x="118" y="166" width="41" height="41" rx="4"/><rect x="162" y="166" width="41" height="41" rx="4"/><rect x="206" y="166" width="41" height="41" rx="4"/>
+  </g>
+  <g stroke="#1B2A41" stroke-width="3"><circle cx="138" cy="98" r="15" fill="url(#r)"/><circle cx="182" cy="142" r="15" fill="url(#r)"/><circle cx="94" cy="142" r="15" fill="url(#r)"/><circle cx="138" cy="142" r="15" fill="url(#r)"/></g>
+  <g stroke="#FBF7F0" stroke-width="3"><circle cx="182" cy="98" r="15" fill="url(#n)"/><circle cx="226" cy="142" r="15" fill="url(#n)"/></g>
+  <g transform="translate(182 142)"><ellipse rx="6" ry="15" fill="#E8553D" stroke="#1B2A41" stroke-width="3" opacity="0"/></g>
+  <g transform="translate(226 98)"><ellipse rx="7" ry="16" fill="#E8553D" stroke="#1B2A41" stroke-width="3"/></g>
+  <path d="M244 76a24 24 0 0 1 8 26" fill="none" stroke="#FBF7F0" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M248 104l4 -3 3 5" fill="none" stroke="#FBF7F0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="94" cy="186" r="6" fill="#FBF7F0" opacity="0.55"/>
+</svg>

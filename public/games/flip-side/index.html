@@ -22,21 +22,21 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5332646843190183"
      crossorigin="anonymous"></script>
 <!-- /@head -->
-<title>Rock Popper: Free Space Rock Shooter Game Online | Tiny Tock</title>
-<meta name="description" content="Play Rock Popper free in your browser. Fly a toy rocket, pop drifting space rocks into smaller pieces and clear wave after wave. Works on phone and desktop.">
-<link rel="canonical" href="https://tinytock.com/games/rock-popper/">
+<title>Flip Side: Free Disc Flipping Strategy Game Online | Tiny Tock</title>
+<meta name="description" content="Play Flip Side free in your browser. Trap the computer’s discs to flip them to your color in this classic 8x8 strategy game. Works on phone and desktop.">
+<link rel="canonical" href="https://tinytock.com/games/flip-side/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Tiny Tock">
-<meta property="og:title" content="Rock Popper: free online game | Tiny Tock">
-<meta property="og:description" content="Pop the space rocks before they bump your rocket!">
-<meta property="og:url" content="https://tinytock.com/games/rock-popper/">
+<meta property="og:title" content="Flip Side: free online game | Tiny Tock">
+<meta property="og:description" content="Trap and flip the computer’s discs. Can you outsmart it?">
+<meta property="og:url" content="https://tinytock.com/games/flip-side/">
 <meta property="og:image" content="https://tinytock.com/assets/images/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/assets/css/game-shell.css">
-<link rel="stylesheet" href="/games/rock-popper/style.css">
-<script type="module" src="/games/rock-popper/game.js"></script>
+<link rel="stylesheet" href="/games/flip-side/style.css">
+<script type="module" src="/games/flip-side/game.js"></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"VideoGame","name":"Rock Popper","url":"https://tinytock.com/games/rock-popper/","description":"An arcade space shooter: steer a toy rocket and pop drifting rocks, which split into smaller pieces, wave after wave.","genre":["Arcade"],"gamePlatform":["Web browser"],"applicationCategory":"Game","operatingSystem":"Any","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"Tiny Tock","url":"https://tinytock.com/"}}
+{"@context":"https://schema.org","@type":"VideoGame","name":"Flip Side","url":"https://tinytock.com/games/flip-side/","description":"A classic disc-flipping strategy board game on an 8x8 board, played against the computer.","genre":["Strategy"],"gamePlatform":["Web browser"],"applicationCategory":"Game","operatingSystem":"Any","isAccessibleForFree":true,"publisher":{"@type":"Organization","name":"Tiny Tock","url":"https://tinytock.com/"}}
 </script>
 </head>
 <body>
@@ -75,27 +75,31 @@
 
 <main id="main" class="game-page">
   <div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/games/">Games</a> / Rock Popper</nav>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/games/">Games</a> / Flip Side</nav>
 
     <div class="game-title">
-      <h1>Rock Popper</h1>
+      <h1>Flip Side</h1>
       <div class="meta">
-        <span class="tag" style="--tag-color: var(--cat-arcade)">Arcade</span>
-        <span class="time">About 3 min</span>
+        <span class="tag" style="--tag-color: var(--cat-strategy)">Strategy</span>
+        <span class="time">About 5+ min</span>
       </div>
     </div>
 
     <div class="game-layout">
       <!-- ===== The game ===== -->
       <div>
-        <section class="game" data-game="rock-popper" aria-label="Rock Popper game">
+        <section class="game" data-game="flip-side" aria-label="Flip Side game">
           <div class="game__stage">
-            <canvas id="space" role="img" aria-label="Rock Popper game: a toy rocket among drifting space rocks"></canvas>
+            <div class="fs">
+              <p class="fs-turn" data-turn>You play red</p>
+              <div class="fs-board" data-board role="group" aria-label="Game board. Use the arrow keys to move between squares."></div>
+              <p class="visually-hidden" aria-live="polite" data-live></p>
+            </div>
           </div>
         </section>
         <p class="game-note">
-          <span class="keys-only"><kbd>←</kbd> <kbd>→</kbd> turn, <kbd>↑</kbd> thrust, <kbd>Space</kbd> fire. Or hold the mouse on the board to aim and fire. Press <kbd>P</kbd> to pause.</span>
-          <span class="touch-only">Hold your finger on the board: the rocket turns that way and fires. Hold far from it to fly there.</span>
+          <span class="keys-only">Click a square with a dot to play there. Or use the arrow keys and <kbd>Enter</kbd>. Press <kbd>P</kbd> to pause.</span>
+          <span class="touch-only">Tap a square with a dot to place your disc there.</span>
         </p>
       </div>
 
@@ -107,23 +111,22 @@
     <div class="game-info">
       <div class="prose">
         <section>
-          <h2>About Rock Popper</h2>
-          <p>Rock Popper is our toy-box version of a classic arcade space shooter. Your little rocket floats in the middle of space while colorful rocks drift around it. Shoot a big rock and it pops into two medium rocks. Shoot those and they pop into two small ones. The small ones vanish for good.</p>
-          <p>Clear every rock to start the next wave, with more and faster rocks each time. If a rock bumps into your rocket you lose a life, and after three it’s game over. Everything wraps around the edges, so a rock that drifts off the right side comes back on the left. Watch your back!</p>
+          <h2>About Flip Side</h2>
+          <p>Flip Side is a classic strategy board game of trapping and flipping. You play the red discs and the computer plays navy. Place a disc so that a line of the computer’s discs sits between your new disc and another red one. Every disc in that line flips over to red! Lines can run across, up and down, or diagonally.</p>
+          <p>The board fills up fast and discs can change color many times, so the lead swings back and forth right until the end. When neither side can move, the player with more discs wins. The rules take a minute to learn and a lifetime to master. Our computer player loves corners, so watch out!</p>
         </section>
         <section>
           <h2>How to play</h2>
           <ol class="steps">
-            <li>Press <strong>Play</strong>. Your rocket starts in the middle, blinking. It’s safe for a moment.</li>
-            <li>Hold your finger or mouse on the board. The rocket turns toward it and fires. Hold far away to fly there.</li>
-            <li>Pop big rocks (20 points) into medium ones (50) and then small ones (100).</li>
-            <li>Clear all the rocks to reach the next wave. Avoid bumps: you have 3 lives.</li>
+            <li>Press <strong>Play</strong>. You’re red and you go first.</li>
+            <li>Tap a square with a <strong>dot</strong>. Those are the squares where your disc would trap navy discs.</li>
+            <li>All the trapped navy discs flip to red. Then the computer takes its turn and flips some back.</li>
+            <li>If you can’t move, you pass. When nobody can move, the most discs wins!</li>
           </ol>
           <table class="controls-table">
             <caption class="visually-hidden">Controls</caption>
-            <tr><th scope="row">Aim and fire</th><td>Hold the mouse or your finger on the board, or <kbd>Space</kbd> to fire</td></tr>
-            <tr><th scope="row">Turn</th><td><kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd></td></tr>
-            <tr><th scope="row">Thrust</th><td><kbd>↑</kbd> or <kbd>W</kbd>, or hold far from the rocket</td></tr>
+            <tr><th scope="row">Place a disc</th><td>Tap or click a square with a dot</td></tr>
+            <tr><th scope="row">Keyboard</th><td>Arrow keys to move, <kbd>Enter</kbd> to place</td></tr>
             <tr><th scope="row">Pause</th><td><kbd>P</kbd> or <kbd>Esc</kbd>, or the pause button</td></tr>
           </table>
         </section>
@@ -132,10 +135,10 @@
       <aside class="tips">
         <h2>Tips to score higher</h2>
         <ul>
-          <li><strong>Don’t fly too much.</strong> Staying near the middle and turning to shoot is often safer than zooming around.</li>
-          <li><strong>Pop the small ones first.</strong> Small rocks are fast and worth the most. Clear them before splitting more big rocks.</li>
-          <li><strong>Mind the edges.</strong> Rocks come back on the other side. A rock leaving the top will soon enter from the bottom.</li>
-          <li><strong>Use the blink.</strong> After losing a life you’re safe while blinking. Use that time to get into a clear spot.</li>
+          <li><strong>Grab the corners.</strong> A disc in a corner can never be flipped back. Corners are the strongest squares on the board.</li>
+          <li><strong>Avoid the squares next to corners.</strong> Playing diagonally next to an empty corner often hands that corner to the computer.</li>
+          <li><strong>Fewer can be better.</strong> Flipping lots of discs early gives the computer more choices. Keep its moves few.</li>
+          <li><strong>Edges are strong.</strong> Discs along the edge are hard to flip. Build walls there when you can.</li>
         </ul>
       </aside>
     </div>
@@ -151,6 +154,20 @@
       </div>
       <ul class="tile-grid">
 <!-- @play-next -->
+<li class="tile" data-slug="four-in-a-row" data-order="9" data-category="strategy" data-minutes="3" data-rank="5" data-badge="New">
+  <a class="tile__link" href="/games/four-in-a-row/">
+    <div class="tile__art"><img src="/games/four-in-a-row/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
+    <div class="tile__body">
+      <span class="tile__badge">New</span>
+      <h3 class="tile__title">Four in a Row</h3>
+      <p class="tile__blurb">Drop discs and line up four before the computer does.</p>
+      <div class="tile__meta">
+        <span class="tag">Strategy</span>
+        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>3 min</span></span>
+      </div>
+    </div>
+  </a>
+</li>
 <li class="tile" data-slug="snake" data-order="0" data-category="arcade" data-minutes="3" data-rank="1" data-badge="New">
   <a class="tile__link" href="/games/snake/">
     <div class="tile__art"><img src="/games/snake/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
@@ -161,20 +178,6 @@
       <div class="tile__meta">
         <span class="tag">Arcade</span>
         <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>3 min</span></span>
-      </div>
-    </div>
-  </a>
-</li>
-<li class="tile" data-slug="flip-side" data-order="25" data-category="strategy" data-minutes="5" data-badge="New">
-  <a class="tile__link" href="/games/flip-side/">
-    <div class="tile__art"><img src="/games/flip-side/thumb.svg" alt="" width="320" height="240" loading="lazy" decoding="async"></div>
-    <div class="tile__body">
-      <span class="tile__badge">New</span>
-      <h3 class="tile__title">Flip Side</h3>
-      <p class="tile__blurb">Trap the computer’s discs and flip them.</p>
-      <div class="tile__meta">
-        <span class="tag">Strategy</span>
-        <span class="time"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5V8l2.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><span class="visually-hidden">About </span>5+ min</span></span>
       </div>
     </div>
   </a>

@@ -243,5 +243,13 @@ export const GAMES = [
     minutes: 3,
     added: "2026-09-24",
   },
+  {
+    slug: "flip-side",
+    title: "Flip Side",
+    blurb: "Trap the computer’s discs and flip them.",
+    category: "strategy",
+    minutes: 5,
+    added: "2026-09-24",
+  },
   // ⬆ new games are added above this line (tools/new-game.mjs does it for you)
 ];
