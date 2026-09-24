@@ -1,0 +1,19 @@
+/* ==========================================================================
+   Wind-Up Dash — only what's unique to this game.
+   Shared game styles are in /assets/css/game-shell.css.
+   ========================================================================== */
+
+.game[data-game="wind-up-dash"] {
+  --game-color: var(--cat-endless-runner);   /* color of the score bar */
+  max-width: 760px;
+}
+/* A wide 2:1 track */
+.game[data-game="wind-up-dash"] .game__stage { aspect-ratio: 2 / 1; cursor: pointer; }
+.game[data-game="wind-up-dash"] .game-overlay { cursor: auto; }
+
+/* Track colors (read by game.js) */
+#dash { --wd-bg: #FBF7F0; --wd-far: rgb(111 169 216 / 0.22); --wd-grid: rgb(27 42 65 / 0.1); --wd-line: #1B2A41; --wd-text: #1B2A41; }
+[data-theme="dark"] #dash { --wd-bg: #1D2940; --wd-far: rgb(111 169 216 / 0.14); --wd-grid: rgb(244 236 221 / 0.08); --wd-line: #0B111B; --wd-text: #F4ECDD; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #dash { --wd-bg: #1D2940; --wd-far: rgb(111 169 216 / 0.14); --wd-grid: rgb(244 236 221 / 0.08); --wd-line: #0B111B; --wd-text: #F4ECDD; }
+}

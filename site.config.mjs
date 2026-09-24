@@ -187,5 +187,13 @@ export const GAMES = [
     minutes: 1,
     added: "2026-09-24",
   },
+  {
+    slug: "wind-up-dash",
+    title: "Wind-Up Dash",
+    blurb: "Jump the toys and see how far the robot runs.",
+    category: "endless-runner",
+    minutes: 1,
+    added: "2026-09-24",
+  },
   // ⬆ new games are added above this line (tools/new-game.mjs does it for you)
 ];
