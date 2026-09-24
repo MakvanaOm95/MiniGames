@@ -179,5 +179,13 @@ export const GAMES = [
     minutes: 1,
     added: "2026-09-24",
   },
+  {
+    slug: "tower-tock",
+    title: "Tower Tock",
+    blurb: "Drop the blocks and build the tallest tower.",
+    category: "casual",
+    minutes: 1,
+    added: "2026-09-24",
+  },
   // ⬆ new games are added above this line (tools/new-game.mjs does it for you)
 ];
