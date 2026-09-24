@@ -1,0 +1,122 @@
+/* ==========================================================================
+   Card Pyramid — only what's unique to this game.
+   Card size is set by game.js through --cw (card width).
+   ========================================================================== */
+
+.game[data-game="card-pyramid"] {
+  --game-color: var(--cat-card);   /* color of the score bar */
+  max-width: 720px;
+}
+.game[data-game="card-pyramid"] .game__stage {
+  padding: var(--space-4) var(--space-2);
+  background:
+    radial-gradient(circle at 1px 1px, rgb(255 255 255 / 0.07) 1px, transparent 0) 0 0 / 16px 16px,
+    #7A4E8C;
+}
+
+.cp-board {
+  --cw: 60px;
+  position: relative;
+  width: calc(var(--cw) * var(--bw, 7.86));
+  height: calc(var(--cw) * var(--bh, 6.9));
+  margin-inline: auto;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Cards */
+.cp-card {
+  position: absolute;
+  width: var(--cw);
+  aspect-ratio: 5 / 7;
+  padding: 0;
+  border: 2px solid var(--ink-900);
+  border-radius: calc(var(--cw) * 0.1);
+  background: #FBF7F0;
+  color: var(--ink-900);
+  box-shadow: 0 2px 0 rgb(0 0 0 / 0.25);
+  cursor: default;
+  transition: transform 0.16s var(--ease-out), opacity 0.25s, filter 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.cp-card.is-red { color: #C8432A; }
+.cp-card:not(.is-free) { filter: brightness(0.82); }
+.cp-card.is-free { cursor: pointer; }
+.cp-card.is-free:hover { transform: translateY(-3px); }
+.cp-card.is-selected { transform: translateY(-8px); box-shadow: 0 0 0 4px var(--mustard), 0 6px 0 rgb(0 0 0 / 0.25); }
+.cp-card:focus-visible { outline: 3px solid var(--mustard); outline-offset: 2px; }
+.cp-card.is-gone { opacity: 0; transform: translateY(-30px) scale(0.8) rotate(-8deg); pointer-events: none; }
+.cp-card.is-nope { animation: cp-nope 0.3s; }
+@keyframes cp-nope { 25% { translate: -5px 0; } 75% { translate: 5px 0; } }
+.cp-board.is-won .cp-card { animation: cp-hop 0.6s var(--ease-spring); }
+@keyframes cp-hop { 40% { transform: translateY(-14px); } }
+
+.cp-corner {
+  position: absolute;
+  left: 7%; top: 4%;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: calc(var(--cw) * 0.24);
+  line-height: 0.95;
+  text-align: center;
+}
+.cp-corner--end { left: auto; top: auto; right: 7%; bottom: 4%; transform: rotate(180deg); }
+.cp-pip {
+  position: absolute;
+  left: 50%; top: 54%;
+  translate: -50% -50%;
+  font-size: calc(var(--cw) * 0.5);
+  line-height: 1;
+}
+
+/* Stock (face-down pile) and the empty waste spot */
+.cp-stock,
+.cp-slot {
+  position: absolute;
+  width: var(--cw);
+  aspect-ratio: 5 / 7;
+  border-radius: calc(var(--cw) * 0.1);
+}
+.cp-stock {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 2px solid var(--ink-900);
+  background:
+    radial-gradient(circle at 50% 50%, #FBF7F0 0 16%, transparent 17%),
+    radial-gradient(circle at 50% 50%, #1B2A41 0 20%, transparent 21%),
+    repeating-linear-gradient(45deg, #E8553D 0 6px, #D54A33 6px 12px);
+  box-shadow: 2px 3px 0 var(--ink-900);
+  color: #FBF7F0;
+  cursor: pointer;
+}
+.cp-stock:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink-900); }
+.cp-stock.is-empty { background: rgb(0 0 0 / 0.12); border: 2px dashed rgb(255 255 255 / 0.45); box-shadow: none; }
+.cp-stock:focus-visible { outline: 3px solid var(--mustard); outline-offset: 2px; }
+.cp-count {
+  position: absolute;
+  bottom: -0.2em; right: -0.4em;
+  min-width: 1.8em;
+  padding: 0.1em 0.35em;
+  border: 2px solid var(--ink-900);
+  border-radius: 999px;
+  background: var(--mustard);
+  color: var(--ink-900);
+  font-weight: 800;
+  font-size: max(0.7rem, calc(var(--cw) * 0.2));
+}
+.cp-flip {
+  display: grid;
+  justify-items: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: calc(var(--cw) * 0.42);
+  line-height: 1;
+}
+.cp-flip small { font-size: max(0.65rem, calc(var(--cw) * 0.15)); font-family: var(--font-body); margin-top: 0.3em; }
+.cp-slot { border: 2px dashed rgb(255 255 255 / 0.45); background: rgb(0 0 0 / 0.12); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-card { transition: opacity 0.2s; }
+  .cp-board.is-won .cp-card { animation: none; }
+}

@@ -219,5 +219,13 @@ export const GAMES = [
     minutes: 5,
     added: "2026-09-24",
   },
+  {
+    slug: "card-pyramid",
+    title: "Card Pyramid",
+    blurb: "Pair cards that make 13 and clear the pyramid.",
+    category: "card",
+    minutes: 3,
+    added: "2026-09-24",
+  },
   // ⬆ new games are added above this line (tools/new-game.mjs does it for you)
 ];
