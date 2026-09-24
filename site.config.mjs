@@ -235,5 +235,13 @@ export const GAMES = [
     minutes: 3,
     added: "2026-09-24",
   },
+  {
+    slug: "rock-popper",
+    title: "Rock Popper",
+    blurb: "Pop the space rocks before they bump you.",
+    category: "arcade",
+    minutes: 3,
+    added: "2026-09-24",
+  },
   // ⬆ new games are added above this line (tools/new-game.mjs does it for you)
 ];

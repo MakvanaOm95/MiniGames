@@ -1,0 +1,12 @@
+/* ==========================================================================
+   Rock Popper — only what's unique to this game.
+   Shared game styles are in /assets/css/game-shell.css.
+   ========================================================================== */
+
+/* 4:3 space that always fits on screen */
+.game[data-game="rock-popper"] {
+  --game-color: var(--cat-arcade);   /* color of the score bar */
+  max-width: max(300px, min(760px, calc((100svh - 190px) * 1.333)));
+}
+.game[data-game="rock-popper"] .game__stage { aspect-ratio: 4 / 3; cursor: crosshair; background: #1B2A41; }
+.game[data-game="rock-popper"] .game-overlay { cursor: auto; }
