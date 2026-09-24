@@ -97,10 +97,10 @@ The Contact and Privacy pages use **hello@tinytock.com**, so make it work:
 
 AdSense reviews the whole site. Aim to tick **everything**:
 
-- [x] **15–20 finished games** (15 done ✅), each with a real description, how-to-play and tips (no TODOs left: search the project for `TODO`)
-- [ ] No empty, "coming soon" or broken pages (test every link)
-- [ ] About, Contact and Privacy pages live; the privacy policy mentions cookies and Google ads ✅ (already written)
-- [ ] Site works on HTTPS on **tinytock.com** (not only pages.dev)
+- [x] **15–20 finished games** (26 done ✅), each with a real description, how-to-play and tips (no TODOs left: search the project for `TODO`)
+- [x] No empty, "coming soon" or broken pages (test every link) ✅ all 126 links checked 2026-09-24
+- [x] About, Contact and Privacy pages live; the privacy policy mentions cookies and Google ads ✅ (already written)
+- [x] Site works on HTTPS on **tinytock.com** (not only pages.dev)
 - [ ] Mobile-friendly and fast. Test at **pagespeed.web.dev** (aim for 90+)
 - [ ] Indexed in Google (Search Console → Pages shows your pages)
 - [ ] Some real visitors from search or sharing. There's no official minimum, but a few weeks of steady traffic helps. In India, sites around **6 months old** are often approved more easily.
