@@ -1,0 +1,128 @@
+/* ==========================================================================
+   Ink Trick — only what's unique to this game.
+   Shared game styles are in /assets/css/game-shell.css.
+   ========================================================================== */
+
+.game[data-game="ink-trick"] {
+  --game-color: var(--cat-brain);   /* color of the score bar */
+  max-width: 640px;
+}
+.game[data-game="ink-trick"] .game__stage {
+  background:
+    radial-gradient(color-mix(in srgb, var(--plum) 18%, transparent) 1.5px, transparent 2px) 0 0 / 22px 22px,
+    var(--bg-raised);
+}
+
+/* In the normal flow (not absolute) so the board grows if the buttons wrap */
+.ink {
+  min-height: clamp(390px, 100vw, 440px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2.8vw, 18px);
+  padding: var(--space-4) var(--space-3);
+}
+
+/* "Tap the ink color" banner. Turns mustard when the rule flips to the word. */
+.ink__rule {
+  margin: 0;
+  padding: 0.3em 1em;
+  border: 2.5px solid var(--ink-900);
+  border-radius: var(--radius-pill);
+  background: var(--cream-50);
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-0);
+}
+.ink__rule strong { text-transform: uppercase; color: var(--plum); }
+.ink__rule.is-word { background: var(--mustard); }
+.ink__rule.is-word strong { color: var(--ink-900); text-decoration: underline 3px; text-underline-offset: 3px; }
+.ink__rule.is-flipped { animation: ink-flip 0.4s var(--ease-spring); }
+@keyframes ink-flip { 0% { transform: rotateX(90deg); } 100% { transform: none; } }
+
+/* The word card: always navy so every ink color reads clearly, in light or dark mode */
+.ink__card {
+  display: grid;
+  place-items: center;
+  width: min(100%, 400px);
+  aspect-ratio: 2.4 / 1;
+  border: var(--outline) solid var(--line);   /* light outline in dark mode, so the card stands out */
+  border-radius: var(--radius-l);
+  background: var(--ink-900);
+  box-shadow: 0 6px 0 var(--shadow-ink);
+}
+.ink__card.is-in .ink__word { animation: ink-pop 0.22s var(--ease-spring); }
+.ink__card.is-wrong { animation: ink-shake 0.35s; }
+@keyframes ink-pop { from { transform: scale(0.7); opacity: 0.2; } }
+@keyframes ink-shake { 25% { transform: translateX(-9px); } 50% { transform: translateX(7px); } 75% { transform: translateX(-4px); } }
+
+.ink__word {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 13vw, 4.4rem);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.ink__msg {
+  min-height: 1.5em;
+  margin: 0;
+  font-weight: 700;
+  font-size: var(--step--1);
+  color: var(--text-soft);
+  text-align: center;
+}
+
+/* Color buttons: chunky toy pieces with a paint dot */
+.ink__choices {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 12px);
+  max-width: 520px;
+}
+.ink-choice {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  min-width: clamp(100px, 27vw, 128px);
+  min-height: 52px;
+  padding: 0 1em 0 0.8em;
+  border: 2.5px solid var(--ink-900);
+  border-radius: 14px;
+  background: var(--cream-50);
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  box-shadow: 0 4px 0 var(--shadow-ink);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 60ms, box-shadow 60ms;
+}
+.ink-choice:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--shadow-ink); }
+.ink-choice:active { transform: translateY(4px); box-shadow: 0 0 0 var(--shadow-ink); }
+.ink-choice__dot {
+  width: 22px; height: 22px;
+  flex: none;
+  border: 2.5px solid var(--ink-900);
+  border-radius: 50%;
+  background: var(--swatch);
+}
+.ink-choice kbd {
+  margin-left: auto;
+  font-size: 0.72rem;
+  opacity: 0.55;
+}
+@media (pointer: coarse) { .ink-choice kbd { display: none; } }
+.ink-choice.is-right { animation: ink-right 0.3s; }
+.ink-choice.is-wrong { animation: ink-wrong 0.35s; }
+@keyframes ink-right { 30% { background: #CFEDE7; transform: translateY(-4px); } }
+@keyframes ink-wrong { 30% { background: #FBE3DD; transform: translateX(-5px); } 60% { transform: translateX(4px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ink__rule.is-flipped, .ink__card.is-in .ink__word, .ink__card.is-wrong, .ink-choice.is-right, .ink-choice.is-wrong { animation: none; }
+}

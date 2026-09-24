@@ -216,7 +216,7 @@
 .chip[data-category="arcade"]          { --chip-color: var(--cat-arcade); }
 .chip[data-category="classic"]         { --chip-color: var(--cat-classic); }
 .chip[data-category="brain"]           { --chip-color: var(--cat-brain); }
-.chip[data-category="endless-runner"]  { --chip-color: var(--cat-runner); }
+.chip[data-category="endless-runner"]  { --chip-color: var(--cat-endless-runner); }
 .chip[data-category="casual"]          { --chip-color: var(--cat-casual); }
 .chip[data-category="strategy"]        { --chip-color: var(--cat-strategy); }
 .chip[data-category="card"]            { --chip-color: var(--cat-card); }

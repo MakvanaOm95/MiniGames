@@ -181,7 +181,7 @@
 .tile[data-category="arcade"]          { --tile-color: var(--cat-arcade); }
 .tile[data-category="classic"]         { --tile-color: var(--cat-classic); }
 .tile[data-category="brain"]           { --tile-color: var(--cat-brain); }
-.tile[data-category="endless-runner"]  { --tile-color: var(--cat-runner); }
+.tile[data-category="endless-runner"]  { --tile-color: var(--cat-endless-runner); }
 .tile[data-category="casual"]          { --tile-color: var(--cat-casual); }
 .tile[data-category="strategy"]        { --tile-color: var(--cat-strategy); }
 .tile[data-category="card"]            { --tile-color: var(--cat-card); }

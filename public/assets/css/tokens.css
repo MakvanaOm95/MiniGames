@@ -59,7 +59,7 @@
   --cat-arcade:   var(--tomato);
   --cat-classic:  var(--sky);
   --cat-brain:    var(--plum);
-  --cat-runner:   var(--orange);
+  --cat-endless-runner: var(--orange);
   --cat-casual:   var(--mustard);
   --cat-strategy: var(--leaf);
   --cat-card:     var(--pink);

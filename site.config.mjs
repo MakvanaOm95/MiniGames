@@ -22,7 +22,7 @@ export const CATEGORIES = {
   arcade:           { label: "Arcade",         color: "var(--cat-arcade)" },
   classic:          { label: "Classic",        color: "var(--cat-classic)" },
   brain:            { label: "Brain",          color: "var(--cat-brain)" },
-  "endless-runner": { label: "Endless Runner", color: "var(--cat-runner)" },
+  "endless-runner": { label: "Endless Runner", color: "var(--cat-endless-runner)" },
   casual:           { label: "Casual",         color: "var(--cat-casual)" },
   strategy:         { label: "Strategy",       color: "var(--cat-strategy)" },
   card:             { label: "Card",           color: "var(--cat-card)" },
@@ -162,6 +162,14 @@ export const GAMES = [
     category: "strategy",
     minutes: 3,
     added: "2026-09-23",
+  },
+  {
+    slug: "ink-trick",
+    title: "Ink Trick",
+    blurb: "Tap the ink, not the word. Harder than it looks!",
+    category: "brain",
+    minutes: 1,
+    added: "2026-09-24",
   },
   // ⬆ new games are added above this line (tools/new-game.mjs does it for you)
 ];

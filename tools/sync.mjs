@@ -162,7 +162,7 @@ for (const file of htmlFiles) {
     if (cat) {
       html = html.replace(/<span class="tag" style="--tag-color: var\(--cat-[\w-]+\)">[^<]*<\/span>/,
         `<span class="tag" style="--tag-color: ${cat.color}">${escapeHtml(cat.label)}</span>`);
-      html = html.replace(/"genre":\["[^"]*"\]/, `"genre":["${cat.label}"]`);
+      html = html.replace(/("genre":\s*\[)"[^"]*"\]/, `$1"${cat.label}"]`);
     }
   }
 

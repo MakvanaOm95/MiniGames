@@ -7,7 +7,7 @@
 //   node tools/new-game.mjs 2048 "2048" puzzle 5
 //
 //   slug      lowercase letters, numbers and dashes (becomes /games/<slug>/)
-//   category  arcade | puzzle | quick | word | classic
+//   category  puzzle | arcade | classic | brain | endless-runner | casual | strategy | card
 //   minutes   1, 3 or 5
 //
 // It will:

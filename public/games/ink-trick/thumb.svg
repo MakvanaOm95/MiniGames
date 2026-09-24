@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" width="320" height="240">
+  <rect width="320" height="240" fill="#7A4E8C"/>
+  <circle cx="290" cy="30" r="5" fill="#FBF7F0" stroke="#1B2A41" stroke-width="2"/><path d="M34 34l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="#FBF7F0" stroke="#1B2A41" stroke-width="2" stroke-linejoin="round"/>
+  <g transform="rotate(-4 160 120)">
+    <rect x="46" y="40" width="228" height="164" rx="16" fill="#1B2A41"/>
+    <rect x="40" y="34" width="228" height="164" rx="16" fill="#FBF7F0" stroke="#1B2A41" stroke-width="4"/>
+    <rect x="58" y="50" width="192" height="80" rx="12" fill="#1B2A41"/>
+    <text x="154" y="107" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="46" fill="#FF6B55">BLUE</text>
+    <g stroke="#1B2A41" stroke-width="3">
+      <rect x="58" y="146" width="42" height="36" rx="9" fill="#FBF7F0"/><circle cx="79" cy="164" r="10" fill="#FF6B55"/>
+      <rect x="108" y="146" width="42" height="36" rx="9" fill="#FBF7F0"/><circle cx="129" cy="164" r="10" fill="#5AA8F0"/>
+      <rect x="158" y="146" width="42" height="36" rx="9" fill="#FBF7F0"/><circle cx="179" cy="164" r="10" fill="#4CC47A"/>
+      <rect x="208" y="146" width="42" height="36" rx="9" fill="#FBF7F0"/><circle cx="229" cy="164" r="10" fill="#FFD24D"/>
+    </g>
+  </g>
+</svg>
