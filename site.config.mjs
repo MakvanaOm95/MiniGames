@@ -171,5 +171,13 @@ export const GAMES = [
     minutes: 1,
     added: "2026-09-24",
   },
+  {
+    slug: "quick-draw",
+    title: "Quick Draw",
+    blurb: "Wait for the ring, then tap. How fast are you?",
+    category: "brain",
+    minutes: 1,
+    added: "2026-09-24",
+  },
   // ⬆ new games are added above this line (tools/new-game.mjs does it for you)
 ];

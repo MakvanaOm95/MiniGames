@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" width="320" height="240">
+  <rect width="320" height="240" fill="#2F8F83"/>
+  <circle cx="288" cy="206" r="5" fill="#FBF7F0" stroke="#1B2A41" stroke-width="2"/><path d="M34 30l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="#FBF7F0" stroke="#1B2A41" stroke-width="2" stroke-linejoin="round"/>
+  <g fill="none" stroke="#FBF7F0" stroke-width="5" stroke-linecap="round">
+    <path d="M72 70l-18-10M64 108H42M72 146l-18 10"/>
+    <path d="M248 70l18-10M256 108h22M248 146l18 10"/>
+  </g>
+  <g transform="translate(160 118) rotate(-8) scale(3.6) translate(-24 -26)">
+    <g stroke="#1B2A41" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M15 40l-3 5M33 40l3 5M24 10.5V6" fill="none"/>
+      <path d="M5.5 15.5a8.5 8.5 0 0 1 12.5-10.5z" fill="#F2B33D"/>
+      <path d="M42.5 15.5a8.5 8.5 0 0 0-12.5-10.5z" fill="#F2B33D"/>
+      <circle cx="24" cy="27" r="16" fill="#E8553D"/>
+      <circle cx="24" cy="27" r="11" fill="#FBF7F0" stroke="none"/>
+      <path d="M24 20v7l4.5 3" fill="none"/>
+    </g>
+    <circle cx="24" cy="4.8" r="2" fill="#1B2A41"/><circle cx="24" cy="27" r="1.9" fill="#1B2A41"/>
+  </g>
+  <g transform="translate(160 214)">
+    <rect x="-52" y="-16" width="104" height="30" rx="15" fill="#FBF7F0" stroke="#1B2A41" stroke-width="3"/>
+    <text y="6" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="17" fill="#1B2A41">213 ms</text>
+  </g>
+</svg>
