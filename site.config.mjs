@@ -227,5 +227,13 @@ export const GAMES = [
     minutes: 3,
     added: "2026-09-24",
   },
+  {
+    slug: "peg-jump",
+    title: "Peg Jump",
+    blurb: "Jump the pegs and leave just one standing.",
+    category: "classic",
+    minutes: 3,
+    added: "2026-09-24",
+  },
   // ⬆ new games are added above this line (tools/new-game.mjs does it for you)
 ];

@@ -1,0 +1,88 @@
+/* ==========================================================================
+   Peg Jump — only what's unique to this game.
+   Shared game styles are in /assets/css/game-shell.css.
+   ========================================================================== */
+
+.game[data-game="peg-jump"] {
+  --game-color: var(--cat-classic);   /* color of the score bar */
+  max-width: 560px;
+}
+
+.pj {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-3) var(--space-4);
+  background: var(--bg-sunken);
+}
+
+/* A round wooden board with a 7 × 7 cross of holes */
+.pj-board {
+  width: min(100%, 440px);
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  padding: 18px;
+  border: var(--outline) solid var(--ink-900);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #F6C766, #E0A032 70%);
+  box-shadow: 0 6px 0 var(--ink-900);
+}
+.pj-hole {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+/* the hole itself */
+.pj-hole::before {
+  content: "";
+  width: 42%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #8A5A1C;
+  box-shadow: inset 0 3px 0 rgb(0 0 0 / 0.35);
+}
+/* the peg: a shiny round marble */
+.pj-hole.has-peg::after {
+  content: "";
+  position: absolute;
+  width: 72%;
+  aspect-ratio: 1;
+  border: 2.5px solid var(--ink-900);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #FFFFFF 0 12%, #F08A6E 14%, #E8553D 60%, #C8432A);
+  box-shadow: 0 3px 0 rgb(27 42 65 / 0.5);
+  transition: transform 150ms var(--ease-spring);
+}
+.pj-hole.has-peg:hover::after { transform: translateY(-2px); }
+.pj-hole.is-selected::after {
+  transform: translateY(-5px) scale(1.08);
+  background: radial-gradient(circle at 35% 30%, #FFFFFF 0 12%, #9FD3C9 14%, #2F8F83 60%, #236E64);
+  box-shadow: 0 7px 0 rgb(27 42 65 / 0.4), 0 0 0 4px #FBF7F0;
+}
+.pj-hole.is-target::before {
+  background: #FBF7F0;
+  box-shadow: 0 0 0 4px var(--teal);
+  animation: pj-pulse 0.9s ease-in-out infinite;
+}
+@keyframes pj-pulse { 50% { transform: scale(1.18); } }
+.pj-hole.is-landed::after { animation: pj-land 260ms var(--ease-spring); }
+@keyframes pj-land { from { transform: translateY(-10px) scale(1.15); } }
+.pj-hole.is-nope { animation: pj-nope 0.3s; }
+@keyframes pj-nope { 25% { translate: -4px 0; } 75% { translate: 4px 0; } }
+.pj-hole:focus-visible { outline: 3px solid var(--ink-900); outline-offset: 0; }
+
+.pj-tools { display: flex; justify-content: center; }
+.pj-tools .btn { padding-block: 0.5em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pj-hole.is-target::before, .pj-hole.is-landed::after { animation: none; }
+}
