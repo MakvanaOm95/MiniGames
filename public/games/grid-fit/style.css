@@ -1,0 +1,96 @@
+/* ==========================================================================
+   Grid Fit — only what's unique to this game.
+   Shared game styles are in /assets/css/game-shell.css.
+   ========================================================================== */
+
+.game[data-game="grid-fit"] {
+  --game-color: var(--cat-puzzle);   /* color of the score bar */
+  max-width: 520px;
+}
+
+.gf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-3);
+  background: var(--bg-sunken);
+}
+
+/* The 8 × 8 grid */
+.gf-board {
+  width: min(100%, 420px);
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 3px;
+  padding: 6px;
+  background: var(--ink-900);
+  border-radius: var(--radius-m);
+  touch-action: none;
+}
+.gf-cell {
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--cream-50) 12%, var(--ink-900));
+}
+.gf-cell.is-full,
+.gf-cell.is-popping,
+.gf-piece span {
+  background: var(--block);
+  box-shadow: inset 0 -4px 0 rgb(0 0 0 / 0.18), inset 0 4px 0 rgb(255 255 255 / 0.3);
+}
+.gf-cell.is-ghost { background: color-mix(in srgb, var(--block) 55%, transparent); }
+.gf-cell.is-bad { background: color-mix(in srgb, var(--tomato) 30%, var(--ink-900)); }
+.gf-cell.is-line { outline: 3px solid var(--mustard); outline-offset: -3px; }
+.gf-cell.is-popping { animation: gf-pop 320ms var(--ease-out) forwards; }
+@keyframes gf-pop { to { transform: scale(0.2) rotate(20deg); opacity: 0; } }
+
+/* The three pieces */
+.gf-tray {
+  width: min(100%, 420px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+.gf-slot {
+  height: clamp(92px, 26vw, 118px);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: var(--outline) dashed color-mix(in srgb, var(--ink-900) 30%, transparent);
+  border-radius: var(--radius-m);
+  background: transparent;
+  cursor: grab;
+  touch-action: none;
+}
+.gf-slot:disabled { cursor: default; }
+.gf-slot.is-selected { border-style: solid; border-color: var(--ink-900); background: var(--bg-raised); }
+.gf-slot.is-dragging .gf-piece { opacity: 0.25; }
+.gf-slot.is-stuck .gf-piece { opacity: 0.35; filter: grayscale(0.8); }
+
+.gf-piece {
+  --cell: clamp(14px, 4.4vw, 20px);
+  display: grid;
+  grid-template-columns: repeat(var(--w), var(--cell));
+  grid-template-rows: repeat(var(--h), var(--cell));
+  gap: 2px;
+  pointer-events: none;
+}
+.gf-piece span { border-radius: 4px; }
+
+/* The piece following your finger or mouse */
+.gf-float {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 50;
+  gap: 3px;
+  filter: drop-shadow(3px 5px 0 rgb(27 42 65 / 0.35));
+}
+[data-theme="dark"] .gf-cell:not(.is-full):not(.is-ghost):not(.is-bad):not(.is-popping) { background: #26334D; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .gf-cell:not(.is-full):not(.is-ghost):not(.is-bad):not(.is-popping) { background: #26334D; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gf-cell.is-popping { animation: none; opacity: 0; }
+}

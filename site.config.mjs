@@ -211,5 +211,13 @@ export const GAMES = [
     minutes: 3,
     added: "2026-09-24",
   },
+  {
+    slug: "grid-fit",
+    title: "Grid Fit",
+    blurb: "Fit the blocks, clear rows and columns.",
+    category: "puzzle",
+    minutes: 5,
+    added: "2026-09-24",
+  },
   // ⬆ new games are added above this line (tools/new-game.mjs does it for you)
 ];
